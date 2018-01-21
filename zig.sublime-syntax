@@ -17,6 +17,7 @@ contexts:
     - include: boolean
     - include: operator
     - include: dec-number
+    - include: float-number
     - include: hex-number
     - include: oct-number
     - include: bin-number
@@ -77,14 +78,23 @@ contexts:
     - match: '(==|\+\+|\*\*|->)'
       scope: keyword.operator.special.zig
 
-  # dec-number:
-    # - match: '\<[0-9]\+\%(.[0-9]\+\)\=\%([eE][+-]\?[0-9]\+\)\='
+  dec-number:
+    - match: '\b-?\d*\b'
+      scope: constant.numeric.integer
 
-  # hex-number:
-    # - match: '0x[a-fA-F0-9]+'
+  # float-number:
+  #   # - match: '\b\d+.\d+\b'
+  #   - match: '^(?!-0$)[+-]?([1-9]\d*|0)(\.\d+)?$'
+  #     # scope: constant.numeric.float
+  #     scope: invalid
+
+  hex-number:
+    - match: '\b0x[a-fA-F0-9]+\b'
+      scope: constant.numeric.hex
 
   oct-number:
-    - match: '0o[0-7]+'
+    - match: '\b0o[0-7]+\b'
+      scope: constant.numeric.octal
 
   bin-number:
     - match: '0b[01]+'
