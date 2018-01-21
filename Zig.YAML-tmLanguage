@@ -101,3 +101,19 @@ repository:
   bin-number:
     match: '0b[01]+'
     name: constant.numeric.bin.zig
+
+  todo:
+    match: "TODO"
+    name: comment.line.todo.zig
+
+  comment-line:
+    begin: "//[^/]"
+    end: "$"
+    name: comment.line.zig
+    patterns:
+    - include: '#todo'
+
+  comment-line-doc:
+    begin: "///"
+    end: "$"
+    name: comment.line.documentation.zig

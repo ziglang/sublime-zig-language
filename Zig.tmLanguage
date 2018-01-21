@@ -107,6 +107,31 @@
 			<key>name</key>
 			<string>invalid</string>
 		</dict>
+		<key>comment-line</key>
+		<dict>
+			<key>begin</key>
+			<string>//[^/]</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>comment.line.zig</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#todo</string>
+				</dict>
+			</array>
+		</dict>
+		<key>comment-line-doc</key>
+		<dict>
+			<key>begin</key>
+			<string>///</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>comment.line.documentation.zig</string>
+		</dict>
 		<key>conditional</key>
 		<dict>
 			<key>match</key>
@@ -236,6 +261,13 @@
 					<string>entity.name.enum.zig</string>
 				</dict>
 			</array>
+		</dict>
+		<key>todo</key>
+		<dict>
+			<key>match</key>
+			<string>TODO</string>
+			<key>name</key>
+			<string>comment.line.todo.zig</string>
 		</dict>
 		<key>type</key>
 		<dict>
