@@ -238,6 +238,15 @@
 			<key>name</key>
 			<string>storage.zig</string>
 		</dict>
+		<key>strings</key>
+		<dict>
+			<key>begin</key>
+			<string>(c"|")</string>
+			<key>end</key>
+			<string>"</string>
+			<key>name</key>
+			<string>string.quoted.double</string>
+		</dict>
 		<key>structure</key>
 		<dict>
 			<key>patterns</key>

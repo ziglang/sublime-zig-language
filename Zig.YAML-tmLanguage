@@ -117,3 +117,8 @@ repository:
     begin: "///"
     end: "$"
     name: comment.line.documentation.zig
+
+  strings:
+    begin: '(c"|")'
+    end: '"'
+    name: string.quoted.double
