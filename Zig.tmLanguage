@@ -90,6 +90,10 @@
 			<key>include</key>
 			<string>#strings</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#multiline-strings</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -173,6 +177,15 @@
 			<string>\b(fn|use|test)\b</string>
 			<key>name</key>
 			<string>entity.name.function.zig</string>
+		</dict>
+		<key>multiline-strings</key>
+		<dict>
+			<key>begin</key>
+			<string>c?\\</string>
+			<key>end</key>
+			<string>$</string>
+			<key>name</key>
+			<string>string.quoted.other</string>
 		</dict>
 		<key>oct-number</key>
 		<dict>

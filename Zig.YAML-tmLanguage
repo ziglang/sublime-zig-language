@@ -24,6 +24,7 @@ patterns:
   - include: '#comment-line'
   - include: '#comment-line-doc'
   - include: '#strings'
+  - include: '#multiline-strings'
 
 repository:
   storage:
@@ -85,8 +86,6 @@ repository:
     name: constant.numeric.integer
 
   float-number:
-    # - match: '\b\d+.\d+\b'
-    # scope: constant.numeric.float
     match: '^(?!-0$)[+-]?([1-9]\d*|0)(\.\d+)?$'
     name: constant.numeric.float
 
@@ -122,3 +121,9 @@ repository:
     begin: '(c"|")'
     end: '"'
     name: string.quoted.double
+
+  # TODO can't get escape quite right
+  multiline-strings:
+    begin: "c?\\\\"
+    end: '$'
+    name: string.quoted.other
