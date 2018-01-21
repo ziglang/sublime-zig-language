@@ -101,7 +101,7 @@ contexts:
 
   # character-invalid:
     # -match: /b\?'\zs[\n\r\t']\ze'/
-    #
+
 
   # character-invalid-unicode:
   #   -match: /b'\zs[^[:cntrl:][:graph:][:alnum:][:space:]]\ze'/

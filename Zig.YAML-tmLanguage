@@ -1,0 +1,103 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: Zig
+scopeName: source.zig
+fileTypes: [zig]
+
+patterns:
+  - include: '#storage'
+  - include: '#structure'
+  - include: '#statement'
+  - include: '#conditional'
+  - include: '#repeat'
+  - include: '#constant'
+  - include: '#keyword'
+  - include: '#type'
+  - include: '#boolean'
+  - include: '#operator'
+  - include: '#dec-number'
+  - include: '#float-number'
+  - include: '#hex-number'
+  - include: '#oct-number'
+  - include: '#bin-number'
+  - include: '#character'
+  - include: '#operators'
+  - include: '#comment-line'
+  - include: '#comment-line-doc'
+  - include: '#strings'
+
+repository:
+  storage:
+    name: storage.zig
+    match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|coldcc|stdcallcc|volatile|align|section)\b'
+
+  structure:
+    patterns:
+      - name: entity.name.union.zig
+        match: 'union'
+      - name: entity.name.struct.zig
+        match: 'struct'
+      - name: entity.name.enum.zig
+        match: 'enum'
+
+  statement:
+    match: '\b(break|return|continue|asm|defer|unreachable)\b'
+    name: keyword.control.zig
+
+  conditional:
+    match: '\b(if|else|switch|and|or)\b'
+    name: keyword.control.conditional.zig
+
+  repeat:
+    match: '\b(while|for)\b'
+    name: keyword.control.zig
+
+  constant:
+    match: '\b(null|undefined|this)\b'
+    name: constant.language.zig
+
+  keyword:
+    match: '\b(fn|use|test)\b'
+    name: entity.name.function.zig
+
+  type:
+    match: '\b(bool|f32|f64|f128|void|noreturn|type|error|i2|u2|i3|u3|i4|u4|i5|u5|i6|u6|i7|u7|i8|u8|i16|u16|u29|i29|i32|u32|i64|u64|i128|u128|isize|usize|c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b'
+    scope: storage.type.zig
+
+  boolean:
+    match: '\b(true|false)\b'
+    name: invalid
+
+  operator:
+    patterns:
+      - match: '(==|!=)'
+        scope: keyword.operator.zig
+      - match: '\b(and|or)\b'
+        scope: keyword.operator.word.zig
+      - match: '(-%?|\\+%?|\\*%?|/[^/]|%)=?'
+        scope: keyword.operator.arithmetic.zig
+      - match: '(<<%?|>>|!|&|\\^|\\|)=?'
+        scope: keyword.operator.bitwise.zig
+      - match: '(==|\+\+|\*\*|->)'
+        scope: keyword.operator.special.zig
+
+  dec-number:
+    match: '\b-?\d*\b'
+    name: constant.numeric.integer
+
+  float-number:
+    # - match: '\b\d+.\d+\b'
+    # scope: constant.numeric.float
+    match: '^(?!-0$)[+-]?([1-9]\d*|0)(\.\d+)?$'
+    name: constant.numeric.float
+
+  hex-number:
+    match: '\b0x[a-fA-F0-9]+\b'
+    name: constant.numeric.hex.zig
+
+  oct-number:
+    match: '\b0o[0-7]+\b'
+    name: constant.numeric.octal.zig
+
+  bin-number:
+    match: '0b[01]+'
+    name: constant.numeric.bin.zig
