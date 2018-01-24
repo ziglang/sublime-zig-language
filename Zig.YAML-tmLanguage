@@ -29,7 +29,7 @@ patterns:
 repository:
   storage:
     name: storage.zig
-    match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|coldcc|stdcallcc|volatile|align|section)\b'
+    match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|section)\b'
 
   structure:
     patterns:
@@ -41,7 +41,7 @@ repository:
         match: 'enum'
 
   statement:
-    match: '\b(break|return|continue|asm|defer|unreachable)\b'
+    match: '\b(break|return|continue|asm|defer|errdefer|unreachable)\b'
     name: keyword.control.zig
 
   conditional:

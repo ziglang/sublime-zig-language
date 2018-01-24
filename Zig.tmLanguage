@@ -240,14 +240,14 @@
 		<key>statement</key>
 		<dict>
 			<key>match</key>
-			<string>\b(break|return|continue|asm|defer|unreachable)\b</string>
+			<string>\b(break|return|continue|asm|defer|errdefer|unreachable)\b</string>
 			<key>name</key>
 			<string>keyword.control.zig</string>
 		</dict>
 		<key>storage</key>
 		<dict>
 			<key>match</key>
-			<string>\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|coldcc|stdcallcc|volatile|align|section)\b</string>
+			<string>\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|section)\b</string>
 			<key>name</key>
 			<string>storage.zig</string>
 		</dict>
