@@ -82,15 +82,15 @@ repository:
   operator:
     patterns:
       - match: '(==|!=)'
-        scope: keyword.operator.zig
+        name: keyword.operator.zig
       - match: '\b(and|or)\b'
-        scope: keyword.operator.word.zig
+        name: keyword.operator.word.zig
       - match: '(\-\%?|\+%?|\*%?|/[^/]|%)=?'
-        scope: keyword.operator.arithmetic.zig
+        name: keyword.operator.arithmetic.zig
       - match: '(\<\<%?|>>|!|&|\^|\|)=?'
-        scope: keyword.operator.bitwise.zig
+        name: keyword.operator.bitwise.zig
       - match: '(==|\+\+|\*\*)'
-        scope: keyword.operator.special.zig
+        name: keyword.operator.special.zig
 
   dec-float-number:
     match: '\b-?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?\b'
