@@ -167,21 +167,21 @@
 			<key>match</key>
 			<string>\b-?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?\b</string>
 			<key>name</key>
-			<string>constant.numeric.float</string>
+			<string>constant.numeric.float.zig</string>
 		</dict>
 		<key>dec-number</key>
 		<dict>
 			<key>match</key>
 			<string>\b-?[0-9]+\b</string>
 			<key>name</key>
-			<string>constant.numeric.integer</string>
+			<string>constant.numeric.integer.zig</string>
 		</dict>
 		<key>hex-float-number</key>
 		<dict>
 			<key>match</key>
 			<string>\b0x[a-fA-F0-9]+(\.[a-fA-F0-9]+)?([pP][+-]?[0-9]+)?\b</string>
 			<key>name</key>
-			<string>constant.numeric.float.hex</string>
+			<string>constant.numeric.float.hex.zig</string>
 		</dict>
 		<key>hex-number</key>
 		<dict>
@@ -213,7 +213,7 @@
 					<key>match</key>
 					<string>.*</string>
 					<key>name</key>
-					<string>string.quoted.double</string>
+					<string>string.quoted.other.zig</string>
 				</dict>
 			</array>
 		</dict>
@@ -288,7 +288,7 @@
 			<key>end</key>
 			<string>"</string>
 			<key>name</key>
-			<string>string.quoted.double</string>
+			<string>string.quoted.double.zig</string>
 		</dict>
 		<key>structure</key>
 		<dict>

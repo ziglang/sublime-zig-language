@@ -94,15 +94,15 @@ repository:
 
   dec-float-number:
     match: '\b-?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?\b'
-    name: constant.numeric.float
+    name: constant.numeric.float.zig
 
   dec-number:
     match: '\b-?[0-9]+\b'
-    name: constant.numeric.integer
+    name: constant.numeric.integer.zig
 
   hex-float-number:
     match: '\b0x[a-fA-F0-9]+(\.[a-fA-F0-9]+)?([pP][+-]?[0-9]+)?\b'
-    name: constant.numeric.float.hex
+    name: constant.numeric.float.hex.zig
 
   hex-number:
     match: '\b0x[a-fA-F0-9]+\b'
@@ -135,7 +135,7 @@ repository:
   strings:
     begin: '(c"|")'
     end: '"'
-    name: string.quoted.double
+    name: string.quoted.double.zig
 
   # TODO: Doesn't handle case when something else that matches is at begining
   # of line before string starts.
@@ -146,4 +146,4 @@ repository:
     patterns:
     - include:
       match: ".*"
-      name: string.quoted.double
+      name: string.quoted.other.zig
