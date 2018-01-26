@@ -137,10 +137,8 @@ repository:
     end: '"'
     name: string.quoted.double.zig
 
-  # TODO: Doesn't handle case when something else that matches is at begining
-  # of line before string starts.
   multiline-strings:
-    begin: '^.*c?\\\\'
+    begin: 'c?\\\\'
     end: '$'
     name: comment.line.zig
     patterns:

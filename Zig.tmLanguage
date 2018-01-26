@@ -200,7 +200,7 @@
 		<key>multiline-strings</key>
 		<dict>
 			<key>begin</key>
-			<string>^.*c?\\\\</string>
+			<string>c?\\\\</string>
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
