@@ -121,7 +121,7 @@
 			<key>match</key>
 			<string>\b(true|false)\b</string>
 			<key>name</key>
-			<string>invalid</string>
+			<string>constant.language.zig</string>
 		</dict>
 		<key>comment-line</key>
 		<dict>
@@ -179,7 +179,7 @@
 		<key>hex-float-number</key>
 		<dict>
 			<key>match</key>
-			<string>\b0x[a-fA-F0-9]+\.[a-fA-F0-9]+[pP][+-]?[0-9]+\b</string>
+			<string>\b0x[a-fA-F0-9]+(\.[a-fA-F0-9]+)?([pP][+-]?[0-9]+)?\b</string>
 			<key>name</key>
 			<string>constant.numeric.float.hex</string>
 		</dict>
@@ -200,11 +200,22 @@
 		<key>multiline-strings</key>
 		<dict>
 			<key>begin</key>
-			<string>^ *c?\\\\</string>
+			<string>^.*c?\\\\</string>
 			<key>end</key>
 			<string>$</string>
 			<key>name</key>
-			<string>string.quoted.other</string>
+			<string>comment.line.zig</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<false/>
+					<key>match</key>
+					<string>.*</string>
+					<key>name</key>
+					<string>string.quoted.double</string>
+				</dict>
+			</array>
 		</dict>
 		<key>oct-number</key>
 		<dict>
@@ -231,19 +242,19 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(-%?|\\+%?|\\*%?|/[^/]|%)=?</string>
+					<string>(\-\%?|\+%?|\*%?|/[^/]|%)=?</string>
 					<key>scope</key>
 					<string>keyword.operator.arithmetic.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(&lt;&lt;%?|&gt;&gt;|!|&amp;|\\^|\\|)=?</string>
+					<string>(\&lt;\&lt;%?|&gt;&gt;|!|&amp;|\^|\|)=?</string>
 					<key>scope</key>
 					<string>keyword.operator.bitwise.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(==|\+\+|\*\*|-&gt;)</string>
+					<string>(==|\+\+|\*\*)</string>
 					<key>scope</key>
 					<string>keyword.operator.special.zig</string>
 				</dict>
@@ -314,21 +325,21 @@
 		<dict>
 			<key>match</key>
 			<string>\b(bool|f32|f64|f128|void|noreturn|type|error)\b</string>
-			<key>scope</key>
+			<key>name</key>
 			<string>storage.type.zig</string>
 		</dict>
 		<key>type-c</key>
 		<dict>
 			<key>match</key>
 			<string>\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b</string>
-			<key>scope</key>
+			<key>name</key>
 			<string>storage.type.zig.c_compat</string>
 		</dict>
 		<key>type-int</key>
 		<dict>
 			<key>match</key>
 			<string>\b(i2|u2|i3|u3|i4|u4|i5|u5|i6|u6|i7|u7|i8|u8|i16|u16|u29|i29|i32|u32|i64|u64|i128|u128|isize|usize)\b</string>
-			<key>scope</key>
+			<key>name</key>
 			<string>storage.type.zig.integer</string>
 		</dict>
 	</dict>

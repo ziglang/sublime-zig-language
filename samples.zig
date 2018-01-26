@@ -28,9 +28,9 @@ true false
 ==
 !=
 and or
-- -?  + +?  * *? / /*
-<< <<? >> ! & ^ |
-== ++ ** ->
+- -%  + +%  * *% / /*
+<< <<% >> ! & ^ |
+== ++ **
 
 123
 123.123
@@ -51,8 +51,8 @@ and or
 "adsfjioasdjfoiad"
 c"adsfjioasdjfoiad"
 
+const \\ adsjfaf23n9
+c\\ adsjfafsdjkl
+ c\\ adsjfafsdjkl
 \\ adsjfafsdjkl
-\\ adsjfafsdjkl
-\\ adsjfafsdjkl
-\\ adsjfafsdjkl
-\\ adsjfafsdjkl
+ \\ adsjfafsdjkl
