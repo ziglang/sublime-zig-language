@@ -137,11 +137,13 @@ repository:
     end: '"'
     name: string.quoted.double.zig
 
+  multiline-string-content:
+    match: ".*"
+    name: string.quoted.other.zig
+
   multiline-strings:
     begin: 'c?\\\\'
     end: '$'
     name: comment.line.zig
     patterns:
-    - include:
-      match: ".*"
-      name: string.quoted.other.zig
+    - include: '#multiline-string-content'

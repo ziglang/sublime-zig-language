@@ -197,6 +197,13 @@
 			<key>name</key>
 			<string>entity.name.function.zig</string>
 		</dict>
+		<key>multiline-string-content</key>
+		<dict>
+			<key>match</key>
+			<string>.*</string>
+			<key>name</key>
+			<string>string.quoted.other.zig</string>
+		</dict>
 		<key>multiline-strings</key>
 		<dict>
 			<key>begin</key>
@@ -209,11 +216,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<false/>
-					<key>match</key>
-					<string>.*</string>
-					<key>name</key>
-					<string>string.quoted.other.zig</string>
+					<string>#multiline-string-content</string>
 				</dict>
 			</array>
 		</dict>
@@ -231,31 +234,31 @@
 				<dict>
 					<key>match</key>
 					<string>(==|!=)</string>
-					<key>scope</key>
+					<key>name</key>
 					<string>keyword.operator.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(and|or)\b</string>
-					<key>scope</key>
+					<key>name</key>
 					<string>keyword.operator.word.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(\-\%?|\+%?|\*%?|/[^/]|%)=?</string>
-					<key>scope</key>
+					<key>name</key>
 					<string>keyword.operator.arithmetic.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(\&lt;\&lt;%?|&gt;&gt;|!|&amp;|\^|\|)=?</string>
-					<key>scope</key>
+					<key>name</key>
 					<string>keyword.operator.bitwise.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>(==|\+\+|\*\*)</string>
-					<key>scope</key>
+					<key>name</key>
 					<string>keyword.operator.special.zig</string>
 				</dict>
 			</array>
