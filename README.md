@@ -15,8 +15,16 @@ not edit `Zig.tmLanguage` directly.
 Installation
 -----------
 
-add `Zig.tmLanguage` to `~/Library/Application\ Support/Sublime\ Text\
-3/Packages/` or install through [Package control](https://packagecontrol.io).
+Use [Package control](https://packagecontrol.io).
+
+Or add `Zig.tmLanguage` to the packages directory. On OSX This is usually
+
+```
+~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
+```
+
+But to find the path on your machine go to `Preferences > Browse Packages` from
+within Sublime Text.
 
 
 LICENSE
