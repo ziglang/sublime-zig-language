@@ -26,6 +26,21 @@ Or add `Zig.tmLanguage` to the packages directory. On OSX This is usually
 But to find the path on your machine go to `Preferences > Browse Packages` from
 within Sublime Text.
 
+Local Development
+-----------------
+
+Install https://github.com/SublimeText/PackageDev.
+
+Edit the YAML entry and use the `Convert (YAML, JSON, PList) to...` command
+to generate the other entries.
+
+Copy the generated file to your local sublime text folder. e.g.
+
+```
+cp Zig.tmLanguage "/Users/jfo/Library/Application Support/Sublime Text 3/Packages/User/Zig.tmLanguage"
+```
+
+On linux, this is located under `~/.config/sublime-text-3/`.
 
 LICENSE
 -------

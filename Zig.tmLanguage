@@ -24,6 +24,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#async-control</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#conditional</string>
 		</dict>
 		<dict>
@@ -109,6 +113,13 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>async-control</key>
+		<dict>
+			<key>match</key>
+			<string>\b(async|await|suspend|resume|cancel)\b</string>
+			<key>name</key>
+			<string>keyword.control.async.zig</string>
+		</dict>
 		<key>bin-number</key>
 		<dict>
 			<key>match</key>
@@ -327,7 +338,7 @@
 		<key>type</key>
 		<dict>
 			<key>match</key>
-			<string>\b(bool|f32|f64|f128|void|noreturn|type|error)\b</string>
+			<string>\b(bool|f32|f64|f128|void|noreturn|type|error|promise)\b</string>
 			<key>name</key>
 			<string>storage.type.zig</string>
 		</dict>

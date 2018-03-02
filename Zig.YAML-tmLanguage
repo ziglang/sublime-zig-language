@@ -7,6 +7,7 @@ patterns:
   - include: '#storage'
   - include: '#structure'
   - include: '#statement'
+  - include: '#async-control'
   - include: '#conditional'
   - include: '#repeat'
   - include: '#constant'
@@ -47,6 +48,10 @@ repository:
     match: '\b(break|return|continue|asm|defer|errdefer|unreachable)\b'
     name: keyword.control.zig
 
+  async-control:
+    match: '\b(async|await|suspend|resume|cancel)\b'
+    name: keyword.control.async.zig
+
   conditional:
     match: '\b(if|else|switch|and|or)\b'
     name: keyword.control.conditional.zig
@@ -64,7 +69,7 @@ repository:
     name: entity.name.function.zig
 
   type:
-    match: '\b(bool|f32|f64|f128|void|noreturn|type|error)\b'
+    match: '\b(bool|f32|f64|f128|void|noreturn|type|error|promise)\b'
     name: storage.type.zig
 
   type-int:
