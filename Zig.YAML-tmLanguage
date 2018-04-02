@@ -33,7 +33,7 @@ patterns:
 repository:
   storage:
     name: storage.zig
-    match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|section)\b'
+    match: '\b(const|var|extern|packed|export|pub|noalias|try|inline|comptime|nakedcc|stdcallcc|volatile|align|section)\b'
 
   structure:
     patterns:
@@ -65,7 +65,7 @@ repository:
     name: constant.language.zig
 
   keyword:
-    match: '\b(fn|use|test)\b'
+    match: 'b(fn|use|test|addWithOverflow|ArgType|atomicRmw|bitCast|breakpoint|alignCast|alignOf|cDefine|cImport|cInclude|cUndef|cImplicitCast|clz|cmpxchg|compileError|compileLog|ctz|divExtract|divFloor|divTrunc|embedFile|export|tagName|TagType|errorName|errorReturnTrace|fence|fieldParentPtr|frameAddress|inlineCall|intToPtr|intType|maxValue|memberCount|memberName|memberType|memcpy|memset|minValue|mod|mulWithOverflow|noInlineCall|offsetOf|OpaqueType|panic|ptrCast|ptrToInt|rem|returnAddress|setAlignStack|setCold|setRuntimeSafety|setEvalBranchQuota|setFloatMode|setGLobalLinkage|setGlobalSection|shlExact|shlWithOverflow|shrExact|sizeOf|subWithOverflow|truncate|typeId|typeName|typeOf|import|typeOf)\b'
     name: entity.name.function.zig
 
   type:
@@ -138,8 +138,8 @@ repository:
     name: comment.line.documentation.zig
 
   strings:
-    begin: '(c"|")'
-    end: '"'
+    begin: '(c"|"|')'
+    end: '"|\''
     name: string.quoted.double.zig
 
   multiline-string-content:
