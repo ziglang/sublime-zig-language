@@ -127,28 +127,22 @@ repository:
 
   comment-line:
     begin: "//[^/]"
-    end: "$"
+    end: "$\n?"
     name: comment.line.zig
     patterns:
     - include: '#todo'
 
   comment-line-doc:
     begin: "///"
-    end: "$"
+    end: "$\n?"
     name: comment.line.documentation.zig
 
   strings:
-    begin: '(c"|"|')'
-    end: '"|\''
+    begin: "(c\"|\"|')"
+    end: "\"|'"
     name: string.quoted.double.zig
-
-  multiline-string-content:
-    match: ".*"
-    name: string.quoted.other.zig
 
   multiline-strings:
     begin: 'c?\\\\'
-    end: '$'
-    name: comment.line.zig
-    patterns:
-    - include: '#multiline-string-content'
+    end: '$\n?'
+    contentName: string.quoted.other.zig
