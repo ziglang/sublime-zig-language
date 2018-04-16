@@ -36,13 +36,8 @@ repository:
     match: '\b(const|var|extern|packed|export|pub|noalias|try|inline|comptime|nakedcc|stdcallcc|volatile|align|section)\b'
 
   structure:
-    patterns:
-      - name: entity.name.union.zig
-        match: 'union'
-      - name: entity.name.struct.zig
-        match: 'struct'
-      - name: entity.name.enum.zig
-        match: 'enum'
+    name: storage.type.zig
+    match: '\b(union|struct|enum)\b'
 
   statement:
     match: '\b(break|return|continue|asm|defer|errdefer|unreachable)\b'
@@ -66,7 +61,7 @@ repository:
 
   keyword:
     match: 'b(fn|use|test|addWithOverflow|ArgType|atomicRmw|bitCast|breakpoint|alignCast|alignOf|cDefine|cImport|cInclude|cUndef|cImplicitCast|clz|cmpxchg|compileError|compileLog|ctz|divExtract|divFloor|divTrunc|embedFile|export|tagName|TagType|errorName|errorReturnTrace|fence|fieldParentPtr|frameAddress|inlineCall|intToPtr|intType|maxValue|memberCount|memberName|memberType|memcpy|memset|minValue|mod|mulWithOverflow|noInlineCall|offsetOf|OpaqueType|panic|ptrCast|ptrToInt|rem|returnAddress|setAlignStack|setCold|setRuntimeSafety|setEvalBranchQuota|setFloatMode|setGLobalLinkage|setGlobalSection|shlExact|shlWithOverflow|shrExact|sizeOf|subWithOverflow|truncate|typeId|typeName|typeOf|import|typeOf)\b'
-    name: entity.name.function.zig
+    name: support.function.zig
 
   type:
     match: '\b(bool|f32|f64|f128|void|noreturn|type|error|promise)\b'

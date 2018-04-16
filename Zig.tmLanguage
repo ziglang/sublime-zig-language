@@ -208,7 +208,7 @@
 			<key>match</key>
 			<string>b(fn|use|test|addWithOverflow|ArgType|atomicRmw|bitCast|breakpoint|alignCast|alignOf|cDefine|cImport|cInclude|cUndef|cImplicitCast|clz|cmpxchg|compileError|compileLog|ctz|divExtract|divFloor|divTrunc|embedFile|export|tagName|TagType|errorName|errorReturnTrace|fence|fieldParentPtr|frameAddress|inlineCall|intToPtr|intType|maxValue|memberCount|memberName|memberType|memcpy|memset|minValue|mod|mulWithOverflow|noInlineCall|offsetOf|OpaqueType|panic|ptrCast|ptrToInt|rem|returnAddress|setAlignStack|setCold|setRuntimeSafety|setEvalBranchQuota|setFloatMode|setGLobalLinkage|setGlobalSection|shlExact|shlWithOverflow|shrExact|sizeOf|subWithOverflow|truncate|typeId|typeName|typeOf|import|typeOf)\b</string>
 			<key>name</key>
-			<string>entity.name.function.zig</string>
+			<string>support.function.zig</string>
 		</dict>
 		<key>multiline-strings</key>
 		<dict>
@@ -294,27 +294,10 @@
 		</dict>
 		<key>structure</key>
 		<dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>union</string>
-					<key>name</key>
-					<string>entity.name.union.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>struct</string>
-					<key>name</key>
-					<string>entity.name.struct.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>enum</string>
-					<key>name</key>
-					<string>entity.name.enum.zig</string>
-				</dict>
-			</array>
+			<key>match</key>
+			<string>\b(union|struct|enum)\b</string>
+			<key>name</key>
+			<string>storage.type.zig</string>
 		</dict>
 		<key>todo</key>
 		<dict>
