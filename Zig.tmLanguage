@@ -309,7 +309,7 @@
 		<key>type</key>
 		<dict>
 			<key>match</key>
-			<string>\b(bool|f32|f64|f128|void|noreturn|type|error|promise)\b</string>
+			<string>\b(bool|f32|f64|f128|void|noreturn|type|error|anyerror|promise)\b</string>
 			<key>name</key>
 			<string>storage.type.zig</string>
 		</dict>

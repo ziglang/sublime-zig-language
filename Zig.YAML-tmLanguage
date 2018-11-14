@@ -64,7 +64,7 @@ repository:
     name: support.function.zig
 
   type:
-    match: '\b(bool|f32|f64|f128|void|noreturn|type|error|promise)\b'
+    match: '\b(bool|f32|f64|f128|void|noreturn|type|error|anyerror|promise)\b'
     name: storage.type.zig
 
   type-int:

@@ -19,7 +19,7 @@ null undefined this
 
 fn use test
 
-bool f32 f64 f128 void noreturn type error
+bool f32 f64 f128 void noreturn type error anyerror
 
 promise
 
