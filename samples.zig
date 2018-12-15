@@ -1,25 +1,26 @@
 // this is a syntactically meaningless collection of sample
 // keywords and constructs to use in testing.
 
-const var extern packed export pub noalias inline comptime nakedcc stdcallcc volatile align section
+const var extern packed export pub noalias inline comptime nakedcc stdcallcc volatile align linksection
 
 union
 struct
 enum
+error
 
 break return continue asm defer errdefer unreachable
 
-if else switch and or
+if else switch and or try catch orelse
 
 async await suspend resume cancel
 
 while for
 
-null undefined this
+null undefined
 
 fn use test
 
-bool f32 f64 f128 void noreturn type error anyerror
+bool f16 f32 f64 f128 void noreturn type anyerror
 
 promise
 
