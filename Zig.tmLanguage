@@ -206,7 +206,7 @@
 		<key>keyword</key>
 		<dict>
 			<key>match</key>
-			<string>b(fn|use|test|@addWithOverflow|@alignCast|@alignOf|@ArgType|@atomicLoad|@atomicRmw|@bitCast|@bitOffsetOf|@boolToInt|@breakpoint|@bswap|@byteOffsetOf|@bytesToSlice|@cDefine|@cImport|@cInclude|@clz|@cmpxchgStrong|@cmpxchgWeak|@compileError|@compileLog|@ctz|@cUndef|@divExact|@divFloor|@divTrunc|@embedFile|@enumToInt|@errorName|@errorReturnTrace|@errorToInt|@errSetCast|@export|@fence|@field|@fieldParentPtr|@floatCast|@floatToInt|@frameAddress|@handle|@import|@inlineCall|@intCast|@intToEnum|@intToError|@intToFloat|@intToPtr|@IntType|@memberCount|@memberName|@memberType|@memcpy|@memset|@mod|@mulWithOverflow|@newStackCall|@noInlineCall|@OpaqueType|@panic|@popCount|@ptrCast|@ptrToInt|@rem|@returnAddress|@setAlignStack|@setCold|@setEvalBranchQuota|@setFloatMode|@setGlobalLinkage|@setRuntimeSafety|@shlExact|@shlWithOverflow|@shrExact|@sizeOf|@sliceToBytes|@sqrt|@subWithOverflow|@tagName|@TagType|@This|@truncate|@typeId|@typeInfo|@typeName|@typeOf)\b</string>
+			<string>\b(fn|use|test|@addWithOverflow|@alignCast|@alignOf|@ArgType|@atomicLoad|@atomicRmw|@bitCast|@bitOffsetOf|@boolToInt|@breakpoint|@bswap|@byteOffsetOf|@bytesToSlice|@cDefine|@cImport|@cInclude|@clz|@cmpxchgStrong|@cmpxchgWeak|@compileError|@compileLog|@ctz|@cUndef|@divExact|@divFloor|@divTrunc|@embedFile|@enumToInt|@errorName|@errorReturnTrace|@errorToInt|@errSetCast|@export|@fence|@field|@fieldParentPtr|@floatCast|@floatToInt|@frameAddress|@handle|@import|@inlineCall|@intCast|@intToEnum|@intToError|@intToFloat|@intToPtr|@IntType|@memberCount|@memberName|@memberType|@memcpy|@memset|@mod|@mulWithOverflow|@newStackCall|@noInlineCall|@OpaqueType|@panic|@popCount|@ptrCast|@ptrToInt|@rem|@returnAddress|@setAlignStack|@setCold|@setEvalBranchQuota|@setFloatMode|@setGlobalLinkage|@setRuntimeSafety|@shlExact|@shlWithOverflow|@shrExact|@sizeOf|@sliceToBytes|@sqrt|@subWithOverflow|@tagName|@TagType|@This|@truncate|@typeId|@typeInfo|@typeName|@typeOf)\b</string>
 			<key>name</key>
 			<string>support.function.zig</string>
 		</dict>
@@ -309,7 +309,7 @@
 		<key>type</key>
 		<dict>
 			<key>match</key>
-			<string>\b(bool|f16|f32|f64|f128|void|noreturn|type|error|anyerror|promise)\b</string>
+			<string>\b(bool|f16|f32|f64|f128|comptime_float|void|noreturn|type|anyerror|promise)\b</string>
 			<key>name</key>
 			<string>storage.type.zig</string>
 		</dict>
@@ -323,7 +323,7 @@
 		<key>type-int</key>
 		<dict>
 			<key>match</key>
-			<string>\b([iu][1-9]\d*|i0|u0|isize|usize)\b</string>
+			<string>\b([iu][1-9]\d*|i0|u0|isize|usize|comptime_int)\b</string>
 			<key>name</key>
 			<string>storage.type.zig.integer</string>
 		</dict>
