@@ -64,11 +64,11 @@ repository:
     name: support.function.zig
 
   type:
-    match: '\b(bool|f16|f32|f64|f128|void|noreturn|type|anyerror|promise)\b'
+    match: '\b(bool|f16|f32|f64|f128|comptime_float|void|noreturn|type|anyerror|promise)\b'
     name: storage.type.zig
 
   type-int:
-    match: '\b([iu][1-9]\d*|i0|u0|isize|usize)\b'
+    match: '\b([iu][1-9]\d*|i0|u0|isize|usize|comptime_int)\b'
     name: storage.type.zig.integer
 
   type-c:
