@@ -1,0 +1,25 @@
+{
+    "cmd": ["zig", "build"],
+    "selector": "source.zig",
+    "file_regex": "^(.+.zig):(\\d+):(\\d+): error: (.+)$",
+    "line_regex": "^.+.zig:(\\d+):(\\d+): error: (.+)$",
+
+    "variants": [
+        {
+            "cmd": ["zig", "run", "$file"],
+            "selector": "source.zig",
+            "name": "Run File"
+        },
+        {
+            "cmd": ["zig", "test", "$file"],
+            "selector": "source.zig",
+            "name": "Test File"
+        },
+        {
+            "cmd": ["zig", "build", "test"],
+            "selector": "source.zig",
+            "working_dir": "$folder",
+            "name": "Test Project"
+        }
+    ]
+}
