@@ -313,11 +313,7 @@
 		<key>type</key>
 		<dict>
 			<key>match</key>
-<<<<<<< HEAD
 			<string>\b(bool|f16|f32|f64|f128|comptime_float|void|noreturn|type|anyerror|promise)\b</string>
-=======
-			<string>\b(bool|f16|f32|f64|f128|void|noreturn|type|anyerror|promise)\b</string>
->>>>>>> fixed highlighting for builtins
 			<key>name</key>
 			<string>storage.type.zig</string>
 		</dict>
