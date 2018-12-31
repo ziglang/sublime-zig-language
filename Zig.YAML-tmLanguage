@@ -61,7 +61,7 @@ repository:
     name: constant.language.zig
 
   keyword:
-    match: '(?<!\w)(fn|use|test|@addWithOverflow|@alignCast|@alignOf|@ArgType|@atomicLoad|@atomicRmw|@bitCast|@bitOffsetOf|@boolToInt|@breakpoint|@bswap|@byteOffsetOf|@bytesToSlice|@cDefine|@cImport|@cInclude|@clz|@cmpxchgStrong|@cmpxchgWeak|@compileError|@compileLog|@ctz|@cUndef|@divExact|@divFloor|@divTrunc|@embedFile|@enumToInt|@errorName|@errorReturnTrace|@errorToInt|@errSetCast|@export|@fence|@field|@fieldParentPtr|@floatCast|@floatToInt|@frameAddress|@handle|@import|@inlineCall|@intCast|@intToEnum|@intToError|@intToFloat|@intToPtr|@IntType|@memberCount|@memberName|@memberType|@memcpy|@memset|@mod|@mulWithOverflow|@newStackCall|@noInlineCall|@OpaqueType|@panic|@popCount|@ptrCast|@ptrToInt|@rem|@returnAddress|@setAlignStack|@setCold|@setEvalBranchQuota|@setFloatMode|@setGlobalLinkage|@setRuntimeSafety|@shlExact|@shlWithOverflow|@shrExact|@sizeOf|@sliceToBytes|@sqrt|@subWithOverflow|@tagName|@TagType|@This|@truncate|@typeId|@typeInfo|@typeName|@typeOf)\b'
+    match: '(?<!\w)(fn|use|test|@[^\"\d][a-zA-Z_]\w*)\b'
     name: support.function.zig
 
   type:
