@@ -114,6 +114,10 @@
 			<key>include</key>
 			<string>#multiline-strings</string>
 		</dict>
+		<dict>
+			<key>include</key>
+			<string>#escaped_char</string>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -138,13 +142,34 @@
 			<key>name</key>
 			<string>constant.language.zig</string>
 		</dict>
+		<key>character</key>
+		<dict>
+			<key>begin</key>
+			<string>(\')</string>
+			<key>end</key>
+			<string>\'</string>
+			<key>name</key>
+			<string>string.quoted.double.zig</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#escaped_char</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\\[^\'][^\']*?)</string>
+					<key>name</key>
+					<string>invalid.illegal.character.zig</string>
+				</dict>
+			</array>
+		</dict>
 		<key>comment-line</key>
 		<dict>
 			<key>begin</key>
 			<string>//[^/]</string>
 			<key>end</key>
-			<string>$
-?</string>
+			<string>$\n?</string>
 			<key>name</key>
 			<string>comment.line.zig</string>
 			<key>patterns</key>
@@ -160,8 +185,7 @@
 			<key>begin</key>
 			<string>///</string>
 			<key>end</key>
-			<string>$
-?</string>
+			<string>$\n?</string>
 			<key>name</key>
 			<string>comment.line.documentation.zig</string>
 		</dict>
@@ -193,6 +217,66 @@
 			<key>name</key>
 			<string>constant.numeric.integer.zig</string>
 		</dict>
+		<key>escaped_char</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\n</string>
+					<key>name</key>
+					<string>string.quoted.escape.newline.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\r</string>
+					<key>name</key>
+					<string>string.quoted.escape.carrigereturn.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\t</string>
+					<key>name</key>
+					<string>string.quoted.escape.tabulator.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\\\</string>
+					<key>name</key>
+					<string>string.quoted.escape.backslash.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\'</string>
+					<key>name</key>
+					<string>string.quoted.escape.single-quote.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\\"</string>
+					<key>name</key>
+					<string>string.quoted.escape.double-quote.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\x[a-fA-F0-9]{2}</string>
+					<key>name</key>
+					<string>string.quoted.escape.hexidecimal.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\u[a-fA-F0-9]{4}</string>
+					<key>name</key>
+					<string>string.quoted.escape.hexidecimal.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\U[a-fA-F0-9]{6}</string>
+					<key>name</key>
+					<string>string.quoted.escape.hexidecimal.zig</string>
+				</dict>
+			</array>
+		</dict>
 		<key>hex-float-number</key>
 		<dict>
 			<key>match</key>
@@ -218,10 +302,23 @@
 		<dict>
 			<key>begin</key>
 			<string>c?\\\\</string>
-			<key>contentName</key>
-			<string>string.quoted.other.zig</string>
 			<key>end</key>
 			<string>$\n?</string>
+			<key>name</key>
+			<string>string.quoted.other.zig</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#escaped_char</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\\[^\'][^\']*?)</string>
+					<key>name</key>
+					<string>invalid.illegal.character.zig</string>
+				</dict>
+			</array>
 		</dict>
 		<key>oct-number</key>
 		<dict>
@@ -290,11 +387,24 @@
 		<key>strings</key>
 		<dict>
 			<key>begin</key>
-			<string>(c"|"|')</string>
+			<string>(c\"|\")</string>
 			<key>end</key>
-			<string>"|'</string>
+			<string>\"</string>
 			<key>name</key>
 			<string>string.quoted.double.zig</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#escaped_char</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(\\[^\'][^\']*?)</string>
+					<key>name</key>
+					<string>invalid.illegal.character.zig</string>
+				</dict>
+			</array>
 		</dict>
 		<key>structure</key>
 		<dict>
