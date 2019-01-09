@@ -30,6 +30,8 @@ patterns:
   - include: '#comment-line-doc'
   - include: '#strings'
   - include: '#multiline-strings'
+  - include: '#escaped_char'
+  # - include: '#escape-codes'
 
 repository:
   storage:
@@ -118,27 +120,65 @@ repository:
     name: constant.numeric.bin.zig
 
   todo:
-    match: "TODO"
+    match: 'TODO'
     name: comment.line.todo.zig
 
   comment-line:
-    begin: "//[^/]"
-    end: "$\n?"
+    begin: '//[^/]'
+    end: '$\n?'
     name: comment.line.zig
     patterns:
     - include: '#todo'
 
   comment-line-doc:
-    begin: "///"
-    end: "$\n?"
+    begin: '///'
+    end: '$\n?'
     name: comment.line.documentation.zig
 
+  escaped_char:
+    patterns:
+      - name: string.quoted.escape.newline.zig
+        match: \\n
+      - name: string.quoted.escape.carrigereturn.zig
+        match: \\r
+      - name: string.quoted.escape.tabulator.zig
+        match: \\t
+      - name: string.quoted.escape.backslash.zig
+        match: \\\\
+      - name: string.quoted.escape.single-quote.zig
+        match: \\'
+      - name: string.quoted.escape.double-quote.zig
+        match: \\\"
+      - name: string.quoted.escape.hexidecimal.zig
+        match: \\x[a-fA-F0-9]{2}
+      - name: string.quoted.escape.hexidecimal.zig
+        match: \\u[a-fA-F0-9]{4}
+      - name: string.quoted.escape.hexidecimal.zig
+        match: \\U[a-fA-F0-9]{6}
+    
+  character:
+    begin: (\')
+    end: \'
+    patterns:
+      - include: '#escaped_char'
+      - name: invalid.illegal.character.zig
+        match: (\\[^\'][^\']*?)
+    name: string.quoted.double.zig        
+
   strings:
-    begin: "(c\"|\"|')"
-    end: "\"|'"
+    begin: (c\"|\")
+    end: \"
+    patterns:
+      - include: '#escaped_char'
+      - name: invalid.illegal.character.zig
+        match: (\\[^\'][^\']*?)
     name: string.quoted.double.zig
 
   multiline-strings:
     begin: 'c?\\\\'
     end: '$\n?'
-    contentName: string.quoted.other.zig
+    patterns:
+      - include: '#escaped_char'
+      - name: invalid.illegal.character.zig
+        match: (\\[^\'][^\']*?)
+    name: string.quoted.other.zig

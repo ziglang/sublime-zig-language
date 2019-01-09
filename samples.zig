@@ -57,11 +57,19 @@ and or
 c"adsfjioasdjfoiad"
 
 const \\ adsjfaf23n9
-c\\ adsjfafsdjkl
+extern fn foo();
+c\\ adsjfafsdjkl \x11 \u1245 \U123456
+extern fn bar();
  c\\ adsjfafsdjkl
+extern fn foobar();
 \\ adsjfafsdjkl
+extern fn barfoo();
  \\ adsjfafsdjkl
-
+"hello \x1m \n \t \\ \r 1m ' \" "
+ extern fn foobarfoo();
+ "\"hello\""
+'\''
+'\a'
 @addWithOverflow
 @alignCast
 @alignOf
