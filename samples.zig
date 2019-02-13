@@ -1,7 +1,7 @@
 // this is a syntactically meaningless collection of sample
 // keywords and constructs to use in testing.
 
-const var extern packed export pub noalias inline comptime nakedcc stdcallcc volatile align linksection
+const var extern packed export pub noalias inline comptime nakedcc stdcallcc volatile align linksection threadlocal
 
 union
 struct

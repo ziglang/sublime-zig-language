@@ -380,7 +380,7 @@
 		<key>storage</key>
 		<dict>
 			<key>match</key>
-			<string>\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection)\b</string>
+			<string>\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal)\b</string>
 			<key>name</key>
 			<string>storage.zig</string>
 		</dict>
