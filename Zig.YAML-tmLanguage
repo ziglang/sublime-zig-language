@@ -35,7 +35,7 @@ patterns:
 
 repository:
   storage:
-    match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection)\b'
+    match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal)\b'
     name: storage.zig
     
   structure:
