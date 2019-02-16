@@ -16,10 +16,26 @@
             "name": "Test File"
         },
         {
+            "cmd": ["zig", "fmt", "$file"],
+            "selector": "source.zig",
+            "name": "Format File"
+        },
+        {
             "cmd": ["zig", "build", "test"],
             "selector": "source.zig",
             "working_dir": "$folder",
             "name": "Test Project"
-        }
+        },
+        {
+            "cmd": ["zig", "build"],
+            "selector": "source.zig",
+            "working_dir": "$folder",
+            "name": "Build Project"
+        },
+        {
+            "cmd": ["zig", "fmt", "$folder"],
+            "selector": "source.zig",
+            "name": "Format Project"
+        },
     ]
 }
