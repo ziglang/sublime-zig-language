@@ -306,19 +306,6 @@
 			<string>$\n?</string>
 			<key>name</key>
 			<string>string.quoted.other.zig</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#escaped_char</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>(\\[^\'][^\']*?)</string>
-					<key>name</key>
-					<string>invalid.illegal.character.zig</string>
-				</dict>
-			</array>
 		</dict>
 		<key>oct-number</key>
 		<dict>

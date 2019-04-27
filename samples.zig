@@ -60,7 +60,7 @@ const \\ adsjfaf23n9
 extern fn foo();
 c\\ adsjfafsdjkl \x11 \u1245 \U123456
 extern fn bar();
- c\\ adsjfafsdjkl
+ c\\ adsjfafsdjkl \ \\ \ \xdeadbeef
 extern fn foobar();
 \\ adsjfafsdjkl
 extern fn barfoo();
