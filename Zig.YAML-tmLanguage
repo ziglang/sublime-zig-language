@@ -175,10 +175,6 @@ repository:
     name: string.quoted.double.zig
 
   multiline-strings:
-    begin: 'c?\\\\'
-    end: '$\n?'
-    patterns:
-      - include: '#escaped_char'
-      - name: invalid.illegal.character.zig
-        match: (\\[^\'][^\']*?)
+    begin: c?\\\\
+    end: $\n?
     name: string.quoted.other.zig
