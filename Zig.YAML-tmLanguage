@@ -31,13 +31,12 @@ patterns:
   - include: '#strings'
   - include: '#multiline-strings'
   - include: '#escaped_char'
-  # - include: '#escape-codes'
 
 repository:
   storage:
     match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal|allowzero)\b'
     name: storage.zig
-    
+
   structure:
     match: '\b(union|struct|enum|error)\b'
     name: storage.type.zig
@@ -155,7 +154,7 @@ repository:
         match: \\u[a-fA-F0-9]{4}
       - name: string.quoted.escape.hexidecimal.zig
         match: \\U[a-fA-F0-9]{6}
-    
+
   character:
     begin: (\')
     end: \'
@@ -163,7 +162,7 @@ repository:
       - include: '#escaped_char'
       - name: invalid.illegal.character.zig
         match: (\\[^\'][^\']*?)
-    name: string.quoted.double.zig        
+    name: string.quoted.double.zig
 
   strings:
     begin: (c\"|\")
