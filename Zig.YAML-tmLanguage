@@ -70,7 +70,7 @@ repository:
     name: storage.type.zig
 
   type-int:
-    match: '\b([iu][1-9]\d*|i0|u0|isize|usize|comptime_int)\b'
+    match: '\b(?<!\.)([iu][1-9]\d*|i0|u0|isize|usize|comptime_int)\b'
     name: storage.type.zig.integer
 
   type-c:
