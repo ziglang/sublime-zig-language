@@ -1,0 +1,4 @@
+{
+    "zig": "zig",
+    "fmt.on_save.enabled": false,
+}
