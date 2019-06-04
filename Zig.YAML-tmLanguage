@@ -15,6 +15,7 @@ patterns:
   - include: '#keyword'
   - include: '#type'
   - include: '#type-int'
+  - include: '#type-float'
   - include: '#type-c'
   - include: '#boolean'
   - include: '#operator'
@@ -62,16 +63,20 @@ repository:
     name: constant.language.zig
 
   keyword:
-    match: '(?<!\w)(fn|use|test|@[^\"\d][a-zA-Z_]\w*)\b'
+    match: '(?<!\w)(fn|usingnamespace|test|@[^\"\d][a-zA-Z_]\w*)\b'
     name: support.function.zig
 
   type:
-    match: '\b(bool|f16|f32|f64|f128|comptime_float|void|noreturn|type|anyerror|promise)\b'
+    match: '\b(bool|void|noreturn|type|anyerror|promise)\b'
     name: storage.type.zig
 
   type-int:
-    match: '\b(?<!\.)([iu][1-9]\d*|i0|u0|isize|usize|comptime_int)\b'
+    match: '\b(?<!\.)([iu][0-9]\d*|[iu]size|comptime_int)\b'
     name: storage.type.zig.integer
+
+  type-float:
+    match: '\b(f16|f32|f64|f128|comptime_float)\b'
+    name: storage.type.zig.float
 
   type-c:
     match: '\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b'

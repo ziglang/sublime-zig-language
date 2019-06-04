@@ -18,13 +18,15 @@ while for
 
 null undefined
 
-fn use test
+fn usingnamespace test
 
 bool f16 f32 f64 f128 void noreturn type anyerror
 
 promise
 
 i2 u2 i3 u3 i4 u4 i5 u5 i6 u6 i7 u7 i8 u8 i16 u16 u29 i29 i32 u32 i64 u64 i128 u128 isize usize
+
+.i368 .i686 .i23
 
 c_short c_ushort c_int c_uint c_long c_ulong c_longlong c_ulonglong c_longdouble c_void
 
@@ -50,6 +52,8 @@ and or
 
 0b1
 
+123.i812
+
 /// TODO blah blah
 // TODO blah blah
 
@@ -70,6 +74,9 @@ extern fn barfoo();
  "\"hello\""
 '\''
 '\a'
+
+@"overloaded"
+
 @addWithOverflow
 @alignCast
 @alignOf

@@ -56,6 +56,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#type-float</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#type-c</string>
 		</dict>
 		<dict>
@@ -294,7 +298,7 @@
 		<key>keyword</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\w)(fn|use|test|@[^\"\d][a-zA-Z_]\w*)\b</string>
+			<string>(?&lt;!\w)(fn|usingnamespace|test|@[^\"\d][a-zA-Z_]\w*)\b</string>
 			<key>name</key>
 			<string>support.function.zig</string>
 		</dict>
@@ -410,7 +414,7 @@
 		<key>type</key>
 		<dict>
 			<key>match</key>
-			<string>\b(bool|f16|f32|f64|f128|comptime_float|void|noreturn|type|anyerror|promise)\b</string>
+			<string>\b(bool|void|noreturn|type|anyerror|promise)\b</string>
 			<key>name</key>
 			<string>storage.type.zig</string>
 		</dict>
@@ -421,10 +425,17 @@
 			<key>name</key>
 			<string>storage.type.zig.c_compat</string>
 		</dict>
+		<key>type-float</key>
+		<dict>
+			<key>match</key>
+			<string>\b(f16|f32|f64|f128|comptime_float)\b</string>
+			<key>name</key>
+			<string>storage.type.zig.float</string>
+		</dict>
 		<key>type-int</key>
 		<dict>
 			<key>match</key>
-			<string>\b([iu][1-9]\d*|i0|u0|isize|usize|comptime_int)\b</string>
+			<string>\b(?&lt;!\.)([iu][0-9]\d*|[iu]size|comptime_int)\b</string>
 			<key>name</key>
 			<string>storage.type.zig.integer</string>
 		</dict>
