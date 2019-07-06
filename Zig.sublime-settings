@@ -1,4 +1,4 @@
 {
-    "zig": "zig",
-    "fmt.on_save.enabled": false,
+    "zig.executable": "zig",
+    "zig.fmt.on_save": true,
 }

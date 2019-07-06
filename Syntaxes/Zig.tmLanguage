@@ -269,13 +269,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\\u[a-fA-F0-9]{4}</string>
-					<key>name</key>
-					<string>string.quoted.escape.hexidecimal.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\\U[a-fA-F0-9]{6}</string>
+					<string>\\u\{[a-fA-F0-9]{1,6}\}</string>
 					<key>name</key>
 					<string>string.quoted.escape.hexidecimal.zig</string>
 				</dict>

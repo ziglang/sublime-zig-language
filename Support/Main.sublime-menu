@@ -1,0 +1,28 @@
+[
+    {
+        "id": "preferences",
+        "children":
+        [
+            {
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "Zig",
+                        "children":
+                        [
+                            {
+                                "command": "edit_settings", "args":
+                                {
+                                    "base_file": "${packages}/User/Zig.sublime-settings",
+                                    "default": "{\n\t$0\n}\n"
+                                },
+                                "caption": "Settings"
+                            },
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
