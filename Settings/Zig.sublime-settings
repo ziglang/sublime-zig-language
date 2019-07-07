@@ -1,4 +1,6 @@
 {
     "zig.executable": "zig",
+    "zig.build.on_save": false,
     "zig.fmt.on_save": true,
+    "zig.fmt.mode": "file",
 }

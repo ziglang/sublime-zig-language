@@ -1,8 +1,9 @@
 {
     "cmd": ["zig", "build"],
     "selector": "source.zig",
-    "file_regex": "^(.+.zig):(\\d+):(\\d+): error: (.+)$",
-    "line_regex": "^.+.zig:(\\d+):(\\d+): error: (.+)$",
+    "working_dir": "$folder",
+    "file_regex": "^(\\S.*):(\\d*):(\\d*): (?:[^:]*): (.*)$",
+    "line_regex": "^(?:\\S.*):(\\d*):(\\d*): (?:[^:]*): (.*)$",
 
     "variants": [
         {

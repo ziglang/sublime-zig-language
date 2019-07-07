@@ -12,12 +12,12 @@
                         "children":
                         [
                             {
-                                "command": "edit_settings", "args":
-                                {
-                                    "base_file": "${packages}/User/Zig.sublime-settings",
-                                    "default": "{\n\t$0\n}\n"
+                                "caption": "Settings",
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/Zig Language/Settings/Zig.sublime-settings",
+                                    "default": "// Settings in here override those in \"Zig Language/Settings/Zig.sublime-settings\",\n\n{\n\t$0\n}\n"
                                 },
-                                "caption": "Settings"
                             },
                         ]
                     }
