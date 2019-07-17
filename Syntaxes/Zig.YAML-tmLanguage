@@ -20,9 +20,6 @@ patterns:
   - name: keyword.control.import.zig
     match: '(?<!\w)(@import|@cImport|@cInclude)\b'
 
-  - name: keyword.declaration.union.zig
-    match: '\b(union)\b'
-
   - name: keyword.declaration.struct.zig
     match: '\b(struct)\b'
 
@@ -52,17 +49,14 @@ patterns:
     - name: storage.modifier.zig
       match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal|allowzero)\b'
 
-    - name: storage.type.zig.integer
+    - name: storage.type.integer.zig
       match: '\b(?<!\.)([iu][0-9]\d*|[iu]size|comptime_int)\b'
 
-    - name: storage.type.zig.float
+    - name: storage.type.float.zig
       match: '\b(f16|f32|f64|f128|comptime_float)\b'
 
-    - name: storage.type.zig.c_compat
+    - name: storage.type.c_compat.zig
       match: '\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b'
-
-    - name: storage.type.union.zig
-      match: '\b(union)\b'
 
     - name: storage.type.struct.zig
       match: '\b(struct)\b'
@@ -174,7 +168,7 @@ patterns:
 - comment: other
   patterns:
     - comment: function declaration
-    - match: ((?:pub)?\s+(?:\w+)?)?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)
+    - match: '((?:pub)?\s+(?:\w+)?)?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)'
       captures:
         '1':
           name: storage.modifier.zig
@@ -183,12 +177,51 @@ patterns:
         '3':
           name: entity.name.function.zig
         '4':
-          name: variable.parameter
+          name: variable.parameter.zig
         '5':
-          name: storage.type
+          name: storage.type.zig
 
-    - comment: container declaration
-    - match: ()
+    - comment: struct declaration
+    - match: '(\w+)\s*=\s*(packed|extern)?\s*(struct)\b'
+      captures:
+        '1':
+          name: entity.name.type.zig
+        '2':
+          name: storage.modifier.zig
+        '3':
+          name: storage.type.struct.zig
+
+    - comment: error declaration
+    - match: '(\w+)\s*=\s*(error)\b'
+      captures:
+        '1':
+          name: entity.name.type.zig
+        '2':
+          name: storage.type.error.zig
+
+    - comment: enum declaration
+    - match: '(\w+)\s*=\s*(extern)?\s*(enum\b)(?:\(((?<!\.)([iu][0-9]\d*|[iu]size))\))?'
+      captures:
+        '1':
+          name: entity.name.type.zig
+        '2':
+          name: storage.modifier.zig
+        '3':
+          name: storage.type.enum.zig
+        '4':
+          name: storage.type.integer.zig
+
+    - comment: union declaration
+    - match: '(\w+)\s*=\s*(packed|extern)?\s*(union\b)(?:\((\w+)\))?'
+      captures:
+        '1':
+          name: entity.name.type.zig
+        '2':
+          name: storage.modifier.zig
+        '3':
+          name: storage.type.union.zig
+        '4':
+          name: storage.type.enum.zig
 
 repository:
   character_escapes:

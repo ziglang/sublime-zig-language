@@ -41,12 +41,6 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(union)\b</string>
-					<key>name</key>
-					<string>keyword.declaration.union.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
 					<string>\b(struct)\b</string>
 					<key>name</key>
 					<string>keyword.declaration.struct.zig</string>
@@ -110,25 +104,19 @@
 					<key>match</key>
 					<string>\b(?&lt;!\.)([iu][0-9]\d*|[iu]size|comptime_int)\b</string>
 					<key>name</key>
-					<string>storage.type.zig.integer</string>
+					<string>storage.type.integer.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(f16|f32|f64|f128|comptime_float)\b</string>
 					<key>name</key>
-					<string>storage.type.zig.float</string>
+					<string>storage.type.float.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b</string>
 					<key>name</key>
-					<string>storage.type.zig.c_compat</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(union)\b</string>
-					<key>name</key>
-					<string>storage.type.union.zig</string>
+					<string>storage.type.c_compat.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -402,12 +390,12 @@
 						<key>4</key>
 						<dict>
 							<key>name</key>
-							<string>variable.parameter</string>
+							<string>variable.parameter.zig</string>
 						</dict>
 						<key>5</key>
 						<dict>
 							<key>name</key>
-							<string>storage.type</string>
+							<string>storage.type.zig</string>
 						</dict>
 					</dict>
 					<key>match</key>
@@ -415,11 +403,112 @@
 				</dict>
 				<dict>
 					<key>comment</key>
-					<string>container declaration</string>
+					<string>struct declaration</string>
 				</dict>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.zig</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.struct.zig</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>()</string>
+					<string>(\w+)\s*=\s*(packed|extern)?\s*(struct)\b</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>error declaration</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.error.zig</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\w+)\s*=\s*(error)\b</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>enum declaration</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.zig</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.enum.zig</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.integer.zig</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\w+)\s*=\s*(extern)?\s*(enum\b)(?:\(((?&lt;!\.)([iu][0-9]\d*|[iu]size))\))?</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>union declaration</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.zig</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.union.zig</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.enum.zig</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\w+)\s*=\s*(packed|extern)?\s*(union\b)(?:\((\w+)\))?</string>
 				</dict>
 			</array>
 		</dict>
