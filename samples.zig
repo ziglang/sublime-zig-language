@@ -3,11 +3,14 @@
 
 const var extern packed export pub noalias inline comptime nakedcc stdcallcc volatile align linksection threadlocal
 
+ const as = 2;
 union
 struct
 enum
 error
 
+
+"for"
 break return continue asm defer errdefer unreachable
 
 if else switch and or try catch orelse
@@ -59,7 +62,7 @@ and or
 
 "adsfjioasdjfoiad"
 c"adsfjioasdjfoiad"
-
+\a
 const \\ adsjfaf23n9
 extern fn foo();
 c\\ adsjfafsdjkl \x11 \u1245 \U123456
@@ -69,11 +72,18 @@ extern fn foobar();
 \\ adsjfafsdjkl
 extern fn barfoo();
  \\ adsjfafsdjkl
-"hello \x1m \n \t \\ \r 1m ' \" "
+"hello \x1 \n \t \\ \r 1m ' \\ \a \" \u{11}"
  extern fn foobarfoo();
  "\"hello\""
+'a'
+'ab'
 '\''
+'\a\naa'
 '\a'
+'\aaasas'
+'\n'
+
+foo = bar;
 
 @"overloaded"
 
