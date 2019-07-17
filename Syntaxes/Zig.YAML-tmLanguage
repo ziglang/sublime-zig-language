@@ -1,4 +1,6 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
+%YAML 1.2
+---
 name: Zig
 scopeName: source.zig
 fileTypes: [zig]
@@ -160,6 +162,24 @@ patterns:
     - name: string.quoted.other.zig
       begin: c?\\\\
       end: $\n?
+
+- comment: meta
+  patterns:
+    - match: (?:(pub)\s+)?(?:(.+))?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)
+      captures:
+        '1':
+          name: storage.modifier.zig
+        '2':
+          name: storage.modifier.zig
+        '3':
+          name: keyword.declaration.function.zig
+        '4':
+          name: entity.name.function.zig
+        '5':
+          name: meta.function.parameters.zig
+        '6':
+          name: meta.function.return-type.zig
+
 
 repository:
   character_escapes:

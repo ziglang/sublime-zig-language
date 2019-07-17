@@ -353,6 +353,50 @@
 				</dict>
 			</array>
 		</dict>
+		<dict>
+			<key>comment</key>
+			<string>meta</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.modifier.zig</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.declaration.function.zig</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.zig</string>
+						</dict>
+						<key>5</key>
+						<dict>
+							<key>name</key>
+							<string>meta.function.parameters.zig</string>
+						</dict>
+						<key>6</key>
+						<dict>
+							<key>name</key>
+							<string>meta.function.return-type.zig</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?:(pub)\s+)?(?:(.+))?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)</string>
+				</dict>
+			</array>
+		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
