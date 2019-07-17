@@ -85,19 +85,25 @@ patterns:
 - comment: operators
   patterns:
     - name: keyword.operator.zig
-      match: '(==|!=)'
+      match: '\b(!)\b'
+
+    - name: keyword.operator.logical.zig
+      match: '(==|(?:!|>|<|)=?)'
 
     - name: keyword.operator.word.zig
       match: '\b(and|or)\b'
 
+    - name: keyword.operator.assignment.zig
+      match: '((?:(?:\+|-|\*)\%?|\/|%|<<|>>|&|\|(?=[^\|])|\^)=)'
+
     - name: keyword.operator.arithmetic.zig
-      match: '(\-\%?|\+%?|\*%?|/[^/]|%)=?'
+      match: '((?:\+|-|\*)\%?|\/|%|)'
 
     - name: keyword.operator.bitwise.zig
-      match: '(\<\<%?|>>|!|&|\^|\|)=?'
+      match: '(<<|>>|&(?=\W)|\|(?=[^\|])|\^|~)'
 
-    - name: keyword.operator.special.zig
-      match: '(==|\+\+|\*\*)'
+    - name: keyword.operator.other.zig
+      match: '(\+\+|\*\*|->|\.\?|\.\*|&(?=\w)|\|\|)'
 
 - comment: constants
   patterns:
@@ -121,9 +127,6 @@ patterns:
 
     - name: constant.numeric.float.hexadecimal.zig
       match: '\b0x[a-fA-F0-9]+(\.[a-fA-F0-9]+)?([pP][+-]?[0-9]+)?\b'
-
-    - name: constant.other.builtin.zig
-      match: '(?<!\w)(@[^\"\d][a-zA-Z_]\w*)\b'
 
 - comment: comments
   patterns:
@@ -163,23 +166,29 @@ patterns:
       begin: c?\\\\
       end: $\n?
 
-- comment: meta
+- comment: support
   patterns:
-    - match: (?:(pub)\s+)?(?:(.+))?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)
+    - name: support.function.zig
+      match: '(?<!\w)(@[^\"\d][a-zA-Z_]\w*)\b'
+
+- comment: other
+  patterns:
+    - comment: function declaration
+    - match: ((?:pub)?\s+(?:\w+)?)?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)
       captures:
         '1':
           name: storage.modifier.zig
         '2':
-          name: storage.modifier.zig
-        '3':
           name: keyword.declaration.function.zig
-        '4':
+        '3':
           name: entity.name.function.zig
+        '4':
+          name: variable.parameter
         '5':
-          name: meta.function.parameters.zig
-        '6':
-          name: meta.function.return-type.zig
+          name: storage.type
 
+    - comment: container declaration
+    - match: ()
 
 repository:
   character_escapes:

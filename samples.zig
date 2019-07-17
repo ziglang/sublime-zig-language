@@ -35,12 +35,82 @@ c_short c_ushort c_int c_uint c_long c_ulong c_longlong c_ulonglong c_longdouble
 
 true false
 
-==
-!=
-and or
-- -%  + +%  * *% / /*
-<< <<% >> ! & ^ |
-++ **
+a + b
+a += b
+
+a +% b
+a +%= b
+
+a - b
+a -= b
+
+a -% b
+a -%= b
+
+-a
+-%a
+
+a * b
+a *= b
+
+a *% b
+a *%= b
+
+a / b
+a /= b
+
+a % b
+a %= b
+
+a << b
+a <<= b
+
+a >> b
+a >>= b
+
+a & b
+a &= b
+
+a | b
+a |= b
+
+a ^ b
+a ^= b
+
+~a
+
+a orelse b
+
+a.?
+
+a catch b
+a catch |err| b
+
+a and b
+a or b
+
+!a
+
+a == b
+a == null
+a != b
+
+a > b
+a >= b
+
+a < b
+a <= b
+
+a ++ b
+
+a ** b
+
+a.*
+
+&a
+
+a || b
+
 
 123
 123.123
@@ -173,7 +243,20 @@ foo = bar;
 @typeName
 @typeOf
 
+pub extern "hellas" export fn hello(as: as) void;
 
-pub extern "hellas" fn hello(as: as) void {
-    
+pub extern "hellas" export fn hello(as: as) void {
+
 }
+
+pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: LPVOID)void;
+pub stdcallcc fn CoUninitialize() void;
+
+pub const Foo = struct {
+
+};
+
+
+const Bar = union(u8) {
+    field: Bar,
+};

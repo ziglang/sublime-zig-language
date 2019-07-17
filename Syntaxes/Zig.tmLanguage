@@ -175,9 +175,15 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(==|!=)</string>
+					<string>\b(!)\b</string>
 					<key>name</key>
 					<string>keyword.operator.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(==|(?:!|&gt;|&lt;|)=?)</string>
+					<key>name</key>
+					<string>keyword.operator.logical.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -187,21 +193,27 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\-\%?|\+%?|\*%?|/[^/]|%)=?</string>
+					<string>((?:(?:\+|-|\*)\%?|\/|%|&lt;&lt;|&gt;&gt;|&amp;|\|(?=[^\|])|\^)=)</string>
+					<key>name</key>
+					<string>keyword.operator.assignment.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>((?:\+|-|\*)\%?|\/|%|)</string>
 					<key>name</key>
 					<string>keyword.operator.arithmetic.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\&lt;\&lt;%?|&gt;&gt;|!|&amp;|\^|\|)=?</string>
+					<string>(&lt;&lt;|&gt;&gt;|&amp;(?=\W)|\|(?=[^\|])|\^|~)</string>
 					<key>name</key>
 					<string>keyword.operator.bitwise.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(==|\+\+|\*\*)</string>
+					<string>(\+\+|\*\*|-&gt;|\.\?|\.\*|&amp;(?=\w)|\|\|)</string>
 					<key>name</key>
-					<string>keyword.operator.special.zig</string>
+					<string>keyword.operator.other.zig</string>
 				</dict>
 			</array>
 		</dict>
@@ -251,12 +263,6 @@
 					<string>\b0x[a-fA-F0-9]+(\.[a-fA-F0-9]+)?([pP][+-]?[0-9]+)?\b</string>
 					<key>name</key>
 					<string>constant.numeric.float.hexadecimal.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>(?&lt;!\w)(@[^\"\d][a-zA-Z_]\w*)\b</string>
-					<key>name</key>
-					<string>constant.other.builtin.zig</string>
 				</dict>
 			</array>
 		</dict>
@@ -355,9 +361,26 @@
 		</dict>
 		<dict>
 			<key>comment</key>
-			<string>meta</string>
+			<string>support</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;!\w)(@[^\"\d][a-zA-Z_]\w*)\b</string>
+					<key>name</key>
+					<string>support.function.zig</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>other</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>comment</key>
+					<string>function declaration</string>
+				</dict>
 				<dict>
 					<key>captures</key>
 					<dict>
@@ -369,31 +392,34 @@
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>storage.modifier.zig</string>
+							<string>keyword.declaration.function.zig</string>
 						</dict>
 						<key>3</key>
 						<dict>
 							<key>name</key>
-							<string>keyword.declaration.function.zig</string>
+							<string>entity.name.function.zig</string>
 						</dict>
 						<key>4</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.function.zig</string>
+							<string>variable.parameter</string>
 						</dict>
 						<key>5</key>
 						<dict>
 							<key>name</key>
-							<string>meta.function.parameters.zig</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>meta.function.return-type.zig</string>
+							<string>storage.type</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?:(pub)\s+)?(?:(.+))?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)</string>
+					<string>((?:pub)?\s+(?:\w+)?)?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>container declaration</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>()</string>
 				</dict>
 			</array>
 		</dict>
