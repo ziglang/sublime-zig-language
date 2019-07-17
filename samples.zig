@@ -252,11 +252,24 @@ pub extern "hellas" export fn hello(as: as) void {
 pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: LPVOID)void;
 pub stdcallcc fn CoUninitialize() void;
 
-pub const Foo = struct {
+pub const Foo = extern struct {
+
+};
+
+const Err = error {
 
 };
 
 
-const Bar = union(u8) {
+const Bar = union {
     field: Bar,
+};
+
+const Boof = union(enum) {
+
+};
+
+
+const Bad = enum(Foo) {
+
 };
