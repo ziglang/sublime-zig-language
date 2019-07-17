@@ -172,3 +172,8 @@ foo = bar;
 @typeInfo
 @typeName
 @typeOf
+
+
+pub extern "hellas" fn hello(as: as) void {
+    
+}
