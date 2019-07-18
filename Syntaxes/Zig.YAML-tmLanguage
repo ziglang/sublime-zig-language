@@ -5,6 +5,9 @@ name: Zig
 scopeName: source.zig
 fileTypes: [zig]
 
+variables:
+  ident: '\w+|@\".+\"'
+
 patterns:
 - comment: keywords
   patterns:
@@ -191,14 +194,6 @@ patterns:
         '3':
           name: storage.type.struct.zig
 
-    - comment: error declaration
-    - match: '(\w+)\s*=\s*(error)\b'
-      captures:
-        '1':
-          name: entity.name.type.zig
-        '2':
-          name: storage.type.error.zig
-
     - comment: enum declaration
     - match: '(\w+)\s*=\s*(extern)?\s*(enum\b)(?:\(((?<!\.)([iu][0-9]\d*|[iu]size))\))?'
       captures:
@@ -223,6 +218,28 @@ patterns:
         '4':
           name: storage.type.enum.zig
 
+    - comment: error declaration
+    - match: '(\w+)\s*=\s*(error)\b'
+      captures:
+        '1':
+          name: entity.name.type.zig
+        '2':
+          name: storage.type.error.zig
+
+    - comment: container fields
+    - match: '(\w+)\s*:\s*(\w+)(?:\s*=\s*(\S*))?,?'
+      captures:
+        '1':
+          name: variable.other.member.zig
+        '2':
+          name: storage.type.zig
+        # '3':
+        #   name: # ????
+
+    - comment: block labels
+    - name: entity.name.label
+      match: '(?:('\w+|@\".+\"'):\s*{|:\w+)'
+
 repository:
   character_escapes:
     patterns:
@@ -242,3 +259,4 @@ repository:
         match: \\x[a-fA-F0-9]{2}
       - name: constant.character.escape.hexidecimal.zig
         match: \\u\{[a-fA-F0-9]{1,6}\}
+
