@@ -41,42 +41,6 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(struct)\b</string>
-					<key>name</key>
-					<string>keyword.declaration.struct.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(union)\b</string>
-					<key>name</key>
-					<string>keyword.declaration.union.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(enum)\b</string>
-					<key>name</key>
-					<string>keyword.declaration.enum.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(error)\b</string>
-					<key>name</key>
-					<string>keyword.declaration.error.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(fn)\b</string>
-					<key>name</key>
-					<string>keyword.declaration.function.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(test)\b</string>
-					<key>name</key>
-					<string>keyword.declaration.test.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
 					<string>\b(usingnamespace)\b</string>
 					<key>name</key>
 					<string>keyword.other.usingnamespace.zig</string>
@@ -119,34 +83,21 @@
 					<string>storage.type.c_compat.zig</string>
 				</dict>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.function.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type</string>
+						</dict>
+					</dict>
 					<key>match</key>
-					<string>\b(struct)\b</string>
-					<key>name</key>
-					<string>storage.type.struct.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(union)\b</string>
-					<key>name</key>
-					<string>storage.type.union.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(enum)\b</string>
-					<key>name</key>
-					<string>storage.type.enum.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(error)\b</string>
-					<key>name</key>
-					<string>storage.type.error.zig</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(fn)\b</string>
-					<key>name</key>
-					<string>storage.type.function.zig</string>
+					<string>\b(fn)\((?:[a-zA-Z_]\w*|@\".+\")*\)\s*([a-zA-Z_]\w*|@\".+\")\b</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -181,13 +132,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>((?:(?:\+|-|\*)\%?|\/|%|&lt;&lt;|&gt;&gt;|&amp;|\|(?=[^\|])|\^)=)</string>
+					<string>((?:(?:\+|-|\*)\%?|/|%|&lt;&lt;|&gt;&gt;|&amp;|\|(?=[^\|])|\^)=)</string>
 					<key>name</key>
 					<string>keyword.operator.assignment.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>((?:\+|-|\*)\%?|\/|%|)</string>
+					<string>((?:\+|-|\*)\%?|/(?!/)|%|)</string>
 					<key>name</key>
 					<string>keyword.operator.arithmetic.zig</string>
 				</dict>
@@ -199,7 +150,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\+\+|\*\*|-&gt;|\.\?|\.\*|&amp;(?=\w)|\|\|)</string>
+					<string>(\+\+|\*\*|-&gt;|\.\?|\.\*|&amp;(?=\w)|\|\||\.\.|\.\.\.)</string>
 					<key>name</key>
 					<string>keyword.operator.other.zig</string>
 				</dict>
@@ -218,37 +169,37 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b-?[0-9]+\b</string>
+					<string>\b(?&lt;!\.)(-?[0-9]+)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b0x[a-fA-F0-9]+\b</string>
+					<string>\b(?&lt;!\.)(0x[a-fA-F0-9]+)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.hexadecimal.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b0o[0-7]+\b</string>
+					<string>\b(?&lt;!\.)(0o[0-7]+)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.octal.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>0b[01]+</string>
+					<string>\b(?&lt;!\.)(0b[01]+)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.binary.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b-?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?\b</string>
+					<string>(?&lt;!\.)(-?\b[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.float.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b0x[a-fA-F0-9]+(\.[a-fA-F0-9]+)?([pP][+-]?[0-9]+)?\b</string>
+					<string>(?&lt;!\.)(-?\b0x[a-fA-F0-9]+(?:\.[a-fA-F0-9]+)?[pP]?(?:[+-]?[0-9]+)?)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.float.hexadecimal.zig</string>
 				</dict>
@@ -362,6 +313,31 @@
 		</dict>
 		<dict>
 			<key>comment</key>
+			<string>punctuation</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;=\w|})(:|,)</string>
+					<key>name</key>
+					<string>punctuation.separator.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>;</string>
+					<key>name</key>
+					<string>punctuation.terminator.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?&lt;=[a-zA-Z_]|\")(\.)(?=[a-zA-Z_]|@\")</string>
+					<key>name</key>
+					<string>punctuation.accessor</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>comment</key>
 			<string>other</string>
 			<key>patterns</key>
 			<array>
@@ -399,7 +375,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>((?:pub)?\s+(?:\w+)?)?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)</string>
+					<string>((?:pub)?\s*(?:\w+)?)?(fn)\s+([a-zA-Z_]\w*|@\".+\")\((.*)\)\s*([a-zA-Z_]\w*|@\".+\")</string>
 				</dict>
 				<dict>
 					<key>comment</key>
@@ -425,7 +401,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(\w+)\s*=\s*(packed|extern)?\s*(struct)\b</string>
+					<string>([a-zA-Z_]\w*|@\".+\")\s*=\s*(packed|extern)?\s*(struct)\b</string>
 				</dict>
 				<dict>
 					<key>comment</key>
@@ -456,7 +432,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(\w+)\s*=\s*(extern)?\s*(enum\b)(?:\(((?&lt;!\.)([iu][0-9]\d*|[iu]size))\))?</string>
+					<string>([a-zA-Z_]\w*|@\".+\")\s*=\s*(extern)?\s*(enum\b)(?:\(((?&lt;!\.)([iu][0-9]\d*|[iu]size))\))?</string>
 				</dict>
 				<dict>
 					<key>comment</key>
@@ -487,7 +463,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(\w+)\s*=\s*(packed|extern)?\s*(union\b)(?:\((\w+)\))?</string>
+					<string>([a-zA-Z_]\w*|@\".+\")\s*=\s*(packed|extern)?\s*(union\b)(?:\(([a-zA-Z_]\w*|@\".+\")\))?</string>
 				</dict>
 				<dict>
 					<key>comment</key>
@@ -508,7 +484,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(\w+)\s*=\s*(error)\b</string>
+					<string>([a-zA-Z_]\w*|@\".+\")\s*=\s*(error)\b</string>
 				</dict>
 				<dict>
 					<key>comment</key>
@@ -525,11 +501,16 @@
 						<key>2</key>
 						<dict>
 							<key>name</key>
+							<string>punctuation.terminator.zig</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
 							<string>storage.type.zig</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(\w+)\s*:\s*(\w+)(?:\s*=\s*(\S*))?,?</string>
+					<string>([a-zA-Z_]\w*|@\".+\")\s*(:)\s*([a-zA-Z_]\w*|@\".+\")</string>
 				</dict>
 				<dict>
 					<key>comment</key>
@@ -537,7 +518,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?:({ident}):\s*{|:\w+)</string>
+					<string>(?:([a-zA-Z_]\w*|@\".+\"):(?=\s*{)|(?&lt;!\w):([a-zA-Z_]\w*|@\".+\"))</string>
 					<key>name</key>
 					<string>entity.name.label</string>
 				</dict>
@@ -603,10 +584,5 @@
 	</dict>
 	<key>scopeName</key>
 	<string>source.zig</string>
-	<key>variables</key>
-	<dict>
-		<key>ident</key>
-		<string>\w+|@\".+\"</string>
-	</dict>
 </dict>
 </plist>
