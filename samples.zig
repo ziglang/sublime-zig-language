@@ -116,7 +116,7 @@ a || b
 123.123
 123.123e123
 123.123E123
-
+1e3
 0x123
 0x123.123
 0x123.123p123
@@ -126,6 +126,9 @@ a || b
 0b1
 
 123.i812
+a.i111
+
+slice[0..2]
 
 /// TODO blah blah
 // TODO blah blah
@@ -134,14 +137,29 @@ a || b
 c"adsfjioasdjfoiad"
 \a
 const \\ adsjfaf23n9
-extern fn foo();
+
+ fn(aas) void;
+
+fn foo(a:as) s {
+
+}
+
+fn foo() void;
+extern fn bar() void;
+extern fn foobar() void;
+
+
+
 c\\ adsjfafsdjkl \x11 \u1245 \U123456
 extern fn bar();
  c\\ adsjfafsdjkl \ \\ \ \xdeadbeef
 extern fn foobar();
 \\ adsjfafsdjkl
-extern fn barfoo();
+
+pub fn barfoo();
+
  \\ adsjfafsdjkl
+}
 "hello \x1 \n \t \\ \r 1m ' \\ \a \" \u{11}"
  extern fn foobarfoo();
  "\"hello\""
@@ -152,10 +170,10 @@ extern fn barfoo();
 '\a'
 '\aaasas'
 '\n'
-
+fn(i13,Foo)Bar;
 foo = bar;
 
-@"overloaded"
+@"overloaded" = 89;
 
 @addWithOverflow
 @alignCast
@@ -249,7 +267,7 @@ pub extern "hellas" export fn hello(as: as) OO {
 
 }
 
-pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: LPVOID)void;
+pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: LPVOID, )void;
 pub stdcallcc fn CoUninitialize() void;
 
 pub const Foo = extern struct {
@@ -259,7 +277,9 @@ pub const Foo = extern struct {
 const Err = error {
 
 };
-
+{
+    : Bar,
+}
 
 const Bar = union {
     field: Bar,

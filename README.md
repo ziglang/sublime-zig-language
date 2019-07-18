@@ -31,16 +31,17 @@ Local Development
 
 Install https://github.com/SublimeText/PackageDev.
 
+Clone or copy this repository to your local Sublime Text folder. e.g.
+
+```
+git clone https://github.com/ziglang/sublime-zig-language.git "/Users/$USER/Library/Application Support/Sublime Text 3/Packages/Zig Language"
+```
+
 Edit the YAML entry and use the `Convert (YAML, JSON, PList) to...` command
-to generate the other entries.
+to generate the other entries. Sublime Text will automatically reload the plugin, showing changes in the build system, syntax highlighting, etc.
 
-Copy the generated file to your local sublime text folder. e.g.
 
-```
-cp Zig.tmLanguage "/Users/jfo/Library/Application Support/Sublime Text 3/Packages/User/Zig.tmLanguage"
-```
-
-On linux, this is located under `~/.config/sublime-text-3/`.
+On Linux, this is located under `~/.config/sublime-text-3/`.
 
 LICENSE
 -------

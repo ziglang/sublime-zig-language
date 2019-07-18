@@ -5,9 +5,6 @@ name: Zig
 scopeName: source.zig
 fileTypes: [zig]
 
-variables:
-  ident: '\w+|@\".+\"'
-
 patterns:
 - comment: keywords
   patterns:
@@ -23,23 +20,23 @@ patterns:
   - name: keyword.control.import.zig
     match: '(?<!\w)(@import|@cImport|@cInclude)\b'
 
-  - name: keyword.declaration.struct.zig
-    match: '\b(struct)\b'
+  # - name: keyword.declaration.struct.zig
+  #   match: '\b(struct)\b'
 
-  - name: keyword.declaration.union.zig
-    match: '\b(union)\b'
+  # - name: keyword.declaration.union.zig
+  #   match: '\b(union)\b'
 
-  - name: keyword.declaration.enum.zig
-    match: '\b(enum)\b'
+  # - name: keyword.declaration.enum.zig
+  #   match: '\b(enum)\b'
 
-  - name: keyword.declaration.error.zig
-    match: '\b(error)\b'
+  # - name: keyword.declaration.error.zig
+  #   match: '\b(error)\b'
 
-  - name: keyword.declaration.function.zig
-    match: '\b(fn)\b'
+  # - name: keyword.declaration.function.zig
+  #   match: '\b(fn)\b'
 
-  - name: keyword.declaration.test.zig
-    match: '\b(test)\b'
+  # - name: keyword.declaration.test.zig
+  #   match: '\b(test)\b'
 
   - name: keyword.other.usingnamespace.zig
     match: '\b(usingnamespace)\b'
@@ -61,20 +58,24 @@ patterns:
     - name: storage.type.c_compat.zig
       match: '\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b'
 
-    - name: storage.type.struct.zig
-      match: '\b(struct)\b'
+    # - name: storage.type.struct.zig
+    #   match: '\b(struct)\b'
 
-    - name: storage.type.union.zig
-      match: '\b(union)\b'
+    # - name: storage.type.union.zig
+    #   match: '\b(union)\b'
 
-    - name: storage.type.enum.zig
-      match: '\b(enum)\b'
+    # - name: storage.type.enum.zig
+    #   match: '\b(enum)\b'
 
-    - name: storage.type.error.zig
-      match: '\b(error)\b'
+    # - name: storage.type.error.zig
+    #   match: '\b(error)\b'
 
-    - name: storage.type.function.zig
-      match: '\b(fn)\b'
+    - match: '\b(fn)\((?:[a-zA-Z_]\w*|@\".+\")*\)\s*([a-zA-Z_]\w*|@\".+\")\b'
+      captures:
+        '1':
+          name: storage.type.function.zig
+        '2':
+          name: storage.type
 
     - name: storage.type.test.zig
       match: '\b(test)\b'
@@ -91,16 +92,16 @@ patterns:
       match: '\b(and|or)\b'
 
     - name: keyword.operator.assignment.zig
-      match: '((?:(?:\+|-|\*)\%?|\/|%|<<|>>|&|\|(?=[^\|])|\^)=)'
+      match: '((?:(?:\+|-|\*)\%?|/|%|<<|>>|&|\|(?=[^\|])|\^)=)'
 
     - name: keyword.operator.arithmetic.zig
-      match: '((?:\+|-|\*)\%?|\/|%|)'
+      match: '((?:\+|-|\*)\%?|/(?!/)|%|)'
 
     - name: keyword.operator.bitwise.zig
       match: '(<<|>>|&(?=\W)|\|(?=[^\|])|\^|~)'
 
     - name: keyword.operator.other.zig
-      match: '(\+\+|\*\*|->|\.\?|\.\*|&(?=\w)|\|\|)'
+      match: '(\+\+|\*\*|->|\.\?|\.\*|&(?=\w)|\|\||\.\.|\.\.\.)'
 
 - comment: constants
   patterns:
@@ -108,22 +109,22 @@ patterns:
       match: '\b(null|undefined|true|false)\b'
 
     - name: constant.numeric.integer.zig
-      match: '\b-?[0-9]+\b'
+      match: '\b(?<!\.)(-?[0-9]+)(?!\.)\b'
 
     - name: constant.numeric.integer.hexadecimal.zig
-      match: '\b0x[a-fA-F0-9]+\b'
+      match: '\b(?<!\.)(0x[a-fA-F0-9]+)(?!\.)\b'
 
     - name: constant.numeric.integer.octal.zig
-      match: '\b0o[0-7]+\b'
+      match: '\b(?<!\.)(0o[0-7]+)(?!\.)\b'
 
     - name: constant.numeric.integer.binary.zig
-      match: '0b[01]+'
+      match: '\b(?<!\.)(0b[01]+)(?!\.)\b'
 
     - name: constant.numeric.float.zig
-      match: '\b-?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?\b'
+      match: '(?<!\.)(-?\b[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)(?!\.)\b'
 
     - name: constant.numeric.float.hexadecimal.zig
-      match: '\b0x[a-fA-F0-9]+(\.[a-fA-F0-9]+)?([pP][+-]?[0-9]+)?\b'
+      match: '(?<!\.)(-?\b0x[a-fA-F0-9]+(?:\.[a-fA-F0-9]+)?[pP]?(?:[+-]?[0-9]+)?)(?!\.)\b'
 
 - comment: comments
   patterns:
@@ -168,10 +169,22 @@ patterns:
     - name: support.function.zig
       match: '(?<!\w)(@[^\"\d][a-zA-Z_]\w*)\b'
 
+- comment: punctuation
+  patterns:
+    - name: punctuation.separator.zig
+      # match: '((?<=\w):|,)'
+      match: '(?<=\w|})(:|,)'
+
+    - name: punctuation.terminator.zig
+      match: ';'
+
+    - name: punctuation.accessor
+      match: '(?<=[a-zA-Z_]|\")(\.)(?=[a-zA-Z_]|@\")'
+
 - comment: other
   patterns:
     - comment: function declaration
-    - match: '((?:pub)?\s+(?:\w+)?)?(fn)\s+(\w+|@\".+\")\((.*)\)\s*(\w+)'
+    - match: '((?:pub)?\s*(?:\w+)?)?(fn)\s+([a-zA-Z_]\w*|@\".+\")\((.*)\)\s*([a-zA-Z_]\w*|@\".+\")'
       captures:
         '1':
           name: storage.modifier.zig
@@ -185,7 +198,7 @@ patterns:
           name: storage.type.zig
 
     - comment: struct declaration
-    - match: '(\w+)\s*=\s*(packed|extern)?\s*(struct)\b'
+    - match: '([a-zA-Z_]\w*|@\".+\")\s*=\s*(packed|extern)?\s*(struct)\b'
       captures:
         '1':
           name: entity.name.type.zig
@@ -195,7 +208,7 @@ patterns:
           name: storage.type.struct.zig
 
     - comment: enum declaration
-    - match: '(\w+)\s*=\s*(extern)?\s*(enum\b)(?:\(((?<!\.)([iu][0-9]\d*|[iu]size))\))?'
+    - match: '([a-zA-Z_]\w*|@\".+\")\s*=\s*(extern)?\s*(enum\b)(?:\(((?<!\.)([iu][0-9]\d*|[iu]size))\))?'
       captures:
         '1':
           name: entity.name.type.zig
@@ -207,7 +220,7 @@ patterns:
           name: storage.type.integer.zig
 
     - comment: union declaration
-    - match: '(\w+)\s*=\s*(packed|extern)?\s*(union\b)(?:\((\w+)\))?'
+    - match: '([a-zA-Z_]\w*|@\".+\")\s*=\s*(packed|extern)?\s*(union\b)(?:\(([a-zA-Z_]\w*|@\".+\")\))?'
       captures:
         '1':
           name: entity.name.type.zig
@@ -219,7 +232,7 @@ patterns:
           name: storage.type.enum.zig
 
     - comment: error declaration
-    - match: '(\w+)\s*=\s*(error)\b'
+    - match: '([a-zA-Z_]\w*|@\".+\")\s*=\s*(error)\b'
       captures:
         '1':
           name: entity.name.type.zig
@@ -227,18 +240,18 @@ patterns:
           name: storage.type.error.zig
 
     - comment: container fields
-    - match: '(\w+)\s*:\s*(\w+)(?:\s*=\s*(\S*))?,?'
+    - match: '([a-zA-Z_]\w*|@\".+\")\s*(:)\s*([a-zA-Z_]\w*|@\".+\")'
       captures:
         '1':
           name: variable.other.member.zig
         '2':
+          name: punctuation.terminator.zig
+        '3':
           name: storage.type.zig
-        # '3':
-        #   name: # ????
 
     - comment: block labels
     - name: entity.name.label
-      match: '(?:('\w+|@\".+\"'):\s*{|:\w+)'
+      match: '(?:([a-zA-Z_]\w*|@\".+\"):(?=\s*{)|(?<!\w):([a-zA-Z_]\w*|@\".+\"))'
 
 repository:
   character_escapes:
