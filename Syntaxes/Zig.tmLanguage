@@ -429,27 +429,6 @@
 				</dict>
 				<dict>
 					<key>comment</key>
-					<string>error declaration</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.type.zig</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.error.zig</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>(\w+)\s*=\s*(error)\b</string>
-				</dict>
-				<dict>
-					<key>comment</key>
 					<string>enum declaration</string>
 				</dict>
 				<dict>
@@ -509,6 +488,58 @@
 					</dict>
 					<key>match</key>
 					<string>(\w+)\s*=\s*(packed|extern)?\s*(union\b)(?:\((\w+)\))?</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>error declaration</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.error.zig</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\w+)\s*=\s*(error)\b</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>container fields</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.other.member.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.zig</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\w+)\s*:\s*(\w+)(?:\s*=\s*(\S*))?,?</string>
+				</dict>
+				<dict>
+					<key>comment</key>
+					<string>block labels</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?:({ident}):\s*{|:\w+)</string>
+					<key>name</key>
+					<string>entity.name.label</string>
 				</dict>
 			</array>
 		</dict>
@@ -572,5 +603,10 @@
 	</dict>
 	<key>scopeName</key>
 	<string>source.zig</string>
+	<key>variables</key>
+	<dict>
+		<key>ident</key>
+		<string>\w+|@\".+\"</string>
+	</dict>
 </dict>
 </plist>

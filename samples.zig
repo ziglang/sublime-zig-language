@@ -243,9 +243,9 @@ foo = bar;
 @typeName
 @typeOf
 
-pub extern "hellas" export fn hello(as: as) void;
+pub extern "hellas" export fn @"eeeasla"(as: as) void;
 
-pub extern "hellas" export fn hello(as: as) void {
+pub extern "hellas" export fn hello(as: as) OO {
 
 }
 
@@ -263,6 +263,7 @@ const Err = error {
 
 const Bar = union {
     field: Bar,
+    field: Bad = Bad {},
 };
 
 const Boof = union(enum) {
@@ -273,3 +274,11 @@ const Boof = union(enum) {
 const Bad = enum(Foo) {
 
 };
+
+
+blk: {
+    break :blk void;
+    var f = Bar {
+        .val = 9
+    }
+}
