@@ -22,11 +22,10 @@ repository:
         name: punctuation.separator.zig
 
   param_list:
-    name: meta.function.parameters
     match: '([a-zA-Z_]\w*|@\".+\")\s*(:)\s*([a-zA-Z_]\w*|@\".+\")(,)?'
     captures:
       '1':
-        name: variable.parameter
+        name: variable.parameter.zig
       '2':
         name: punctuation.terminator.zig
       '3':
@@ -59,44 +58,99 @@ repository:
 
   container:
     patterns:
-      - match: '\b(packed|extern)?\b\s*(union\b)(?:(\()([a-zA-Z_]\w*|@\".+\")(\)))'
-        captures:
+      - begin: '(?:([a-zA-Z_]\w*|@\".+\")\s*=\s*)?\b(packed|extern)?\b\s*(union\b)(?:(\()([a-zA-Z_]\w*|@\".+\")(\)))?\s*({)'
+        beginCaptures:
           '1':
-            name: storage.modifier.zig
+            name: entity.name.union.zig
           '2':
+            name: storage.modifier.zig
+          '3':
             name: storage.type.union.zig
-          '3':
-            name: punctuation.section.parens.begin.zig
           '4':
-            name: storage.type.zig
+            name: punctuation.section.parens.begin.zig
           '5':
+            name: storage.type.zig
+          '6':
             name: punctuation.section.parens.end.zig
+          '7':
+            name: punctuation.section.braces.begin.zig
 
-      - name: storage.type.struct.zig
-        match: '\b(packed|extern)?\b\s*(struct)\b'
-        captures:
+        contentName: meta.union
+
+        end: '(})'
+        endCaptures:
           '1':
-            name: storage.modifier.zig
+            name: punctuation.section.braces.end.zig
+
+        patterns:
+          - include: '#main'
+
+      - begin: '(?:([a-zA-Z_]\w*|@\".+\")\s*=\s*)?\b(packed|extern)?\b\s*(struct)\s*({)'
+        beginCaptures:
+          '1':
+            name: entity.name.struct.zig
           '2':
+            name: storage.modifier.zig
+          '3':
             name: storage.type.struct.zig
-
-      - name: storage.type.enum.zig
-        match: '\b(extern)?\b\s*(enum\b)(?:(\()([a-zA-Z_]\w*|@\".+\")(\)))?'
-        captures:
-          '1':
-            name: storage.modifier.zig
-          '2':
-            name: storage.type.enum.zig
-          '3':
-            name: punctuation.section.parens.begin.zig
           '4':
-            name: storage.type.zig
+            name: punctuation.section.braces.begin.zig
+
+        contentName: meta.struct
+
+        end: '(})'
+        endCaptures:
+          '1':
+            name: punctuation.section.braces.end.zig
+
+        patterns:
+          - include: '#main'
+
+      - begin: '(?:([a-zA-Z_]\w*|@\".+\")\s*=\s*)?\b(extern)?\b\s*(enum\b)(?:(\()([a-zA-Z_]\w*|@\".+\")(\)))?\s*({)'
+        beginCaptures:
+          '1':
+            name: entity.name.enum.zig
+          '2':
+            name: storage.modifier.zig
+          '3':
+            name: storage.type.enum.zig
+          '4':
+            name: punctuation.section.parens.begin.zig
           '5':
+            name: storage.type.zig
+          '6':
             name: punctuation.section.parens.end.zig
+          '7':
+            name: punctuation.section.braces.begin.zig
 
-      - name: storage.type.error.zig
-        match: '\b(error)\b'
+        contentName: meta.enum
 
+        end: '(})'
+        endCaptures:
+          '1':
+            name: punctuation.section.braces.end.zig
+
+        patterns:
+          - include: '#main'
+
+      - begin: '(?:([a-zA-Z_]\w*|@\".+\")\s*=\s*)?\b(error)\b\s*({)'
+        beginCaptures:
+          '1':
+            name: entity.name.error.zig
+          '2':
+            name: storage.type.error.zig
+          '3':
+            name: punctuation.section.braces.begin.zig
+
+        contentName: meta.error
+
+        end: '(})'
+        endCaptures:
+          '1':
+            name: punctuation.section.braces.end.zig
+
+        patterns:
+          - include: '#main'
   constants:
     patterns:
       - name: constant.language.zig
@@ -278,13 +332,14 @@ repository:
       - include: '#label'
       - include: '#block'
 
-      - name: meta.function.zig
-        begin: '\b(fn)(\()'
+      - begin: '\b(fn)(\()'
         beginCaptures:
           '1':
             name: storage.type.function.zig
           '2':
             name: punctuation.section.parens.begin.zig
+
+        contentName: meta.parameters
 
         end: '(\))\s*([a-zA-Z_]\w*|@\".+\")?'
         endCaptures:
@@ -301,8 +356,7 @@ repository:
               '2':
                 name: punctuation.separator.zig
 
-      - name: meta.function.zig
-        begin: '\b(fn)\s+([a-zA-Z_]\w*|@\".+\")(\()'
+      - begin: '\b(fn)\s+([a-zA-Z_]\w*|@\".+\")(\()'
         beginCaptures:
           '1':
             name: storage.type.function.zig
@@ -310,6 +364,8 @@ repository:
             name: entity.name.function.zig
           '3':
             name: punctuation.section.parens.begin.zig
+
+        contentName: meta.function.parameters
 
         end: '(\))\s*([a-zA-Z_]\w*|@\".+\")?'
         endCaptures:
