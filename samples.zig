@@ -138,7 +138,7 @@ c"adsfjioasdjfoiad"
 \a
 const \\ adsjfaf23n9
 
- fn(aas) void;
+const v = fn(aas, 2342, 23) void;
 
 fn foo(a:as) s {
 
@@ -151,9 +151,9 @@ extern fn foobar() void;
 
 
 c\\ adsjfafsdjkl \x11 \u1245 \U123456
-extern fn bar();
+extern fn bar() void;
  c\\ adsjfafsdjkl \ \\ \ \xdeadbeef
-extern fn foobar();
+extern fn foobar() void;
 \\ adsjfafsdjkl
 
 pub fn barfoo();
@@ -161,7 +161,7 @@ pub fn barfoo();
  \\ adsjfafsdjkl
 }
 "hello \x1 \n \t \\ \r 1m ' \\ \a \" \u{11}"
- extern fn foobarfoo();
+ extern fn foobarfoo() void;
  "\"hello\""
 'a'
 'ab'
@@ -254,20 +254,20 @@ foo = bar;
 @subWithOverflow
 @tagName
 @TagType
-@This
+@This()
 @truncate
 @typeId
 @typeInfo
 @typeName
 @typeOf
 
-pub extern "hellas" export fn @"eeeasla"(as: as) void;
+pub extern "hellas" export fn @"eeeasla"(as: as) userdata;
 
 pub extern "hellas" export fn hello(as: as) OO {
 
 }
 
-pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: LPVOID, )void;
+pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: LPVOID,        asda: asdsad, sacz: @"zxc", )void;
 pub stdcallcc fn CoUninitialize() void;
 
 pub const Foo = extern struct {
@@ -283,7 +283,7 @@ const Err = error {
 
 const Bar = union {
     field: Bar,
-    field: Bad = Bad {},
+    field: Bad = @This() {},
 };
 
 const Boof = union(enum) {
@@ -291,10 +291,13 @@ const Boof = union(enum) {
 };
 
 
-const Bad = enum(Foo) {
+const Bad = enum(u8) {
 
 };
+var as: Bad = Bad {
+    pub stdcallcc fn CoUninitialize() void;
 
+};
 
 blk: {
     break :blk void;
