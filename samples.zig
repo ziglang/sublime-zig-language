@@ -274,6 +274,10 @@ pub const Foo = extern struct {
 
 };
 
+extern struct {
+
+};
+
 const Err = error {
 
 };
@@ -282,7 +286,7 @@ const Err = error {
 }
 (asdasd)
 const Bar = union {
-    field: Bar,
+    field: Foo,
     field: Bad = @This() {},
 };
 
@@ -304,4 +308,5 @@ blk: {
     var f = Bar {
         .val = 9
     }
+
 }
