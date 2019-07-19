@@ -44,6 +44,8 @@
 					<string>punctuation.section.braces.end.zig</string>
 				</dict>
 			</dict>
+			<key>name</key>
+			<string>meta.block</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -58,49 +60,49 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(\\n)</string>
+					<string>\\n</string>
 					<key>name</key>
 					<string>constant.character.escape.newline.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\\r)</string>
+					<string>\\r</string>
 					<key>name</key>
 					<string>constant.character.escape.carrigereturn.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\\t)</string>
+					<string>\\t</string>
 					<key>name</key>
 					<string>constant.character.escape.tabulator.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\\\\)</string>
+					<string>\\\\</string>
 					<key>name</key>
 					<string>constant.character.escape.backslash.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\\')</string>
+					<string>\\'</string>
 					<key>name</key>
 					<string>constant.character.escape.single-quote.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\\\")</string>
+					<string>\\\"</string>
 					<key>name</key>
 					<string>constant.character.escape.double-quote.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\\x[a-fA-F0-9]{2})</string>
+					<string>\\x[a-fA-F0-9]{2}</string>
 					<key>name</key>
 					<string>constant.character.escape.hexidecimal.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\\u\{[a-fA-F0-9]{1,6}\})</string>
+					<string>\\u\{[a-fA-F0-9]{1,6}\}</string>
 					<key>name</key>
 					<string>constant.character.escape.hexidecimal.zig</string>
 				</dict>
@@ -286,125 +288,33 @@
 				</dict>
 			</array>
 		</dict>
-		<key>declaration</key>
+		<key>field_decl</key>
 		<dict>
-			<key>patterns</key>
-			<array>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
 				<dict>
-					<key>comment</key>
-					<string>struct declaration</string>
+					<key>name</key>
+					<string>variable.other.member.zig</string>
 				</dict>
+				<key>2</key>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.type.zig</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>storage.modifier.zig</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.struct.zig</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>([a-zA-Z_]\w*|@\".+\")\s*=\s*(packed|extern)?\s*(struct)\b</string>
+					<key>name</key>
+					<string>punctuation.terminator.zig</string>
 				</dict>
+				<key>3</key>
 				<dict>
-					<key>comment</key>
-					<string>enum declaration</string>
+					<key>name</key>
+					<string>storage.type.zig</string>
 				</dict>
+				<key>4</key>
 				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.type.zig</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>storage.modifier.zig</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.enum.zig</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.integer.zig</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>([a-zA-Z_]\w*|@\".+\")\s*=\s*(extern)?\s*(enum\b)(?:\(((?&lt;!\.)([iu][0-9]\d*|[iu]size))\))?</string>
+					<key>name</key>
+					<string>punctuation.separator.zig</string>
 				</dict>
-				<dict>
-					<key>comment</key>
-					<string>union declaration</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.type.zig</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>storage.modifier.zig</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.union.zig</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.enum.zig</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>([a-zA-Z_]\w*|@\".+\")\s*=\s*(packed|extern)?\s*(union\b)(?:\(([a-zA-Z_]\w*|@\".+\")\))?</string>
-				</dict>
-				<dict>
-					<key>comment</key>
-					<string>error declaration</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>entity.name.type.zig</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.error.zig</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>([a-zA-Z_]\w*|@\".+\")\s*=\s*(error)\b</string>
-				</dict>
-			</array>
-		</dict>
-		<key>identifier</key>
-		<dict>
+			</dict>
 			<key>match</key>
-			<string>([a-zA-Z_]\w*|@\".+\")</string>
+			<string>([a-zA-Z_]\w*|@\".+\")\s*(:)\s*([a-zA-Z_]\w*|@\".+\")(,)?</string>
 		</dict>
 		<key>keywords</key>
 		<dict>
@@ -436,7 +346,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(usingnamespace)\b</string>
+					<string>\busingnamespace\b</string>
 					<key>name</key>
 					<string>keyword.other.usingnamespace.zig</string>
 				</dict>
@@ -491,7 +401,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#tuple</string>
+					<string>#field_decl</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -536,6 +446,8 @@
 							<string>storage.type.zig</string>
 						</dict>
 					</dict>
+					<key>name</key>
+					<string>meta.function.zig</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -559,7 +471,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\b(fn)\s+([a-zA-Z_]\w*|@\".+\")\(</string>
+					<string>\b(fn)\s+([a-zA-Z_]\w*|@\".+\")(\()</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -572,22 +484,36 @@
 							<key>name</key>
 							<string>entity.name.function.zig</string>
 						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.parens.begin.zig</string>
+						</dict>
 					</dict>
+					<key>contentName</key>
+					<string>meta.function.parameters</string>
 					<key>end</key>
-					<string>\)\s*([a-zA-Z_]\w*|@\".+\")?</string>
+					<string>(\))\s*([a-zA-Z_]\w*|@\".+\")?</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>1</key>
 						<dict>
 							<key>name</key>
+							<string>punctuation.section.parens.begin.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
 							<string>storage.type.zig</string>
 						</dict>
 					</dict>
+					<key>name</key>
+					<string>meta.function.zig</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#tuple</string>
+							<string>#param_list</string>
 						</dict>
 					</array>
 				</dict>
@@ -599,7 +525,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(!)\b</string>
+					<string>\b!\b</string>
 					<key>name</key>
 					<string>keyword.operator.zig</string>
 				</dict>
@@ -641,19 +567,47 @@
 				</dict>
 			</array>
 		</dict>
+		<key>param_list</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.terminator.zig</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.zig</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.zig</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>([a-zA-Z_]\w*|@\".+\")\s*(:)\s*([a-zA-Z_]\w*|@\".+\")(,)?</string>
+		</dict>
 		<key>punctuation</key>
 		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(,)</string>
+					<string>,</string>
 					<key>name</key>
 					<string>punctuation.separator.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(;)</string>
+					<string>;</string>
 					<key>name</key>
 					<string>punctuation.terminator.zig</string>
 				</dict>
@@ -662,6 +616,30 @@
 					<string>(?&lt;=[a-zA-Z_]|\")(\.)(?=[a-zA-Z_]|@\")</string>
 					<key>name</key>
 					<string>punctuation.accessor</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\()</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.parens.begin.zig</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(\))</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.parens.end.zig</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.group</string>
 				</dict>
 			</array>
 		</dict>
@@ -695,7 +673,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(test)\b</string>
+					<string>\btest\b</string>
 					<key>name</key>
 					<string>storage.type.test.zig</string>
 				</dict>
@@ -714,7 +692,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(\')</string>
+					<string>\'</string>
 					<key>end</key>
 					<string>\'</string>
 					<key>name</key>
@@ -727,7 +705,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(\\[^\'][^\']*?)</string>
+							<string>\\[^\'][^\']*?</string>
 							<key>name</key>
 							<string>invalid.illegal.character.zig</string>
 						</dict>
@@ -748,7 +726,7 @@
 						</dict>
 						<dict>
 							<key>match</key>
-							<string>(\\[^\'][^\']*?)</string>
+							<string>\\[^\'][^\']*?</string>
 							<key>name</key>
 							<string>invalid.illegal.character.zig</string>
 						</dict>
@@ -767,37 +745,9 @@
 		<key>support</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\w)(@[^\"\d][a-zA-Z_]\w*)\b</string>
+			<string>(?&lt;!\w)@[^\"\d][a-zA-Z_]\w*\b</string>
 			<key>name</key>
 			<string>support.function.zig</string>
-		</dict>
-		<key>tuple</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>variable.other.member.zig</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.terminator.zig</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>storage.type.zig</string>
-				</dict>
-				<key>4</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.separator.zig</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>([a-zA-Z_]\w*|@\".+\")\s*(:)\s*([a-zA-Z_]\w*|@\".+\")(,)?</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>
