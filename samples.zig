@@ -254,7 +254,7 @@ foo = bar;
 @subWithOverflow
 @tagName
 @TagType
-@This()
+@This
 @truncate
 @typeId
 @typeInfo
@@ -280,7 +280,7 @@ const Err = error {
 {
     : Bar,
 }
-
+(asdasd)
 const Bar = union {
     field: Bar,
     field: Bad = @This() {},
