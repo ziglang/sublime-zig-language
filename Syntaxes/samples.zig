@@ -261,13 +261,15 @@ foo = bar;
 @typeName
 @typeOf
 
-pub extern "hellas" export fn @"eeeasla"(as: as) userdata;
+*const asasd
+
+pub extern "hellas" export fn @"eeeasla"(as: FN) userdata;
 
 pub extern "hellas" export fn hello(as: as) OO {
 
 }
 
-pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: LPVOID,        asda: asdsad, sacz: @"zxc", )void;
+pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: *const LPVOID,        asda: asdsad, sacz: @"zxc", )void;
 pub stdcallcc fn CoUninitialize() void;
 
 pub const Foo = extern struct {
@@ -298,7 +300,7 @@ const Boof = union(enum) {
 const Bad = enum(u8) {
 
 };
-var as: Bad = Bad {
+var as: Bad = Bad(u8) {
     pub stdcallcc fn CoUninitialize() void;
 
 };
@@ -308,5 +310,10 @@ blk: {
     var f = Bar {
         .val = 9
     }
+
+}
+
+
+blk: while () : (sas) {
 
 }
