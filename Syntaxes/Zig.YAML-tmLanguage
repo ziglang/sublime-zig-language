@@ -28,7 +28,7 @@ repository:
       - include: '#main'
 
   param_list:
-    begin: '(comptime|noalias)?\s*([a-zA-Z_]\w*|@\".+\")\s*(:)\s*'
+    begin: '(comptime|noalias)?\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(:)\s*'
     beginCaptures:
       '1':
         name: storage.modifier.zig
@@ -72,9 +72,9 @@ repository:
     name: storage.modifier.zig
     match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal|allowzero)\b'
 
-  container:
+  container_decl:
     patterns:
-      - begin: '(?:([a-zA-Z_]\w*|@\".+\")\s*=\s*)?\b(packed|extern)?\b\s*(union\b)(?:(\()([a-zA-Z_]\w*|@\".+\")(\)))?\s*({)'
+      - begin: '(?:([a-zA-Z_]\w*|@\".+\")\s*=\s*)?\b(packed|extern)?\b\s*(union\b)(?:(\()([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")(\)))?\s*({)'
         beginCaptures:
           '1':
             name: entity.name.union.zig
@@ -122,7 +122,7 @@ repository:
         patterns:
           - include: '#main'
 
-      - begin: '(?:([a-zA-Z_]\w*|@\".+\")\s*=\s*)?\b(extern)?\b\s*(enum\b)(?:(\()([a-zA-Z_]\w*|@\".+\")(\)))?\s*({)'
+      - begin: '(?:([a-zA-Z_]\w*|@\".+\")\s*=\s*)?\b(extern)?\b\s*(enum\b)(?:(\()([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")(\)))?\s*({)'
         beginCaptures:
           '1':
             name: entity.name.enum.zig
@@ -290,7 +290,7 @@ repository:
       - name: storage.type.c_compat.zig
         match: '\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b'
 
-      - match: '(?:(\*)\s*(const)\b|(\*)|(\?))([a-zA-Z_]\w*|@\".+\")'
+      - match: '(?:(\*)\s*(const)\b|(\*)|(\?))([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")'
         captures:
           '1':
             name: keyword.operator.other.zig
@@ -352,7 +352,7 @@ repository:
           - include: '#main'
 
   block:
-    begin: '([a-zA-Z_]\w*|@\".+\")?\s*(\{)'
+    begin: '([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(\{)'
     beginCaptures:
       '1':
         name: storage.type.zig
@@ -370,7 +370,7 @@ repository:
       - include: '#main'
 
   func_call:
-    begin: '([a-zA-Z_]\w*|@\".+\")(\()'
+    begin: '([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")(\()'
     beginCaptures:
       '1':
         name: variable.function
@@ -395,7 +395,7 @@ repository:
     patterns:
       - include: '#label'
       - include: '#storage_modifier'
-      - include: '#container'
+      - include: '#container_decl'
       - include: '#constants'
       - include: '#comments'
       - include: '#strings'
@@ -418,7 +418,7 @@ repository:
 
         contentName: meta.parameters
 
-        end: '(\))\s*([a-zA-Z_]\w*|@\".+\")?'
+        end: '(\))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?'
         endCaptures:
           '1':
             name: punctuation.section.parens.end.zig
@@ -426,7 +426,7 @@ repository:
             name: storage.type.zig
 
         patterns:
-          - match: '([a-zA-Z_]\w*|@\".+\")(,)?'
+          - match: '([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")(,)?'
             captures:
               '1':
                 name: storage.type.zig
@@ -445,7 +445,7 @@ repository:
 
         contentName: meta.function.parameters
 
-        end: '(?<=\))\s*([a-zA-Z_]\w*|@\".+\")?'
+        end: '(?<=\))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?'
         endCaptures:
           '1':
             name: storage.type.zig
@@ -454,7 +454,7 @@ repository:
           - include: '#param_list'
 
       - comment: variable/constant declaration
-      - match: '\b(const|var)\s+([a-zA-Z_]\w*|@\".+\")\s*(:)\s*([a-zA-Z_]\w*|@\".+\")\s*(=)'
+      - match: '\b(const|var)\s+([a-zA-Z_]\w*|@\".+\")\s*(:)\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(=)'
         captures:
           '1':
             name: storage.modifier.zig
