@@ -264,13 +264,13 @@ repository:
         match: '((?:(?:\+|-|\*)\%?|/|%|<<|>>|&|\|(?=[^\|])|\^)?=)'
 
       - name: keyword.operator.arithmetic.zig
-        match: '((?:\+|-|\*)\%?|/(?!/)|%)'
+        match: '((?:\+|-|(?<=\w)\s*\*)\%?|/(?!/)|%)'
 
       - name: keyword.operator.bitwise.zig
         match: '(<<|>>|&(?=\W)|\|(?=[^\|])|\^|~)'
 
       - name: keyword.operator.other.zig
-        match: '(\+\+|\*\*|->|\.\?|\.\*|&(?=\w)|\*(?=\w)|\?|\|\||\.\.|\.\.\.)'
+        match: '(\+\+|\*\*|->|\.\?|\.\*|&(?=\w)|\?|\|\||\.\.|\.\.\.)'
   
   support:
     name: support.function.zig
@@ -311,20 +311,19 @@ repository:
       - name: punctuation.terminator.zig
         match: ';'
 
-      # TODO use a more restrictive regex?
-      # - match: '(?:([a-zA-Z_]\w*|@\".+\")|(?<=\)))(?:(\.)|(,)|(;))(?=[a-zA-Z_]|@\"|\s)'
-      - match: '(?:([a-zA-Z_]\w*|@\".+\")|(?<=\)))(?:(\.)|(,)|(;))'
-        captures:
-          '1':
-            name: variable.other.zig
-          '2':
-            name: punctuation.accessor.zig
-          '3':
-            name: punctuation.separator.zig
-          '4':
-            name: punctuation.terminator.zig
-          '5':
-            name: variable.other.zig
+      # TODO match variable names?
+      # - match: '(?:([a-zA-Z_]\w*|@\".+\")|(?<=\)))(?:(\.)|(,)|(;))'
+      #   captures:
+      #     '1':
+      #       name: variable.other.zig
+      #     '2':
+      #       name: punctuation.accessor.zig
+      #     '3':
+      #       name: punctuation.separator.zig
+      #     '4':
+      #       name: punctuation.terminator.zig
+      #     '5':
+      #       name: variable.other.zig
 
       - begin: '(\()'
         beginCaptures:
@@ -391,7 +390,10 @@ repository:
 
     contentName: meta.function-call.zig
 
-    end: '(?<=\))'
+    end: '(\))'
+    endCaptures:
+      '1':
+        name: punctuation.section.parens.end.zig
 
     patterns:
       - include: '#main'
@@ -404,22 +406,7 @@ repository:
 
   main:
     patterns:
-      - include: '#label'
-      - include: '#punctuation'
-      - include: '#storage_modifier'
-      - include: '#container_decl'
-      - include: '#constants'
-      - include: '#comments'
-      - include: '#strings'
-      - include: '#keywords'
-      - include: '#operators'
-      - include: '#support'
-      - include: '#storage'
-      - include: '#field_decl'
-      - include: '#block'
-      - include: '#func_call'
-
-      - comment: function pointer types
+      # function pointer types
       - begin: '\b(fn)(\()'
         beginCaptures:
           '1':
@@ -444,7 +431,7 @@ repository:
               '2':
                 name: punctuation.separator.zig
 
-      - comment: function decalaration
+      # function decalaration
       - begin: '\b(fn)\s+([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")(\()'
         beginCaptures:
           '1':
@@ -464,7 +451,7 @@ repository:
         patterns:
           - include: '#param_list'
 
-      - comment: variable/constant declaration
+      # variable/constant declaration
       - match: '\b(const|var)\s+([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(:)\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(=)'
         captures:
           '1':
@@ -477,4 +464,19 @@ repository:
             name: storage.type.zig
           '5':
             name: keyword.operator.assignment.zig
+
+      - include: '#func_call'
+      - include: '#label'
+      - include: '#punctuation'
+      - include: '#storage_modifier'
+      - include: '#container_decl'
+      - include: '#constants'
+      - include: '#comments'
+      - include: '#strings'
+      - include: '#keywords'
+      - include: '#operators'
+      - include: '#support'
+      - include: '#storage'
+      - include: '#field_decl'
+      - include: '#block'
 
