@@ -1,6 +1,5 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
-%YAML 1.2
----
+
 name: Zig
 scopeName: source.zig
 fileTypes:

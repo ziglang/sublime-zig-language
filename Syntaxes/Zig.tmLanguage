@@ -895,14 +895,6 @@
 					<string>punctuation.terminator.zig</string>
 				</dict>
 				<dict>
-					<key>disabled</key>
-					<string>1</string>
-					<key>match</key>
-					<string>(?:([a-zA-Z_]\w*|@\".+\")|(?&lt;=\)))(?:(\.)|(,)|(;))(?=[a-zA-Z_]|@\"|\s)</string>
-					<key>patterns</key>
-					<false/>
-				</dict>
-				<dict>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
