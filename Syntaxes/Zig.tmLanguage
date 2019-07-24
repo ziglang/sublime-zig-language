@@ -35,7 +35,7 @@
 				</dict>
 			</dict>
 			<key>contentName</key>
-			<string>meta.block</string>
+			<string>meta.block.zig</string>
 			<key>end</key>
 			<string>(\})</string>
 			<key>endCaptures</key>
@@ -283,7 +283,7 @@
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.struct</string>
+					<string>meta.struct.zig</string>
 					<key>end</key>
 					<string>(})</string>
 					<key>endCaptures</key>
@@ -344,7 +344,7 @@
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.enum</string>
+					<string>meta.enum.zig</string>
 					<key>end</key>
 					<string>(})</string>
 					<key>endCaptures</key>
@@ -385,7 +385,7 @@
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.error</string>
+					<string>meta.error.zig</string>
 					<key>end</key>
 					<string>(})</string>
 					<key>endCaptures</key>
@@ -446,13 +446,13 @@
 		<key>func_call</key>
 		<dict>
 			<key>begin</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")(\()</string>
+			<string>([a-zA-Z_]\w*|@\".+\")(\()</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>variable.function</string>
+					<string>variable.function.zig</string>
 				</dict>
 				<key>2</key>
 				<dict>
@@ -461,17 +461,9 @@
 				</dict>
 			</dict>
 			<key>contentName</key>
-			<string>meta.function-call</string>
+			<string>meta.function-call.zig</string>
 			<key>end</key>
-			<string>(\))</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.section.parens.end.zig</string>
-				</dict>
-			</dict>
+			<string>(?&lt;=\))</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -486,9 +478,14 @@
 							<key>name</key>
 							<string>punctuation.separator.zig</string>
 						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.parens.end.zig</string>
+						</dict>
 					</dict>
 					<key>match</key>
-					<string>(,)?</string>
+					<string>(?:(,)|(?:\)))</string>
 				</dict>
 			</array>
 		</dict>
@@ -542,7 +539,7 @@
 					<key>match</key>
 					<string>(?&lt;!\w):([a-zA-Z_]\w*|@\".+\")</string>
 					<key>name</key>
-					<string>entity.name.label</string>
+					<string>entity.name.label.zig</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -552,7 +549,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.label</string>
+							<string>entity.name.label.zig</string>
 						</dict>
 						<key>2</key>
 						<dict>
@@ -592,6 +589,10 @@
 				<dict>
 					<key>include</key>
 					<string>#label</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#punctuation</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -635,10 +636,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#punctuation</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#block</string>
 				</dict>
 				<dict>
@@ -666,7 +663,7 @@
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.parameters</string>
+					<string>meta.parameters.zig</string>
 					<key>end</key>
 					<string>(\))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?</string>
 					<key>endCaptures</key>
@@ -709,7 +706,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\b(fn)\s+([a-zA-Z_]\w*|@\".+\")(\()</string>
+					<string>\b(fn)\s+([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")(\()</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -729,7 +726,7 @@
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.function.parameters</string>
+					<string>meta.function.parameters.zig</string>
 					<key>end</key>
 					<string>(?&lt;=\))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?</string>
 					<key>endCaptures</key>
@@ -782,7 +779,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\b(const|var)\s+([a-zA-Z_]\w*|@\".+\")\s*(:)\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(=)</string>
+					<string>\b(const|var)\s+([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(:)\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(=)</string>
 				</dict>
 			</array>
 		</dict>
@@ -816,7 +813,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>((?:\+|-|\*)\%?|/(?!/)|%|)</string>
+					<string>((?:\+|-|\*)\%?|/(?!/)|%)</string>
 					<key>name</key>
 					<string>keyword.operator.arithmetic.zig</string>
 				</dict>
@@ -898,10 +895,44 @@
 					<string>punctuation.terminator.zig</string>
 				</dict>
 				<dict>
+					<key>disabled</key>
+					<string>1</string>
 					<key>match</key>
-					<string>(?&lt;=[a-zA-Z_]|\")(\.)(?=[a-zA-Z_]|@\")</string>
-					<key>name</key>
-					<string>punctuation.accessor</string>
+					<string>(?:([a-zA-Z_]\w*|@\".+\")|(?&lt;=\)))(?:(\.)|(,)|(;))(?=[a-zA-Z_]|@\"|\s)</string>
+					<key>patterns</key>
+					<false/>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.other.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.accessor.zig</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.zig</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.terminator.zig</string>
+						</dict>
+						<key>5</key>
+						<dict>
+							<key>name</key>
+							<string>variable.other.zig</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?:([a-zA-Z_]\w*|@\".+\")|(?&lt;=\)))(?:(\.)|(,)|(;))</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -915,7 +946,7 @@
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.group</string>
+					<string>meta.group.zig</string>
 					<key>end</key>
 					<string>(\))</string>
 					<key>endCaptures</key>
