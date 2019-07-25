@@ -650,6 +650,20 @@
                             "name": "storage.type.error.zig"
                         }
                     }
+                }, 
+                {
+                    "match": "\\b(error)(\\.)([a-zA-Z_]\\w*|@\\\".+\\\")", 
+                    "captures": {
+                        "1": {
+                            "name": "storage.type.error.zig"
+                        }, 
+                        "3": {
+                            "name": "entity.name.error.zig"
+                        }, 
+                        "2": {
+                            "name": "punctuation.accessor.zig"
+                        }
+                    }
                 }
             ]
         }, 

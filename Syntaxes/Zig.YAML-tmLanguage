@@ -167,6 +167,15 @@ repository:
 
         patterns:
           - include: '#main'
+
+      - match: '\b(error)(\.)([a-zA-Z_]\w*|@\".+\")'
+        captures:
+          '1':
+            name: storage.type.error.zig
+          '2':
+            name: punctuation.accessor.zig
+          '3':
+            name: entity.name.error.zig
   
   constants:
     patterns:

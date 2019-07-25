@@ -404,6 +404,28 @@
 						</dict>
 					</array>
 				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.error.zig</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.accessor.zig</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.error.zig</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\b(error)(\.)([a-zA-Z_]\w*|@\".+\")</string>
+				</dict>
 			</array>
 		</dict>
 		<key>field_decl</key>
