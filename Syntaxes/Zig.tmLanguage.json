@@ -135,6 +135,9 @@
                     "include": "#strings"
                 }, 
                 {
+                    "include": "#storage"
+                }, 
+                {
                     "include": "#keywords"
                 }, 
                 {
@@ -142,9 +145,6 @@
                 }, 
                 {
                     "include": "#support"
-                }, 
-                {
-                    "include": "#storage"
                 }, 
                 {
                     "include": "#field_decl"
@@ -458,26 +458,6 @@
                 {
                     "name": "storage.type.c_compat.zig", 
                     "match": "\\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\\b"
-                }, 
-                {
-                    "match": "(?:(\\*+)\\s*(const)\\b|(\\*+)|(\\?))([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")", 
-                    "captures": {
-                        "5": {
-                            "name": "storage.type.zig"
-                        }, 
-                        "4": {
-                            "name": "keyword.operator.other.zig"
-                        }, 
-                        "1": {
-                            "name": "keyword.operator.other.zig"
-                        }, 
-                        "3": {
-                            "name": "keyword.operator.other.zig"
-                        }, 
-                        "2": {
-                            "name": "storage.modifier.zig"
-                        }
-                    }
                 }
             ]
         }, 
@@ -669,7 +649,7 @@
         }, 
         "field_decl": {
             "contentName": "storage.type.zig", 
-            "end": "(,)?\\s+", 
+            "end": "(?:(,)|(?:\\n|\\r))", 
             "endCaptures": {
                 "1": {
                     "name": "punctuation.separator.zig"

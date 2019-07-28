@@ -973,38 +973,6 @@
 					<key>name</key>
 					<string>storage.type.c_compat.zig</string>
 				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.other.zig</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>storage.modifier.zig</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.other.zig</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.other.zig</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.zig</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>(?:(\*+)\s*(const)\b|(\*+)|(\?+))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?</string>
-				</dict>
 			</array>
 		</dict>
 		<key>storage_modifier</key>

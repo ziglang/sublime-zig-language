@@ -299,18 +299,18 @@ repository:
       - name: storage.type.c_compat.zig
         match: '\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b'
 
-      - match: '(?:(\*+)\s*(const)\b|(\*+)|(\?+))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?'
-        captures:
-          '1':
-            name: keyword.operator.other.zig
-          '2':
-            name: storage.modifier.zig
-          '3':
-            name: keyword.operator.other.zig
-          '4':
-            name: keyword.operator.other.zig
-          '5':
-            name: storage.type.zig
+      # - match: '(?:(\*+)\s*(const|allowzero|volatile)\b|(\*+)|(\?+))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?'
+      #   captures:
+      #     '1':
+      #       name: keyword.operator.other.zig
+      #     '2':
+      #       name: storage.modifier.zig
+      #     '3':
+      #       name: keyword.operator.other.zig
+      #     '4':
+      #       name: keyword.operator.other.zig
+      #     '5':
+      #       name: storage.type.zig
 
   punctuation:
     patterns:
