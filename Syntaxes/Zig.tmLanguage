@@ -448,7 +448,7 @@
 			<key>contentName</key>
 			<string>storage.type.zig</string>
 			<key>end</key>
-			<string>(,)?\s+</string>
+			<string>(?:(,)|(?:\n|\r))</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -777,6 +777,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#storage</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#keywords</string>
 				</dict>
 				<dict>
@@ -786,10 +790,6 @@
 				<dict>
 					<key>include</key>
 					<string>#support</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#storage</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1003,7 +1003,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?:(\*)\s*(const)\b|(\*)|(\?))([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
+					<string>(?:(\*+)\s*(const)\b|(\*+)|(\?+))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?</string>
 				</dict>
 			</array>
 		</dict>

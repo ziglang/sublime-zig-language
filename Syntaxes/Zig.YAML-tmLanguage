@@ -19,7 +19,7 @@ repository:
 
     contentName: storage.type.zig
 
-    end: '(,)?\s+'
+    end: '(?:(,)|(?:\n|\r))'
     endCaptures:
       '1':
         name: punctuation.separator.zig
@@ -299,7 +299,7 @@ repository:
       - name: storage.type.c_compat.zig
         match: '\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b'
 
-      - match: '(?:(\*)\s*(const)\b|(\*)|(\?))([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")'
+      - match: '(?:(\*+)\s*(const)\b|(\*+)|(\?+))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?'
         captures:
           '1':
             name: keyword.operator.other.zig
@@ -482,10 +482,10 @@ repository:
       - include: '#constants'
       - include: '#comments'
       - include: '#strings'
+      - include: '#storage'
       - include: '#keywords'
       - include: '#operators'
       - include: '#support'
-      - include: '#storage'
       - include: '#field_decl'
       - include: '#block'
 
