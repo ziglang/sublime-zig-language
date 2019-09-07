@@ -314,7 +314,7 @@ blk: {
 
 }
 
-extern fn f2(comptime s: *const *volatile u8) c_int;
+extern fn f2(s: *const *volatile u8) c_int;
 
 blk: while () : (sas) {
 error.asdasd;

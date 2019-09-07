@@ -28,24 +28,21 @@ repository:
       - name: constant.character.escape.hexidecimal.zig
         match: \\u\{[a-fA-F0-9]{1,6}\}
 
-  param_list:
-    begin: '([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(:)\s*'
+  param_field:
+    begin: '([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")\s*(:)\s*'
     beginCaptures:
       '1':
-        name: storage.modifier.zig
-      '2':
         name: variable.parameter.zig
-      '3':
-        name: punctuation.terminator.zig
+      '2':
+        name: punctuation.separator.zig
 
-    contentName: storage.type.zig
+    end: '([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")(?:(,)|(?=\)))'
 
-    end: '(?:(,)|(?:\)))'
     endCaptures:
       '1':
-        name: punctuation.separator.zig
+        name: storage.type.zig
       '2':
-        name: punctuation.section.parens.end.zig
+        name: punctuation.separator.zig
 
     patterns:
       - include: '#main'
@@ -56,16 +53,16 @@ repository:
 
   container_decl:
     patterns:
-      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:union)\s*[({])'
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:union)\s*[(\{])'
         name: entity.name.union.zig
 
-      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:enum|struct|union)\s*[({])'
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:enum|struct|union)\s*[(\{])'
         name: entity.name.struct.zig
 
-      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:enum|struct|union)\s*[({])'
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:enum|struct|union)\s*[(\{])'
         name: entity.name.enum.zig
 
-      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:error)\s*[({])'
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:error)\s*[(\{])'
         name: entity.name.error.zig
 
       - match: '\b(error)(\.)([a-zA-Z_]\w*|@\".+\")'
@@ -170,7 +167,7 @@ repository:
         match: '((?:(?:\+|-|\*)\%?|/|%|<<|>>|&|\|(?=[^\|])|\^)?=)'
 
       - name: keyword.operator.arithmetic.zig
-        match: '((?:\+|-|(?<=[a-zA-Z_]|@\")\s*\*)\%?|/(?!/)|%)'
+        match: '((?:\+|-|\*)\%?|/(?!/)|%)'
 
       - name: keyword.operator.bitwise.zig
         match: '(<<|>>|&(?=[a-zA-Z_]|@\")|\|(?=[^\|])|\^|~)'
@@ -214,18 +211,18 @@ repository:
       - name: storage.type.error.zig
         match: '\berror\b'
 
-      - match: '(?:(\*+)\s*(const|allowzero|volatile)\b|(\*+)|(\?+))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?'
-        captures:
-          '1':
-            name: keyword.operator.other.zig
-          '2':
-            name: storage.modifier.zig
-          '3':
-            name: keyword.operator.other.zig
-          '4':
-            name: keyword.operator.other.zig
-          '5':
-            name: storage.type.zig
+      # - match: '(?:(\*+)\s*(const|allowzero|volatile)\b|(\*+)|(\?+))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?'
+      #   captures:
+      #     '1':
+      #       name: keyword.operator.other.zig
+      #     '2':
+      #       name: storage.modifier.zig
+      #     '3':
+      #       name: keyword.operator.other.zig
+      #     '4':
+      #       name: keyword.operator.other.zig
+      #     '5':
+      #       name: storage.type.zig
 
   punctuation:
     patterns:
@@ -284,10 +281,25 @@ repository:
       - include: '#main'
 
   function_def:
-    name: entity.name.function
-    match: '(?<=fn)\s+([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")(?=\s*\()'
+    begin: '(?<=fn)\s+([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")(\()'
+    beginCaptures:
+      '1':
+        name: entity.name.function
+      '2':
+        name: punctuation.section.parens.begin.zig
 
-  function:
+    contentName: meta.function.parameters.zig
+
+    end: '(\))'
+    endCaptures:
+      '1':
+        name: punctuation.section.parens.begin.zig
+
+    patterns:
+      - include: '#param_field'
+      - include: '#main'
+
+  function_call:
     name: variable.function.zig
     match: '(?<!fn)\b([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")(?=\s*\()'
 
@@ -308,8 +320,7 @@ repository:
       #       name: keyword.operator.assignment.zig
 
       # - include: '#param_list'
-      - include: '#function_def'
-      - include: '#function'
+      
       - include: '#label'
       - include: '#punctuation'
       - include: '#storage_modifier'
@@ -323,4 +334,6 @@ repository:
       - include: '#support'
       - include: '#field_decl'
       - include: '#block'
+      - include: '#function_def'
+      - include: '#function_call'
 
