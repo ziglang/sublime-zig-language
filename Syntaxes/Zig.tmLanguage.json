@@ -26,6 +26,12 @@
         "main": {
             "patterns": [
                 {
+                    "include": "#field_decl"
+                }, 
+                {
+                    "include": "#function_type"
+                }, 
+                {
                     "include": "#var_decl"
                 }, 
                 {
@@ -102,19 +108,22 @@
             "begin": "([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")?\\s*(\\{)", 
             "contentName": "meta.block.zig"
         }, 
-        "param_field": {
+        "field_decl": {
             "beginCaptures": {
                 "2": {
                     "name": "punctuation.separator.zig"
                 }, 
                 "1": {
-                    "name": "variable.parameter.zig"
+                    "name": "variable.other.member.zig"
                 }
             }, 
-            "end": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(?:(,)|(?=\\)))", 
+            "end": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(?:(,)|\\s*(=)\\s*|(?=\\n|\\r))", 
             "endCaptures": {
                 "2": {
                     "name": "punctuation.separator.zig"
+                }, 
+                "3": {
+                    "name": "keyword.operator.assignment.zig"
                 }, 
                 "1": {
                     "name": "storage.type.zig"
@@ -198,7 +207,7 @@
             }, 
             "patterns": [
                 {
-                    "include": "#param_field"
+                    "include": "#param_list"
                 }, 
                 {
                     "include": "#main"
@@ -368,6 +377,31 @@
                 }
             ]
         }, 
+        "param_list": {
+            "beginCaptures": {
+                "2": {
+                    "name": "punctuation.separator.zig"
+                }, 
+                "1": {
+                    "name": "variable.parameter.zig"
+                }
+            }, 
+            "end": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(?:(,)|(?=\\)))", 
+            "endCaptures": {
+                "2": {
+                    "name": "punctuation.separator.zig"
+                }, 
+                "1": {
+                    "name": "storage.type.zig"
+                }
+            }, 
+            "begin": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")\\s*(:)\\s*", 
+            "patterns": [
+                {
+                    "include": "#main"
+                }
+            ]
+        }, 
         "container_decl": {
             "patterns": [
                 {
@@ -414,21 +448,48 @@
                     "name": "storage.modifier.zig"
                 }
             }, 
-            "end": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")\\s*(=)", 
+            "end": "\\s*(=)", 
             "endCaptures": {
-                "2": {
-                    "name": "keyword.operator.assignment.zig"
-                }, 
                 "1": {
-                    "name": "storage.type.zig"
+                    "name": "keyword.operator.assignment.zig"
                 }
             }, 
             "begin": "\\b(const|var)\\s+([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")\\s*(:)", 
             "patterns": [
                 {
                     "include": "#main"
+                }, 
+                {
+                    "match": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")", 
+                    "name": "storage.type.zig"
                 }
             ]
+        }, 
+        "function_type": {
+            "beginCaptures": {
+                "2": {
+                    "name": "punctuation.section.parens.begin.zig"
+                }, 
+                "1": {
+                    "name": "storage.type.function.zig"
+                }
+            }, 
+            "patterns": [
+                {
+                    "include": "#param_list"
+                }, 
+                {
+                    "include": "#main"
+                }
+            ], 
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.section.parens.end.zig"
+                }
+            }, 
+            "end": "(\\))", 
+            "begin": "\\b(fn)\\s*(\\()", 
+            "contentName": "meta.parameters.zig"
         }, 
         "operators": {
             "patterns": [

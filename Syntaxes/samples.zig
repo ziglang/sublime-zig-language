@@ -157,7 +157,7 @@ extern fn foobar() void;
 \\ adsjfafsdjkl
 
 pub fn barfoo();
-
+fn
  \\ adsjfafsdjkl
 }
 "hello \x1 \n \t \\ \r 1m ' \\ \a \" \u{11}"
@@ -288,9 +288,9 @@ const Err = error {
     : Bar,
 }
 (asdasd)
-const Bar = union {
-    field: Foo,
-    field: Bad = @This() {},
+const Bar = struct {
+    field: Foo = 234"asas",
+    field: Bad = Fasd {},
 };
 
 const Boof = union(enum) {
