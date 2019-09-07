@@ -315,7 +315,9 @@ blk: {
 }
 
 extern fn f2(s: *const *volatile u8) c_int;
-var asd: asdads = 0;
+
+var asd: *const asdads = 0;
+
 blk: while () : (sas) {
 error.asdasd;
 }
