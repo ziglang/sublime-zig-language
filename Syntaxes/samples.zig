@@ -170,7 +170,7 @@ pub fn barfoo();
 '\a'
 '\aaasas'
 '\n'
-fn(i13,Foo)Bar;
+fn(i13,Foo) Bar;
 foo = bar;
 
 @"overloaded" = 89;
@@ -266,11 +266,12 @@ foo = bar;
 pub extern "hellas" export fn @"eeeasla"(as: FN) userdata;
 
 pub extern "hellas" export fn hello(as: as) OO {
-
+anyframe->U
 }
 
-pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: *const LPVOID,        asda: asdsad, sacz: @"zxc", )void;
-pub stdcallcc fn CoUninitialize() void;
+pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: *const LPVOID, asda: asdsad, sacz: @"zxc", asd: asd) void;
+
+pub stdcallcc fn CoUninitialize() A;
 
 pub const Foo = extern struct {
 	fn_call()
@@ -313,8 +314,8 @@ blk: {
 
 }
 
-extern fn f2(s: **align(1) *const *volatile u8) c_int;
-...
+extern fn f2(comptime s: *const *volatile u8) c_int;
+
 blk: while () : (sas) {
 error.asdasd;
 }

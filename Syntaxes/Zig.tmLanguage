@@ -430,6 +430,53 @@
 				</dict>
 			</array>
 		</dict>
+		<key>param_list</key>
+		<dict>
+			<key>begin</key>
+			<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(:)\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.zig</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.zig</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.terminator.zig</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>storage.type.zig</string>
+			<key>end</key>
+			<string>(?:(,)|(?:\)))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.zig</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.end.zig</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#main</string>
+				</dict>
+			</array>
+		</dict>
 		<key>punctuation</key>
 		<dict>
 			<key>patterns</key>
@@ -447,35 +494,16 @@
 					<string>punctuation.terminator.zig</string>
 				</dict>
 				<dict>
-					<key>begin</key>
+					<key>match</key>
 					<string>(\()</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.section.parens.begin.zig</string>
-						</dict>
-					</dict>
-					<key>contentName</key>
-					<string>meta.group.zig</string>
-					<key>end</key>
+					<key>name</key>
+					<string>punctuation.section.parens.begin.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
 					<string>(\))</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.section.parens.end.zig</string>
-						</dict>
-					</dict>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#main</string>
-						</dict>
-					</array>
+					<key>name</key>
+					<string>punctuation.section.parens.end.zig</string>
 				</dict>
 			</array>
 		</dict>
@@ -485,7 +513,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(bool|void|noreturn|type|anyerror|promise)\b</string>
+					<string>\b(bool|void|noreturn|type|anyerror|anyframe)\b</string>
 					<key>name</key>
 					<string>storage.type.zig</string>
 				</dict>
