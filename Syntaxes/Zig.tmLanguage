@@ -243,6 +243,51 @@
 				</dict>
 			</array>
 		</dict>
+		<key>field_decl</key>
+		<dict>
+			<key>begin</key>
+			<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")\s*(:)\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>variable.other.member.zig</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.zig</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")(?:(,)|\s*(=)\s*|(?=\n|\r))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.zig</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.zig</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.assignment.zig</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#main</string>
+				</dict>
+			</array>
+		</dict>
 		<key>function_call</key>
 		<dict>
 			<key>match</key>
@@ -283,7 +328,48 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#param_field</string>
+					<string>#param_list</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#main</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function_type</key>
+		<dict>
+			<key>begin</key>
+			<string>\b(fn)\s*(\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.function.zig</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.begin.zig</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.parameters.zig</string>
+			<key>end</key>
+			<string>(\))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.end.zig</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#param_list</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -354,6 +440,14 @@
 		<dict>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#field_decl</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function_type</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#var_decl</string>
@@ -468,7 +562,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>param_field</key>
+		<key>param_list</key>
 		<dict>
 			<key>begin</key>
 			<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")\s*(:)\s*</string>
@@ -697,15 +791,10 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")\s*(=)</string>
+			<string>\s*(=)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>storage.type.zig</string>
-				</dict>
-				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.operator.assignment.zig</string>
@@ -716,6 +805,12 @@
 				<dict>
 					<key>include</key>
 					<string>#main</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")</string>
+					<key>name</key>
+					<string>storage.type.zig</string>
 				</dict>
 			</array>
 		</dict>
