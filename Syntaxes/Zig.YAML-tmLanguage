@@ -211,19 +211,6 @@ repository:
       - name: storage.type.error.zig
         match: '\berror\b'
 
-      # - match: '(?:(\*+)\s*(const|allowzero|volatile)\b|(\*+)|(\?+))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?'
-      #   captures:
-      #     '1':
-      #       name: keyword.operator.other.zig
-      #     '2':
-      #       name: storage.modifier.zig
-      #     '3':
-      #       name: keyword.operator.other.zig
-      #     '4':
-      #       name: keyword.operator.other.zig
-      #     '5':
-      #       name: storage.type.zig
-
   punctuation:
     patterns:
       - name: punctuation.separator.zig
