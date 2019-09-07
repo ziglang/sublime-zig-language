@@ -273,7 +273,7 @@ pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: *const LPVOID,        asda: as
 pub stdcallcc fn CoUninitialize() void;
 
 pub const Foo = extern struct {
-
+	fn_call()
 };
 
 extern struct {
@@ -313,7 +313,8 @@ blk: {
 
 }
 
-
+extern fn f2(s: **align(1) *const *volatile u8) c_int;
+...
 blk: while () : (sas) {
-
+error.asdasd;
 }
