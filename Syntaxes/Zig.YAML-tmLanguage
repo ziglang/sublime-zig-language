@@ -56,10 +56,10 @@ repository:
       - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:union)\s*[(\{])'
         name: entity.name.union.zig
 
-      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:enum|struct|union)\s*[(\{])'
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:struct)\s*[(\{])'
         name: entity.name.struct.zig
 
-      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:enum|struct|union)\s*[(\{])'
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:enum)\s*[(\{])'
         name: entity.name.enum.zig
 
       - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:error)\s*[(\{])'
@@ -219,20 +219,6 @@ repository:
       - name: punctuation.terminator.zig
         match: ';'
 
-      # TODO match variable names?
-      # - match: '(?:([a-zA-Z_]\w*|@\".+\")|(?<=\)))(?:(\.)|(,)|(;))'
-      #   captures:
-      #     '1':
-      #       name: variable.other.zig
-      #     '2':
-      #       name: punctuation.accessor.zig
-      #     '3':
-      #       name: punctuation.separator.zig
-      #     '4':
-      #       name: punctuation.terminator.zig
-      #     '5':
-      #       name: variable.other.zig
-
       - match: '(\()'
         name: punctuation.section.parens.begin.zig
 
@@ -323,4 +309,3 @@ repository:
       - include: '#block'
       - include: '#function_def'
       - include: '#function_call'
-

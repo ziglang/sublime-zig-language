@@ -40,11 +40,11 @@
                     "name": "entity.name.union.zig"
                 }, 
                 {
-                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:enum|struct|union)\\s*[(\\{])", 
+                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:struct)\\s*[(\\{])", 
                     "name": "entity.name.struct.zig"
                 }, 
                 {
-                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:enum|struct|union)\\s*[(\\{])", 
+                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:enum)\\s*[(\\{])", 
                     "name": "entity.name.enum.zig"
                 }, 
                 {
