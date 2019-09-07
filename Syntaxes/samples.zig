@@ -15,7 +15,7 @@ break return continue asm defer errdefer unreachable
 
 if else switch and or try catch orelse
 
-async await suspend resume cancel
+async await suspend resume cancel noasync
 
 while for
 
@@ -269,7 +269,7 @@ pub extern "hellas" export fn hello(as: as) OO {
 anyframe->U
 }
 
-pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: *const LPVOID, asda: asdsad, sacz: @"zxc", asd: asd) void;
+pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: *const LPVOID, asda: asdsad, sacz: @"zxc", asd: asd) oop;
 
 pub stdcallcc fn CoUninitialize() A;
 
