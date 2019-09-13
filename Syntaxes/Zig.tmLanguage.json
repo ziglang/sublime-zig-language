@@ -1,5 +1,263 @@
 {
+    "patterns": [
+        {
+            "include": "#main"
+        }
+    ], 
+    "fileTypes": [
+        "zig"
+    ], 
+    "name": "Zig", 
+    "scopeName": "source.zig", 
     "repository": {
+        "field_decl": {
+            "beginCaptures": {
+                "2": {
+                    "name": "punctuation.separator.zig"
+                }, 
+                "1": {
+                    "name": "variable.other.member.zig"
+                }
+            }, 
+            "begin": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")\\s*(:)\\s*", 
+            "endCaptures": {
+                "2": {
+                    "name": "punctuation.separator.zig"
+                }, 
+                "3": {
+                    "name": "keyword.operator.assignment.zig"
+                }, 
+                "1": {
+                    "name": "storage.type.zig"
+                }
+            }, 
+            "end": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(?:(,)|\\s*(=)\\s*|(?=\\n|\\r))", 
+            "patterns": [
+                {
+                    "include": "#main"
+                }
+            ]
+        }, 
+        "container_decl": {
+            "patterns": [
+                {
+                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:union)\\s*[(\\{])", 
+                    "name": "entity.name.union.zig"
+                }, 
+                {
+                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:struct)\\s*[(\\{])", 
+                    "name": "entity.name.struct.zig"
+                }, 
+                {
+                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:enum)\\s*[(\\{])", 
+                    "name": "entity.name.enum.zig"
+                }, 
+                {
+                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:error)\\s*[(\\{])", 
+                    "name": "entity.name.error.zig"
+                }, 
+                {
+                    "captures": {
+                        "2": {
+                            "name": "punctuation.accessor.zig"
+                        }, 
+                        "3": {
+                            "name": "entity.name.error.zig"
+                        }, 
+                        "1": {
+                            "name": "storage.type.error.zig"
+                        }
+                    }, 
+                    "match": "\\b(error)(\\.)([a-zA-Z_]\\w*|@\\\".+\\\")"
+                }
+            ]
+        }, 
+        "label": {
+            "captures": {
+                "2": {
+                    "name": "entity.name.label.zig"
+                }, 
+                "3": {
+                    "name": "entity.name.label.zig"
+                }, 
+                "1": {
+                    "name": "keyword.control.zig"
+                }
+            }, 
+            "match": "\\b(break|continue)\\s*:\\s*([a-zA-Z_]\\w*|@\\\".+\\\")\\b|\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")\\b(?=\\s*:\\s*(?:\\{|while\\b))"
+        }, 
+        "support": {
+            "match": "(?<!\\w)@[^\\\"\\d][a-zA-Z_]\\w*\\b", 
+            "name": "support.function.zig"
+        }, 
+        "strings": {
+            "patterns": [
+                {
+                    "patterns": [
+                        {
+                            "include": "#character_escapes"
+                        }, 
+                        {
+                            "match": "\\\\[^\\'][^\\']*?", 
+                            "name": "invalid.illegal.character.zig"
+                        }
+                    ], 
+                    "begin": "\\'", 
+                    "end": "\\'", 
+                    "name": "string.quoted.single.zig"
+                }, 
+                {
+                    "patterns": [
+                        {
+                            "include": "#character_escapes"
+                        }, 
+                        {
+                            "match": "\\\\[^\\'][^\\']*?", 
+                            "name": "invalid.illegal.character.zig"
+                        }
+                    ], 
+                    "begin": "c?\\\"", 
+                    "end": "\\\"", 
+                    "name": "string.quoted.double.zig"
+                }, 
+                {
+                    "begin": "c?\\\\\\\\", 
+                    "end": "$\\n?", 
+                    "name": "string.quoted.other.zig"
+                }
+            ]
+        }, 
+        "param_list": {
+            "beginCaptures": {
+                "2": {
+                    "name": "punctuation.separator.zig"
+                }, 
+                "1": {
+                    "name": "variable.parameter.zig"
+                }
+            }, 
+            "begin": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")\\s*(:)\\s*", 
+            "endCaptures": {
+                "2": {
+                    "name": "punctuation.separator.zig"
+                }, 
+                "3": {
+                    "name": "punctuation.section.parens.end.zig"
+                }, 
+                "1": {
+                    "name": "storage.type.zig"
+                }
+            }, 
+            "end": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")?\\s*(?:(,)|(\\)))", 
+            "patterns": [
+                {
+                    "include": "#main"
+                }
+            ]
+        }, 
+        "operators": {
+            "patterns": [
+                {
+                    "match": "\\b!\\b", 
+                    "name": "keyword.operator.zig"
+                }, 
+                {
+                    "match": "(==|(?:!|>|<)=?)", 
+                    "name": "keyword.operator.logical.zig"
+                }, 
+                {
+                    "match": "\\b(and|or)\\b", 
+                    "name": "keyword.operator.word.zig"
+                }, 
+                {
+                    "match": "((?:(?:\\+|-|\\*)\\%?|/|%|<<|>>|&|\\|(?=[^\\|])|\\^)?=)", 
+                    "name": "keyword.operator.assignment.zig"
+                }, 
+                {
+                    "match": "((?:\\+|-|\\*)\\%?|/(?!/)|%)", 
+                    "name": "keyword.operator.arithmetic.zig"
+                }, 
+                {
+                    "match": "(<<|>>|&(?=[a-zA-Z_]|@\\\")|\\|(?=[^\\|])|\\^|~)", 
+                    "name": "keyword.operator.bitwise.zig"
+                }, 
+                {
+                    "match": "(\\+\\+|\\*\\*|->|\\.\\?|\\.\\*|&(?=[a-zA-Z_]|@\\\")|\\?|\\|\\||\\.{2,3})", 
+                    "name": "keyword.operator.other.zig"
+                }
+            ]
+        }, 
+        "punctuation": {
+            "patterns": [
+                {
+                    "match": ",", 
+                    "name": "punctuation.separator.zig"
+                }, 
+                {
+                    "match": ";", 
+                    "name": "punctuation.terminator.zig"
+                }, 
+                {
+                    "match": "(\\()", 
+                    "name": "punctuation.section.parens.begin.zig"
+                }, 
+                {
+                    "match": "(\\))", 
+                    "name": "punctuation.section.parens.end.zig"
+                }
+            ]
+        }, 
+        "block": {
+            "beginCaptures": {
+                "2": {
+                    "name": "punctuation.section.braces.begin.zig"
+                }, 
+                "1": {
+                    "name": "storage.type.zig"
+                }
+            }, 
+            "begin": "([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")?\\s*(\\{)", 
+            "endCaptures": {
+                "1": {
+                    "name": "punctuation.section.braces.end.zig"
+                }
+            }, 
+            "end": "(\\})", 
+            "patterns": [
+                {
+                    "include": "#main"
+                }
+            ]
+        }, 
+        "function_def": {
+            "beginCaptures": {
+                "2": {
+                    "name": "punctuation.section.parens.begin.zig"
+                }, 
+                "1": {
+                    "name": "entity.name.function"
+                }
+            }, 
+            "begin": "(?<=fn)\\s+([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(\\()", 
+            "endCaptures": {
+                "1": {
+                    "name": "storage.type.zig"
+                }
+            }, 
+            "end": "(?<=\\))([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")", 
+            "patterns": [
+                {
+                    "include": "#param_list"
+                }, 
+                {
+                    "include": "#main"
+                }, 
+                {
+                    "match": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")", 
+                    "name": "storage.type.zig"
+                }
+            ]
+        }, 
         "comments": {
             "patterns": [
                 {
@@ -7,21 +265,165 @@
                     "name": "comment.line.todo.zig"
                 }, 
                 {
-                    "name": "comment.line.zig", 
-                    "end": "$\\n?", 
-                    "begin": "//[^/]", 
                     "patterns": [
                         {
                             "include": "#todo"
                         }
-                    ]
+                    ], 
+                    "begin": "//[^/]", 
+                    "end": "$\\n?", 
+                    "name": "comment.line.zig"
                 }, 
                 {
-                    "name": "comment.line.documentation.zig", 
+                    "begin": "///", 
                     "end": "$\\n?", 
-                    "begin": "///"
+                    "name": "comment.line.documentation.zig"
                 }
             ]
+        }, 
+        "character_escapes": {
+            "patterns": [
+                {
+                    "match": "\\\\n", 
+                    "name": "constant.character.escape.newline.zig"
+                }, 
+                {
+                    "match": "\\\\r", 
+                    "name": "constant.character.escape.carrigereturn.zig"
+                }, 
+                {
+                    "match": "\\\\t", 
+                    "name": "constant.character.escape.tabulator.zig"
+                }, 
+                {
+                    "match": "\\\\\\\\", 
+                    "name": "constant.character.escape.backslash.zig"
+                }, 
+                {
+                    "match": "\\\\'", 
+                    "name": "constant.character.escape.single-quote.zig"
+                }, 
+                {
+                    "match": "\\\\\\\"", 
+                    "name": "constant.character.escape.double-quote.zig"
+                }, 
+                {
+                    "match": "\\\\x[a-fA-F0-9]{2}", 
+                    "name": "constant.character.escape.hexidecimal.zig"
+                }, 
+                {
+                    "match": "\\\\u\\{[a-fA-F0-9]{1,6}\\}", 
+                    "name": "constant.character.escape.hexidecimal.zig"
+                }
+            ]
+        }, 
+        "keywords": {
+            "patterns": [
+                {
+                    "match": "\\b(while|for|break|return|continue|asm|defer|errdefer|unreachable)\\b", 
+                    "name": "keyword.control.zig"
+                }, 
+                {
+                    "match": "\\b(noasync|async|await|suspend|resume|cancel)\\b", 
+                    "name": "keyword.control.async.zig"
+                }, 
+                {
+                    "match": "\\b(if|else|switch|try|catch|orelse)\\b", 
+                    "name": "keyword.control.conditional.zig"
+                }, 
+                {
+                    "match": "(?<!\\w)(@import|@cImport|@cInclude)\\b", 
+                    "name": "keyword.control.import.zig"
+                }, 
+                {
+                    "match": "\\b(usingnamespace|use)\\b", 
+                    "name": "keyword.other.usingnamespace.zig"
+                }
+            ]
+        }, 
+        "storage": {
+            "patterns": [
+                {
+                    "match": "\\b(bool|void|noreturn|type|anyerror|anyframe)\\b", 
+                    "name": "storage.type.zig"
+                }, 
+                {
+                    "match": "\\b(?<!\\.)([iu][0-9]\\d*|[iu]size|comptime_int)\\b", 
+                    "name": "storage.type.integer.zig"
+                }, 
+                {
+                    "match": "\\b(f16|f32|f64|f128|comptime_float)\\b", 
+                    "name": "storage.type.float.zig"
+                }, 
+                {
+                    "match": "\\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\\b", 
+                    "name": "storage.type.c_compat.zig"
+                }, 
+                {
+                    "match": "\\bfn\\b", 
+                    "name": "storage.type.function.zig"
+                }, 
+                {
+                    "match": "\\btest\\b", 
+                    "name": "storage.type.test.zig"
+                }, 
+                {
+                    "match": "\\bstruct\\b", 
+                    "name": "storage.type.struct.zig"
+                }, 
+                {
+                    "match": "\\benum\\b", 
+                    "name": "storage.type.enum.zig"
+                }, 
+                {
+                    "match": "\\bunion\\b", 
+                    "name": "storage.type.union.zig"
+                }, 
+                {
+                    "match": "\\berror\\b", 
+                    "name": "storage.type.error.zig"
+                }
+            ]
+        }, 
+        "constants": {
+            "patterns": [
+                {
+                    "match": "\\b(null|undefined|true|false)\\b", 
+                    "name": "constant.language.zig"
+                }, 
+                {
+                    "match": "\\b(?<!\\.)(-?[0-9]+)(?!\\.)\\b", 
+                    "name": "constant.numeric.integer.zig"
+                }, 
+                {
+                    "match": "\\b(?<!\\.)(0x[a-fA-F0-9]+)(?!\\.)\\b", 
+                    "name": "constant.numeric.integer.hexadecimal.zig"
+                }, 
+                {
+                    "match": "\\b(?<!\\.)(0o[0-7]+)(?!\\.)\\b", 
+                    "name": "constant.numeric.integer.octal.zig"
+                }, 
+                {
+                    "match": "\\b(?<!\\.)(0b[01]+)(?!\\.)\\b", 
+                    "name": "constant.numeric.integer.binary.zig"
+                }, 
+                {
+                    "match": "(?<!\\.)(-?\\b[0-9]+(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)(?!\\.)\\b", 
+                    "name": "constant.numeric.float.zig"
+                }, 
+                {
+                    "match": "(?<!\\.)(-?\\b0x[a-fA-F0-9]+(?:\\.[a-fA-F0-9]+)?[pP]?(?:[+-]?[0-9]+)?)(?!\\.)\\b", 
+                    "name": "constant.numeric.float.hexadecimal.zig"
+                }
+            ]
+        }, 
+        "storage_modifier": {
+            "match": "\\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal|allowzero)\\b", 
+            "name": "storage.modifier.zig"
+        }, 
+        "function_call": {
+            "match": "(?<!fn)\\b([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(?=\\s*\\()", 
+            "name": "variable.function.zig"
         }, 
         "main": {
             "patterns": [
@@ -74,394 +476,10 @@
                     "include": "#block"
                 }, 
                 {
-                    "include": "#function_call"
-                }, 
-                {
                     "include": "#function_def"
-                }
-            ]
-        }, 
-        "support": {
-            "match": "(?<!\\w)@[^\\\"\\d][a-zA-Z_]\\w*\\b", 
-            "name": "support.function.zig"
-        }, 
-        "block": {
-            "beginCaptures": {
-                "2": {
-                    "name": "punctuation.section.braces.begin.zig"
-                }, 
-                "1": {
-                    "name": "storage.type.zig"
-                }
-            }, 
-            "patterns": [
-                {
-                    "include": "#main"
-                }
-            ], 
-            "endCaptures": {
-                "1": {
-                    "name": "punctuation.section.braces.end.zig"
-                }
-            }, 
-            "end": "(\\})", 
-            "begin": "([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")?\\s*(\\{)", 
-            "contentName": "meta.block.zig"
-        }, 
-        "field_decl": {
-            "beginCaptures": {
-                "2": {
-                    "name": "punctuation.separator.zig"
-                }, 
-                "1": {
-                    "name": "variable.other.member.zig"
-                }
-            }, 
-            "end": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(?:(,)|\\s*(=)\\s*|(?=\\n|\\r))", 
-            "endCaptures": {
-                "2": {
-                    "name": "punctuation.separator.zig"
-                }, 
-                "3": {
-                    "name": "keyword.operator.assignment.zig"
-                }, 
-                "1": {
-                    "name": "storage.type.zig"
-                }
-            }, 
-            "begin": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")\\s*(:)\\s*", 
-            "patterns": [
-                {
-                    "include": "#main"
-                }
-            ]
-        }, 
-        "keywords": {
-            "patterns": [
-                {
-                    "match": "\\b(while|for|break|return|continue|asm|defer|errdefer|unreachable)\\b", 
-                    "name": "keyword.control.zig"
                 }, 
                 {
-                    "match": "\\b(noasync|async|await|suspend|resume|cancel)\\b", 
-                    "name": "keyword.control.async.zig"
-                }, 
-                {
-                    "match": "\\b(if|else|switch|try|catch|orelse)\\b", 
-                    "name": "keyword.control.conditional.zig"
-                }, 
-                {
-                    "match": "(?<!\\w)(@import|@cImport|@cInclude)\\b", 
-                    "name": "keyword.control.import.zig"
-                }, 
-                {
-                    "match": "\\b(usingnamespace|use)\\b", 
-                    "name": "keyword.other.usingnamespace.zig"
-                }
-            ]
-        }, 
-        "character_escapes": {
-            "patterns": [
-                {
-                    "match": "\\\\n", 
-                    "name": "constant.character.escape.newline.zig"
-                }, 
-                {
-                    "match": "\\\\r", 
-                    "name": "constant.character.escape.carrigereturn.zig"
-                }, 
-                {
-                    "match": "\\\\t", 
-                    "name": "constant.character.escape.tabulator.zig"
-                }, 
-                {
-                    "match": "\\\\\\\\", 
-                    "name": "constant.character.escape.backslash.zig"
-                }, 
-                {
-                    "match": "\\\\'", 
-                    "name": "constant.character.escape.single-quote.zig"
-                }, 
-                {
-                    "match": "\\\\\\\"", 
-                    "name": "constant.character.escape.double-quote.zig"
-                }, 
-                {
-                    "match": "\\\\x[a-fA-F0-9]{2}", 
-                    "name": "constant.character.escape.hexidecimal.zig"
-                }, 
-                {
-                    "match": "\\\\u\\{[a-fA-F0-9]{1,6}\\}", 
-                    "name": "constant.character.escape.hexidecimal.zig"
-                }
-            ]
-        }, 
-        "function_def": {
-            "beginCaptures": {
-                "2": {
-                    "name": "punctuation.section.parens.begin.zig"
-                }, 
-                "1": {
-                    "name": "entity.name.function"
-                }
-            }, 
-            "patterns": [
-                {
-                    "include": "#param_list"
-                }, 
-                {
-                    "include": "#main"
-                }
-            ], 
-            "endCaptures": {
-                "1": {
-                    "name": "punctuation.section.parens.begin.zig"
-                }
-            }, 
-            "end": "(\\))", 
-            "begin": "(?<=fn)\\s+([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(\\()", 
-            "contentName": "meta.function.parameters.zig"
-        }, 
-        "constants": {
-            "patterns": [
-                {
-                    "match": "\\b(null|undefined|true|false)\\b", 
-                    "name": "constant.language.zig"
-                }, 
-                {
-                    "match": "\\b(?<!\\.)(-?[0-9]+)(?!\\.)\\b", 
-                    "name": "constant.numeric.integer.zig"
-                }, 
-                {
-                    "match": "\\b(?<!\\.)(0x[a-fA-F0-9]+)(?!\\.)\\b", 
-                    "name": "constant.numeric.integer.hexadecimal.zig"
-                }, 
-                {
-                    "match": "\\b(?<!\\.)(0o[0-7]+)(?!\\.)\\b", 
-                    "name": "constant.numeric.integer.octal.zig"
-                }, 
-                {
-                    "match": "\\b(?<!\\.)(0b[01]+)(?!\\.)\\b", 
-                    "name": "constant.numeric.integer.binary.zig"
-                }, 
-                {
-                    "match": "(?<!\\.)(-?\\b[0-9]+(?:\\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)(?!\\.)\\b", 
-                    "name": "constant.numeric.float.zig"
-                }, 
-                {
-                    "match": "(?<!\\.)(-?\\b0x[a-fA-F0-9]+(?:\\.[a-fA-F0-9]+)?[pP]?(?:[+-]?[0-9]+)?)(?!\\.)\\b", 
-                    "name": "constant.numeric.float.hexadecimal.zig"
-                }
-            ]
-        }, 
-        "storage_modifier": {
-            "match": "\\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal|allowzero)\\b", 
-            "name": "storage.modifier.zig"
-        }, 
-        "storage": {
-            "patterns": [
-                {
-                    "match": "\\b(bool|void|noreturn|type|anyerror|anyframe)\\b", 
-                    "name": "storage.type.zig"
-                }, 
-                {
-                    "match": "\\b(?<!\\.)([iu][0-9]\\d*|[iu]size|comptime_int)\\b", 
-                    "name": "storage.type.integer.zig"
-                }, 
-                {
-                    "match": "\\b(f16|f32|f64|f128|comptime_float)\\b", 
-                    "name": "storage.type.float.zig"
-                }, 
-                {
-                    "match": "\\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\\b", 
-                    "name": "storage.type.c_compat.zig"
-                }, 
-                {
-                    "match": "\\bfn\\b", 
-                    "name": "storage.type.function.zig"
-                }, 
-                {
-                    "match": "\\btest\\b", 
-                    "name": "storage.type.test.zig"
-                }, 
-                {
-                    "match": "\\bstruct\\b", 
-                    "name": "storage.type.struct.zig"
-                }, 
-                {
-                    "match": "\\benum\\b", 
-                    "name": "storage.type.enum.zig"
-                }, 
-                {
-                    "match": "\\bunion\\b", 
-                    "name": "storage.type.union.zig"
-                }, 
-                {
-                    "match": "\\berror\\b", 
-                    "name": "storage.type.error.zig"
-                }
-            ]
-        }, 
-        "label": {
-            "match": "\\b(break|continue)\\s*:\\s*([a-zA-Z_]\\w*|@\\\".+\\\")\\b|\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")\\b(?=\\s*:\\s*(?:\\{|while\\b))", 
-            "captures": {
-                "2": {
-                    "name": "entity.name.label.zig"
-                }, 
-                "3": {
-                    "name": "entity.name.label.zig"
-                }, 
-                "1": {
-                    "name": "keyword.control.zig"
-                }
-            }
-        }, 
-        "function_call": {
-            "match": "(?<!fn)\\b([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(?=\\s*\\()", 
-            "name": "variable.function.zig"
-        }, 
-        "strings": {
-            "patterns": [
-                {
-                    "name": "string.quoted.single.zig", 
-                    "end": "\\'", 
-                    "begin": "\\'", 
-                    "patterns": [
-                        {
-                            "include": "#character_escapes"
-                        }, 
-                        {
-                            "match": "\\\\[^\\'][^\\']*?", 
-                            "name": "invalid.illegal.character.zig"
-                        }
-                    ]
-                }, 
-                {
-                    "name": "string.quoted.double.zig", 
-                    "end": "\\\"", 
-                    "begin": "c?\\\"", 
-                    "patterns": [
-                        {
-                            "include": "#character_escapes"
-                        }, 
-                        {
-                            "match": "\\\\[^\\'][^\\']*?", 
-                            "name": "invalid.illegal.character.zig"
-                        }
-                    ]
-                }, 
-                {
-                    "name": "string.quoted.other.zig", 
-                    "end": "$\\n?", 
-                    "begin": "c?\\\\\\\\"
-                }
-            ]
-        }, 
-        "punctuation": {
-            "patterns": [
-                {
-                    "match": ",", 
-                    "name": "punctuation.separator.zig"
-                }, 
-                {
-                    "match": ";", 
-                    "name": "punctuation.terminator.zig"
-                }, 
-                {
-                    "match": "(\\()", 
-                    "name": "punctuation.section.parens.begin.zig"
-                }, 
-                {
-                    "match": "(\\))", 
-                    "name": "punctuation.section.parens.end.zig"
-                }
-            ]
-        }, 
-        "param_list": {
-            "beginCaptures": {
-                "2": {
-                    "name": "punctuation.separator.zig"
-                }, 
-                "1": {
-                    "name": "variable.parameter.zig"
-                }
-            }, 
-            "end": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(?:(,)|(?=\\)))", 
-            "endCaptures": {
-                "2": {
-                    "name": "punctuation.separator.zig"
-                }, 
-                "1": {
-                    "name": "storage.type.zig"
-                }
-            }, 
-            "begin": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")\\s*(:)\\s*", 
-            "patterns": [
-                {
-                    "include": "#main"
-                }
-            ]
-        }, 
-        "container_decl": {
-            "patterns": [
-                {
-                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:union)\\s*[(\\{])", 
-                    "name": "entity.name.union.zig"
-                }, 
-                {
-                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:struct)\\s*[(\\{])", 
-                    "name": "entity.name.struct.zig"
-                }, 
-                {
-                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:(?:extern|packed)\\s+)?(?:enum)\\s*[(\\{])", 
-                    "name": "entity.name.enum.zig"
-                }, 
-                {
-                    "match": "\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")(?=\\s*=\\s*(?:error)\\s*[(\\{])", 
-                    "name": "entity.name.error.zig"
-                }, 
-                {
-                    "match": "\\b(error)(\\.)([a-zA-Z_]\\w*|@\\\".+\\\")", 
-                    "captures": {
-                        "2": {
-                            "name": "punctuation.accessor.zig"
-                        }, 
-                        "3": {
-                            "name": "entity.name.error.zig"
-                        }, 
-                        "1": {
-                            "name": "storage.type.error.zig"
-                        }
-                    }
-                }
-            ]
-        }, 
-        "var_decl": {
-            "beginCaptures": {
-                "2": {
-                    "name": "variable.other.zig"
-                }, 
-                "3": {
-                    "name": "punctuation.separator.zig"
-                }, 
-                "1": {
-                    "name": "storage.modifier.zig"
-                }
-            }, 
-            "end": "\\s*(=)", 
-            "endCaptures": {
-                "1": {
-                    "name": "keyword.operator.assignment.zig"
-                }
-            }, 
-            "begin": "\\b(const|var)\\s+([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")\\s*(:)", 
-            "patterns": [
-                {
-                    "include": "#main"
-                }, 
-                {
-                    "match": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")", 
-                    "name": "storage.type.zig"
+                    "include": "#function_call"
                 }
             ]
         }, 
@@ -480,58 +498,49 @@
                 }, 
                 {
                     "include": "#main"
+                }, 
+                {
+                    "match": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")", 
+                    "name": "storage.type.zig"
                 }
             ], 
+            "begin": "\\b(fn)\\s*(\\()", 
             "endCaptures": {
                 "1": {
-                    "name": "punctuation.section.parens.end.zig"
+                    "name": "storage.type.zig"
                 }
             }, 
-            "end": "(\\))", 
-            "begin": "\\b(fn)\\s*(\\()", 
-            "contentName": "meta.parameters.zig"
+            "end": "(?<=\\))\\s*([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")", 
+            "contentName": "meta.function.parameters.zig"
         }, 
-        "operators": {
+        "var_decl": {
+            "beginCaptures": {
+                "2": {
+                    "name": "variable.other.zig"
+                }, 
+                "3": {
+                    "name": "punctuation.separator.zig"
+                }, 
+                "1": {
+                    "name": "storage.modifier.zig"
+                }
+            }, 
+            "begin": "\\b(const|var)\\s+([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")\\s*(:)", 
+            "endCaptures": {
+                "1": {
+                    "name": "keyword.operator.assignment.zig"
+                }
+            }, 
+            "end": "\\s*(=)", 
             "patterns": [
                 {
-                    "match": "\\b!\\b", 
-                    "name": "keyword.operator.zig"
+                    "include": "#main"
                 }, 
                 {
-                    "match": "(==|(?:!|>|<)=?)", 
-                    "name": "keyword.operator.logical.zig"
-                }, 
-                {
-                    "match": "\\b(and|or)\\b", 
-                    "name": "keyword.operator.word.zig"
-                }, 
-                {
-                    "match": "((?:(?:\\+|-|\\*)\\%?|/|%|<<|>>|&|\\|(?=[^\\|])|\\^)?=)", 
-                    "name": "keyword.operator.assignment.zig"
-                }, 
-                {
-                    "match": "((?:\\+|-|\\*)\\%?|/(?!/)|%)", 
-                    "name": "keyword.operator.arithmetic.zig"
-                }, 
-                {
-                    "match": "(<<|>>|&(?=[a-zA-Z_]|@\\\")|\\|(?=[^\\|])|\\^|~)", 
-                    "name": "keyword.operator.bitwise.zig"
-                }, 
-                {
-                    "match": "(\\+\\+|\\*\\*|->|\\.\\?|\\.\\*|&(?=[a-zA-Z_]|@\\\")|\\?|\\|\\||\\.{2,3})", 
-                    "name": "keyword.operator.other.zig"
+                    "match": "([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")", 
+                    "name": "storage.type.zig"
                 }
             ]
         }
-    }, 
-    "name": "Zig", 
-    "scopeName": "source.zig", 
-    "fileTypes": [
-        "zig"
-    ], 
-    "patterns": [
-        {
-            "include": "#main"
-        }
-    ]
+    }
 }

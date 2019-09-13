@@ -34,8 +34,6 @@
 					<string>punctuation.section.braces.begin.zig</string>
 				</dict>
 			</dict>
-			<key>contentName</key>
-			<string>meta.block.zig</string>
 			<key>end</key>
 			<string>(\})</string>
 			<key>endCaptures</key>
@@ -312,16 +310,14 @@
 					<string>punctuation.section.parens.begin.zig</string>
 				</dict>
 			</dict>
-			<key>contentName</key>
-			<string>meta.function.parameters.zig</string>
 			<key>end</key>
-			<string>(\))</string>
+			<string>(?&lt;=\))([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.parens.begin.zig</string>
+					<string>storage.type.zig</string>
 				</dict>
 			</dict>
 			<key>patterns</key>
@@ -333,6 +329,12 @@
 				<dict>
 					<key>include</key>
 					<string>#main</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")</string>
+					<key>name</key>
+					<string>storage.type.zig</string>
 				</dict>
 			</array>
 		</dict>
@@ -354,15 +356,15 @@
 				</dict>
 			</dict>
 			<key>contentName</key>
-			<string>meta.parameters.zig</string>
+			<string>meta.function.parameters.zig</string>
 			<key>end</key>
-			<string>(\))</string>
+			<string>(?&lt;=\))\s*([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.section.parens.end.zig</string>
+					<string>storage.type.zig</string>
 				</dict>
 			</dict>
 			<key>patterns</key>
@@ -374,6 +376,12 @@
 				<dict>
 					<key>include</key>
 					<string>#main</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")</string>
+					<key>name</key>
+					<string>storage.type.zig</string>
 				</dict>
 			</array>
 		</dict>
@@ -506,11 +514,11 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#function_call</string>
+					<string>#function_def</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#function_def</string>
+					<string>#function_call</string>
 				</dict>
 			</array>
 		</dict>
@@ -580,7 +588,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")(?:(,)|(?=\)))</string>
+			<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")?\s*(?:(,)|(\)))</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -592,6 +600,11 @@
 				<dict>
 					<key>name</key>
 					<string>punctuation.separator.zig</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.parens.end.zig</string>
 				</dict>
 			</dict>
 			<key>patterns</key>
