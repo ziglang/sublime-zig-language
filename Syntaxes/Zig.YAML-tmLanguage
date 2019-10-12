@@ -174,7 +174,7 @@ repository:
       match: '(?<!\w)(@import|@cImport|@cInclude)\b'
 
     - name: keyword.other.usingnamespace.zig
-      match: '\b(usingnamespace|use)\b'
+      match: '\b(usingnamespace)\b'
 
   operators:
     patterns:
@@ -206,7 +206,7 @@ repository:
   storage:
     patterns:
       - name: storage.type.zig
-        match: '\b(bool|void|noreturn|type|anyerror|anyframe|promise)\b'
+        match: '\b(bool|void|noreturn|type|anyerror|anyframe)\b'
 
       - name: storage.type.integer.zig
         match: '\b(?<!\.)([iu][0-9]\d*|[iu]size|comptime_int)\b'
