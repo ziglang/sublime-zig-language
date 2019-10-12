@@ -422,7 +422,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(usingnamespace|use)\b</string>
+					<string>\b(usingnamespace)\b</string>
 					<key>name</key>
 					<string>keyword.other.usingnamespace.zig</string>
 				</dict>
@@ -668,7 +668,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(bool|void|noreturn|type|anyerror|anyframe|promise)\b</string>
+					<string>\b(bool|void|noreturn|type|anyerror|anyframe)\b</string>
 					<key>name</key>
 					<string>storage.type.zig</string>
 				</dict>
