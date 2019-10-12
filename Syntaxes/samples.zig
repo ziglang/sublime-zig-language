@@ -332,3 +332,4 @@ const alignment = blk: {
     if (a > 0) break :blk a;
     break :blk 1;
 };
+    std.debug.warn(run_qemu.getEnvMap().get("PATH"));
