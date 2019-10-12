@@ -326,3 +326,9 @@ var asd: *const asdads = 0;
 blk: while () : (sas) {
 error.asdasd;
 }
+
+const alignment = blk: {
+    const a = comptime meta.alignment(P);
+    if (a > 0) break :blk a;
+    break :blk 1;
+};
