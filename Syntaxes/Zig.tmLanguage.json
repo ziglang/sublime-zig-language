@@ -320,18 +320,14 @@
         "comments": {
             "patterns": [
                 {
+                    "end": "$\\n?", 
                     "name": "comment.line.todo.zig", 
-                    "match": "TODO"
+                    "begin": "//[^/]\\s*TODO"
                 }, 
                 {
                     "end": "$\\n?", 
                     "name": "comment.line.zig", 
-                    "begin": "//[^/]", 
-                    "patterns": [
-                        {
-                            "include": "#todo"
-                        }
-                    ]
+                    "begin": "//[^/]"
                 }, 
                 {
                     "end": "$\\n?", 

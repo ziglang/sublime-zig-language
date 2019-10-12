@@ -124,14 +124,12 @@ repository:
   comments:
     patterns:
       - name: comment.line.todo.zig
-        match: 'TODO'
+        begin: '//[^/]\s*TODO'
+        end: '$\n?'
 
       - name: comment.line.zig
         begin: '//[^/]'
         end: '$\n?'
-        
-        patterns:
-        - include: '#todo'
 
       - name: comment.line.documentation.zig
         begin: '///'

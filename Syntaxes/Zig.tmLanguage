@@ -111,8 +111,10 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>TODO</string>
+					<key>begin</key>
+					<string>//[^/]\s*TODO</string>
+					<key>end</key>
+					<string>$\n?</string>
 					<key>name</key>
 					<string>comment.line.todo.zig</string>
 				</dict>
@@ -123,13 +125,6 @@
 					<string>$\n?</string>
 					<key>name</key>
 					<string>comment.line.zig</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#todo</string>
-						</dict>
-					</array>
 				</dict>
 				<dict>
 					<key>begin</key>
