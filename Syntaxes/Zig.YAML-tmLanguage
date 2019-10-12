@@ -29,7 +29,7 @@ repository:
         match: \\u\{[a-fA-F0-9]{1,6}\}
 
   param_list:
-    begin: '(?<=\(|,)\s*([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")\s*(:)\s*'
+    begin: '([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")\s*(:)\s*'
     beginCaptures:
       '1':
         name: variable.parameter.zig
@@ -287,6 +287,7 @@ repository:
         name: storage.type.zig
 
     patterns:
+      - include: '#label'
       - include: '#param_list'
       - include: '#main'
 
@@ -313,6 +314,7 @@ repository:
         name: storage.type.zig
 
     patterns:
+      - include: '#label'
       - include: '#param_list'
       - include: '#main'
 
@@ -341,7 +343,7 @@ repository:
         name: storage.type.zig
 
   enum_literal:
-    match: '(?<!\w|\))(\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\".+\"))'
+    match: '(?<!\w|\))(\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\".+\"))\b(?!\()'
     name: constant.language.enum
 
   main:
