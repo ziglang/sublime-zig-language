@@ -9,6 +9,10 @@ struct
 enum
 error
 
+asd {
+    .asd = asd,
+}
+
 fn dump(
     value: var.asda.ad.asd,
     // NYI some arg

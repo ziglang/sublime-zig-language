@@ -112,6 +112,14 @@
 			<array>
 				<dict>
 					<key>begin</key>
+					<string>///</string>
+					<key>end</key>
+					<string>$\n?</string>
+					<key>name</key>
+					<string>comment.line.documentation.zig</string>
+				</dict>
+				<dict>
+					<key>begin</key>
 					<string>//[^/]\s*TODO</string>
 					<key>end</key>
 					<string>$\n?</string>
@@ -120,19 +128,11 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>//[^/]</string>
+					<string>//[^/]*</string>
 					<key>end</key>
 					<string>$\n?</string>
 					<key>name</key>
 					<string>comment.line.zig</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>///</string>
-					<key>end</key>
-					<string>$\n?</string>
-					<key>name</key>
-					<string>comment.line.documentation.zig</string>
 				</dict>
 			</array>
 		</dict>
@@ -239,7 +239,7 @@
 		<key>enum_literal</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\w|\))(\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\".+\"))\b(?!\()</string>
+			<string>(?&lt;!\w|\))(\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\".+\"))\b(?!\(|\s*=\s*)</string>
 			<key>name</key>
 			<string>constant.language.enum</string>
 		</dict>
@@ -384,14 +384,14 @@
 					<string>#param_list</string>
 				</dict>
 				<dict>
-					<key>include</key>
-					<string>#main</string>
-				</dict>
-				<dict>
 					<key>match</key>
 					<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
 					<key>name</key>
 					<string>storage.type.zig</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#main</string>
 				</dict>
 			</array>
 		</dict>
@@ -598,7 +598,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(?:(\))|(,))</string>
+			<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(?:(,)|(\)))</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
