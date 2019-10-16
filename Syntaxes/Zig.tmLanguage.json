@@ -347,6 +347,12 @@
             "endCaptures": {
                 "1": {
                     "name": "storage.type.zig"
+                }, 
+                "3": {
+                    "name": "storage.type.zig"
+                }, 
+                "2": {
+                    "name": "keyword.operator.zig"
                 }
             }, 
             "patterns": [
@@ -357,14 +363,10 @@
                     "include": "#param_list"
                 }, 
                 {
-                    "match": "([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")", 
-                    "name": "storage.type.zig"
-                }, 
-                {
                     "include": "#main"
                 }
             ], 
-            "end": "(?<=\\))\\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")", 
+            "end": "(?<=\\))\\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")\\s*(!)\\s*)?([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")", 
             "begin": "\\b(fn)\\s*(\\()", 
             "beginCaptures": {
                 "1": {
@@ -449,7 +451,7 @@
             ]
         }, 
         "function_def": {
-            "end": "(?<=\\))([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")", 
+            "end": "(?<=\\))\\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")\\s*(!)\\s*)?([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")\\s*(?=;|\\{)", 
             "begin": "(?<=fn)\\s+([a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\")(\\()", 
             "beginCaptures": {
                 "1": {
@@ -462,6 +464,12 @@
             "endCaptures": {
                 "1": {
                     "name": "storage.type.zig"
+                }, 
+                "3": {
+                    "name": "storage.type.zig"
+                }, 
+                "2": {
+                    "name": "keyword.operator.zig"
                 }
             }, 
             "patterns": [
@@ -473,10 +481,6 @@
                 }, 
                 {
                     "include": "#main"
-                }, 
-                {
-                    "match": "([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")(?=;)", 
-                    "name": "storage.type.zig"
                 }
             ]
         }, 
@@ -539,7 +543,7 @@
             ]
         }, 
         "enum_literal": {
-            "match": "(?<!\\w|\\))(\\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\"))\\b(?!\\(|\\s*=\\s*)", 
+            "match": "(?<!\\w|\\))(\\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\\\".+\\\"))\\b(?!\\(|\\s*=\\s+)", 
             "name": "constant.language.enum"
         }
     }, 

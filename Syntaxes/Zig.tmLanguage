@@ -239,7 +239,7 @@
 		<key>enum_literal</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\w|\))(\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\".+\"))\b(?!\(|\s*=\s*)</string>
+			<string>(?&lt;!\w|\))(\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\".+\"))\b(?!\(|\s*=\s+)</string>
 			<key>name</key>
 			<string>constant.language.enum</string>
 		</dict>
@@ -313,10 +313,20 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?&lt;=\))([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
+			<string>(?&lt;=\))\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(!)\s*)?([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(?=;|\{)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.zig</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.zig</string>
+				</dict>
+				<key>3</key>
 				<dict>
 					<key>name</key>
 					<string>storage.type.zig</string>
@@ -335,12 +345,6 @@
 				<dict>
 					<key>include</key>
 					<string>#main</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")(?=;)</string>
-					<key>name</key>
-					<string>storage.type.zig</string>
 				</dict>
 			</array>
 		</dict>
@@ -364,10 +368,20 @@
 			<key>contentName</key>
 			<string>meta.function.parameters.zig</string>
 			<key>end</key>
-			<string>(?&lt;=\))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
+			<string>(?&lt;=\))\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(!)\s*)?([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.zig</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.zig</string>
+				</dict>
+				<key>3</key>
 				<dict>
 					<key>name</key>
 					<string>storage.type.zig</string>
@@ -382,12 +396,6 @@
 				<dict>
 					<key>include</key>
 					<string>#param_list</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
-					<key>name</key>
-					<string>storage.type.zig</string>
 				</dict>
 				<dict>
 					<key>include</key>

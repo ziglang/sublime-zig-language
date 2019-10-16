@@ -144,7 +144,7 @@ slice[0..2]
 
 "adsfjioasdjfoiad"
 c"adsfjioasdjfoiad"
-\a
+'\a'
 const \\ adsjfaf23n9
 
 const v = fn(aas, 2342, 23) void;
@@ -274,14 +274,14 @@ foo = bar;
 
 pub extern "hellas" export fn @"eeeasla"(as: FN) userdata;
 
-pub extern "hellas" export fn hello(as: as) OO {
+pub extern "hellas" export fn hello(as: as) AA!OO {
 anyframe->U
 }
 
-pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: *const LPVOID, asda: asdsad, sacz: @"zxc", asd: asd) oop;
+pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: *const LPVOID, asda: asdsad, sacz: @"zxc", asd: asd) oop!asd;
 
-pub stdcallcc fn CoUninitialize() A;
-
+pub stdcallcc fn CoUninitialize() A!E;
+ident
 pub const Foo = extern struct {
 	fn_call()
 };
@@ -325,7 +325,9 @@ blk: {
 
 extern fn f2(s: *const *volatile u8) c_int;
 
-var asd: *const asdads = 0;
+var asd: *const asd!asdads = 0;
+var ba = 0;
+
 
 blk: while () : (sas) {
 error.asdasd;
@@ -333,7 +335,15 @@ error.asdasd;
 
 const alignment = blk: {
     const a = comptime meta.alignment(P);
+    const b: a = fn() A!A;
+    a = 23;
     if (a > 0) break :blk a;
     break :blk 1;
 };
     std.debug.warn(run_qemu.getEnvMap() .get("PATH"));
+
+///Given a pointer to a single item, returns a slice of the underlying bytes, preserving constness.
+pub fn asBytes(ptr: var) asdsa!AsBytesReturnType(@typeOf(ptr)) {
+    const P = @typeOf(ptr);
+    return @ptrCast(AsBytesReturnType(P), ptr);
+}

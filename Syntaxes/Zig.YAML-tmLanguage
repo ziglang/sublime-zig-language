@@ -282,18 +282,19 @@ repository:
       '2':
         name: punctuation.section.parens.begin.zig
 
-    end: '(?<=\))([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")'
+    end: '(?<=\))\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(!)\s*)?([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(?=;|\{)'
     endCaptures:
       '1':
+        name: storage.type.zig
+      '2':
+        name: keyword.operator.zig
+      '3':
         name: storage.type.zig
 
     patterns:
       - include: '#label'
       - include: '#param_list'
       - include: '#main'
-
-      - match: '([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")(?=;)'
-        name: storage.type.zig
 
   function_call:
     name: variable.function.zig
@@ -309,18 +310,18 @@ repository:
 
     contentName: meta.function.parameters.zig
 
-    end: '(?<=\))\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")'
+    end: '(?<=\))\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(!)\s*)?([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")'
     endCaptures:
       '1':
+        name: storage.type.zig
+      '2':
+        name: keyword.operator.zig
+      '3':
         name: storage.type.zig
 
     patterns:
       - include: '#label'
       - include: '#param_list'
-
-      - match: '([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")'
-        name: storage.type.zig
-
       - include: '#main'
 
   var_decl:
@@ -345,7 +346,7 @@ repository:
         name: storage.type.zig
 
   enum_literal:
-    match: '(?<!\w|\))(\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\".+\"))\b(?!\(|\s*=\s*)'
+    match: '(?<!\w|\))(\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\".+\"))\b(?!\(|\s*=\s+)'
     name: constant.language.enum
 
   main:

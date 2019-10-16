@@ -16,9 +16,10 @@ class Zig(sublime_plugin.EventListener):
         if scope.find('source.zig') != -1:
             should_fmt = get_setting(view, 'zig.fmt.on_save', True)
             should_build = get_setting(view, 'zig.build.on_save', False)
-
-            if (should_fmt and not should_build):
+            
+            if (should_fmt):
                 mode = get_setting(view, 'zig.fmt.mode', 'File').title()
                 view.window().run_command('build', {'variant': 'Format ' + mode})
-            elif (should_build and not should_fmt):
+
+            if (should_build):
                 view.window().run_command('build')
