@@ -313,7 +313,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?&lt;=\))\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(!)\s*)?([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(?=;|\{)</string>
+			<string>(?&lt;=\)|\})\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(!)?\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(?=;|\{)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -368,7 +368,7 @@
 			<key>contentName</key>
 			<string>meta.function.parameters.zig</string>
 			<key>end</key>
-			<string>(?&lt;=\))\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(!)\s*)?([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
+			<string>(?&lt;=\)|\})\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(!)?\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>

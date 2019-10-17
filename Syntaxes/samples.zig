@@ -323,7 +323,7 @@ blk: {
 
 }
 
-extern fn f2(s: *const *volatile u8) c_int;
+extern fn f2(s: *const *volatile u8) Error!GenericType(s);
 
 var asd: *const asd!asdads = 0;
 var ba = 0;
