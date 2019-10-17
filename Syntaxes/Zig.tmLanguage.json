@@ -385,7 +385,7 @@
         "storage": {
             "patterns": [
                 {
-                    "match": "\\b(bool|void|noreturn|type|anyerror|anyframe)\\b", 
+                    "match": "\\b(bool|void|noreturn|type|anyerror)\\b", 
                     "name": "storage.type.zig"
                 }, 
                 {
@@ -399,6 +399,20 @@
                 {
                     "match": "\\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\\b", 
                     "name": "storage.type.c_compat.zig"
+                }, 
+                {
+                    "match": "\\b(anyframe)\\b\\s*(->)?\\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\\\".+\\\")\\b(?!\\s*\\())?", 
+                    "captures": {
+                        "1": {
+                            "name": "storage.type.zig"
+                        }, 
+                        "3": {
+                            "name": "storage.type.zig"
+                        }, 
+                        "2": {
+                            "name": "keyword.operator.zig"
+                        }
+                    }
                 }, 
                 {
                     "match": "\\bfn\\b", 
