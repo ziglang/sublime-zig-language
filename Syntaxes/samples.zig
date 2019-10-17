@@ -18,6 +18,8 @@ fn dump(
     // NYI some arg
     asdasd: Baddad
 ) void {
+    
+}
 
 
 "for"
@@ -323,7 +325,9 @@ blk: {
 
 }
 
-extern fn f2(s: *const *volatile u8) Error!GenericType(s);
+extern fn f2(s: *const *volatile u8) Error!GenericType(s) {
+
+}
 
 var asd: *const asd!asdads = 0;
 var ba = 0;
