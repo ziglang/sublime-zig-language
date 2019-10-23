@@ -862,13 +862,18 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>\s*(=)</string>
+			<string>\s*(?:(=)|(;)|$)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.operator.assignment.zig</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.terminator.zig</string>
 				</dict>
 			</dict>
 			<key>patterns</key>

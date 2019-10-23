@@ -337,6 +337,10 @@ blk: while () : (sas) {
 error.asdasd;
 }
 
+
+const asas: u8asd;
+addsaad
+
 const alignment = blk: {
     const a = comptime meta.alignment(P);
     const b: a = fn() A!A;

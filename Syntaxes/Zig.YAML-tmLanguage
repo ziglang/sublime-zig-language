@@ -351,10 +351,12 @@ repository:
       '3':
         name: punctuation.separator.zig
 
-    end: '\s*(=)'
+    end: '\s*(?:(=)|(;)|$)'
     endCaptures:
       '1':
         name: keyword.operator.assignment.zig
+      '2':
+        name: punctuation.terminator.zig
 
     patterns:
       - include: '#main'
