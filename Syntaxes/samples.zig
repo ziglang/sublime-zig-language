@@ -288,7 +288,7 @@ pub const Foo = extern struct {
 	fn_call()
 };
 
-extern struct {
+asda: extern struct {
 
 };
 
@@ -355,3 +355,16 @@ pub fn asBytes(ptr: var) asdsa!AsBytesReturnType(@typeOf(ptr)) {
     const P = @typeOf(ptr);
     return @ptrCast(AsBytesReturnType(P), ptr);
 }
+pub const LARGE_INTEGER = extern struct {
+    _u2: extern struct {
+        LowPart: DWORD,
+        HighPart: LONG,
+    },
+    QuadPart: LONGLONG,
+};
+pub const GUID = extern struct {
+    Data1: c_ulong,
+    Data2: c_ushort,
+    Data3: c_ushort,
+    Data4: [8]u8,
+};

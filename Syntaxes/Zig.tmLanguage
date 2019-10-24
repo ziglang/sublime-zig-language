@@ -190,25 +190,25 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:union)\s*[(\{])</string>
+					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:union)\s*[(\{])</string>
 					<key>name</key>
 					<string>entity.name.union.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:struct)\s*[(\{])</string>
+					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:struct)\s*[(\{])</string>
 					<key>name</key>
 					<string>entity.name.struct.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:(?:extern|packed)\s+)?(?:enum)\s*[(\{])</string>
+					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:enum)\s*[(\{])</string>
 					<key>name</key>
 					<string>entity.name.enum.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")(?=\s*=\s*(?:error)\s*[(\{])</string>
+					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:error)\s*[(\{])</string>
 					<key>name</key>
 					<string>entity.name.error.zig</string>
 				</dict>
@@ -261,7 +261,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\s*(?:(,)|(=)|(?=\n|\r))</string>
+			<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(?:(,)|(=)|$)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -485,10 +485,6 @@
 				<dict>
 					<key>include</key>
 					<string>#function_type</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#var_decl</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -838,57 +834,6 @@
 			<string>(?&lt;!\w)@[^\"\d][a-zA-Z_]\w*\b</string>
 			<key>name</key>
 			<string>support.function.zig</string>
-		</dict>
-		<key>var_decl</key>
-		<dict>
-			<key>begin</key>
-			<string>\b(const|var)\s+([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")\s*(:)</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>storage.modifier.zig</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>variable.other.zig</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.separator.zig</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>\s*(?:(=)|(;)|$)</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.operator.assignment.zig</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.terminator.zig</string>
-				</dict>
-			</dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#main</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
-					<key>name</key>
-					<string>storage.type.zig</string>
-				</dict>
-			</array>
 		</dict>
 	</dict>
 	<key>scopeName</key>
