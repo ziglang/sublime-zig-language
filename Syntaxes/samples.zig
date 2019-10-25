@@ -149,14 +149,17 @@ c"adsfjioasdjfoiad"
 '\a'
 const \\ adsjfaf23n9
 
-const v = fn(aas, 2342, 23) void;
+const v = fn(aas, 2342, 23) as;
 
 fn foo(a:as) s {
 
 }
 
-fn foo() void;
-extern fn bar() void;
+fn foo() A![]Foo {
+
+}
+
+extern fn bar() as as void;
 extern fn foobar() void;
 
 
@@ -181,7 +184,7 @@ fn
 '\a'
 '\aaasas'
 '\n'
-fn(i13,Foo) Bar;
+fn(i13i,Foo) Bar;
 foo = bar;
 
 @"overloaded" = 89;
@@ -282,7 +285,7 @@ anyframe->U
 
 pub extern "ole32" stdcallcc fn CoTaskMemFree(pv: *const LPVOID, asda: asdsad, sacz: @"zxc", asd: asd) oop!asd;
 
-pub stdcallcc fn CoUninitialize() A!E;
+pub stdcallcc fn CoUninitialize() A![];
 ident
 pub const Foo = extern struct {
 	fn_call()
@@ -357,7 +360,7 @@ pub fn asBytes(ptr: var) asdsa!AsBytesReturnType(@typeOf(ptr)) {
 }
 pub const LARGE_INTEGER = extern struct {
     _u2: extern struct {
-        LowPart: DWORD,
+        LowPart: fn(a, b, c)d,
         HighPart: LONG,
     },
     QuadPart: LONGLONG,

@@ -348,7 +348,7 @@ repository:
   main:
     patterns:
       - include: '#label'
-      - include: '#function_type'
+      # - include: '#function_type'
       - include: '#punctuation'
       - include: '#storage_modifier'
       - include: '#container_decl'
