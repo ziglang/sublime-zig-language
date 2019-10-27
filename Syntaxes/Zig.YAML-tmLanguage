@@ -361,6 +361,6 @@ repository:
       - include: '#support'
       - include: '#field_decl'
       - include: '#block'
-      - include: '#function_def'
+      # - include: '#function_def'
       - include: '#function_call'
       - include: '#enum_literal'

@@ -532,10 +532,6 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#function_def</string>
-				</dict>
-				<dict>
-					<key>include</key>
 					<string>#function_call</string>
 				</dict>
 				<dict>
