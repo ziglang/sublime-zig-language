@@ -830,5 +830,7 @@
 	</dict>
 	<key>scopeName</key>
 	<string>source.zig</string>
+	<key>uuid</key>
+	<string>06C2FF99-3080-441A-9019-460C51E93116</string>
 </dict>
 </plist>

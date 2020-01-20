@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string>tvguho@vwbuna.ay</string>
+	<key>contactName</key>
+	<string>Johan Bloemberg</string>
+	<key>description</key>
+	<string>TextMate Bundle for Zig language.</string>
+	<key>name</key>
+	<string>Zig</string>
+	<key>uuid</key>
+	<string>404AD533-0AD5-438C-96C3-D0B66AF853F6</string>
+</dict>
+</plist>
