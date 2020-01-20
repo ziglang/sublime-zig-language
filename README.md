@@ -26,6 +26,11 @@ Or add `Zig.tmLanguage` to the packages directory. On OSX This is usually
 But to find the path on your machine go to `Preferences > Browse Packages` from
 within Sublime Text.
 
+TextMate Installation
+---------------------
+
+This language is also compatible with TextMate's `.tmBundle` format. To install in TextMate clone or download this repository. Then rename the repository directory to `Zig.tmBundle` and double-click it to install it into TextMate.
+
 Local Development
 -----------------
 

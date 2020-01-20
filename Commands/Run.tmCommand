@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>autoScrollOutput</key>
+	<true/>
+	<key>beforeRunningCommand</key>
+	<string>saveModifiedFiles</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby18
+require ENV["TM_SUPPORT_PATH"] + "/lib/tm/executor"
+require ENV["TM_SUPPORT_PATH"] + "/lib/tm/save_current_document"
+
+TextMate.save_if_untitled('zig')
+TextMate::Executor.make_project_master_current_document
+
+TextMate::Executor.run(ENV["TM_ZIG"] || "zig", "run", ENV["TM_FILEPATH"], :create_error_pipe =&gt; true)</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@r</string>
+	<key>name</key>
+	<string>Run</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>requiredCommands</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<string>zig</string>
+			<key>locations</key>
+			<array>
+				<string>/opt/local/bin/zig</string>
+				<string>/usr/local/bin/zig</string>
+				<string>/usr/local/zig/bin/zig</string>
+			</array>
+			<key>variable</key>
+			<string>TM_ZIG</string>
+		</dict>
+	</array>
+	<key>scope</key>
+	<string>source.zig</string>
+	<key>uuid</key>
+	<string>0B3C3EB0-9F51-4997-A87D-ECA507D8E31E</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,6 +1,7 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
 
 name: Zig
+uuid: 06C2FF99-3080-441A-9019-460C51E93116
 scopeName: source.zig
 fileTypes:
   - zig

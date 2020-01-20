@@ -1,0 +1,25 @@
+beforeRunningCommand: nop
+command: "#!/usr/bin/env bash\n\n# shellcheck source=/dev/null\n. \"${TM_SUPPORT_PATH}/lib/bash_init.sh\"\
+  \n\nset -e \n\nPATH=/opt/local/bin:/usr/local/bin:/usr/local/zig/bin:$PATH\n   \
+  \     \nrequire_cmd zig\n\ntmpfile=$(mktemp \"${TMPDIR:-/tmp/}zig-fmt.XXXXXX\")\n\
+  cat - > \"$tmpfile\"\n\nif ! error=$(\"${TM_ZIG:-zig}\" fmt \"$tmpfile\" 2>&1);then\n\
+  \    exit_show_tool_tip \"${error//$tmpfile/$(basename \"$TM_FILEPATH\")}\"\nfi\n\
+  \ncat \"$tmpfile\"\nrm \"$tmpfile\"\n"
+input: document
+inputFormat: text
+keyEquivalent: ''
+name: Fmt
+outputCaret: interpolateByLine
+outputFormat: text
+outputLocation: replaceDocument
+requiredCommands:
+- command: zig
+  locations:
+  - /opt/local/bin/zig
+  - /usr/local/bin/zig
+  - /usr/local/zig/bin/zig
+  variable: TM_ZIG
+scope: source.zig
+semanticClass: callback.document.will-save
+uuid: BC972D6E-23AC-4EAD-AF7D-A33564F09433
+version: 2
