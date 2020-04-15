@@ -136,6 +136,13 @@ a || b
 
 0b1
 
+1_234_567;
+0xff00_00ff;
+0b10000000_10101010;
+0b1000_0000_1010_1010;
+0x123_190.109_038_018p102;
+3.14159_26535_89793;
+
 123.i812
 a.i111
 
@@ -162,7 +169,7 @@ fn foo() A![]Foo {
 extern fn bar() as as void;
 extern fn foobar() void;
 
-
+errdefer |err| std.debug.assert(err == error.Overflow);
 
 c\\ adsjfafsdjkl \x11 \u1245 \U123456
 extern fn bar() void;
@@ -184,98 +191,25 @@ fn
 '\a'
 '\aaasas'
 '\n'
+'💩';
 fn(i13i,Foo) Bar;
 foo = bar;
 
 @"overloaded" = 89;
 
-@addWithOverflow
-@alignCast
-@alignOf
-@ArgType
-@atomicLoad
-@atomicRmw
-@bitCast
-@bitOffsetOf
-@boolToInt
-@breakpoint
-@bswap
-@byteOffsetOf
-@bytesToSlice
-@cDefine
 @cImport
 @cInclude
-@clz
-@cmpxchgStrong
-@cmpxchgWeak
-@compileError
-@compileLog
-@ctz
-@cUndef
-@divExact
-@divFloor
-@divTrunc
-@embedFile
-@enumToInt
-@errorName
-@errorReturnTrace
-@errorToInt
-@errSetCast
-@export
-@fence
-@field
-@fieldParentPtr
-@floatCast
-@floatToInt
-@frameAddress
-@handle
 @import
-@inlineCall
-@intCast
-@intToEnum
-@intToError
-@intToFloat
-@intToPtr
-@IntType
-@memberCount
-@memberName
-@memberType
-@memcpy
-@memset
-@mod
-@mulWithOverflow
-@newStackCall
-@noInlineCall
-@OpaqueType
-@panic
-@popCount
-@ptrCast
-@ptrToInt
-@rem
-@returnAddress
-@setAlignStack
-@setCold
-@setEvalBranchQuota
-@setFloatMode
-@setGlobalLinkage
-@setRuntimeSafety
-@shlExact
-@shlWithOverflow
-@shrExact
-@sizeOf
-@sliceToBytes
-@sqrt
-@subWithOverflow
-@tagName
-@TagType
-@This
-@truncate
-@typeId
-@typeInfo
-@typeName
-@typeOf
+@exampleBuiltin
 
 *const asasd
+*const [N:0]u8
+?[]T and *[N]T
+.{
+    .x = 13,
+    .y = 67,
+}
+var i: Number = .{.int = 42};
 
 pub extern "hellas" export fn @"eeeasla"(as: FN) userdata;
 
@@ -304,7 +238,8 @@ const Err = error {
 (asdasd)
 const Bar = struct {
     field: Foo = 234"asas",
-    field: Bad = Fasd {},
+    comptime field: Bad = Fasd {},
+    field: var 
 };
 
 const Boof = union(enum) {
@@ -313,7 +248,8 @@ const Boof = union(enum) {
 
 
 const Bad = enum(u8) {
-
+    Dummy,
+    _
 };
 var as: Bad = Bad(u8) {
     pub stdcallcc fn CoUninitialize() void;
@@ -371,3 +307,11 @@ pub const GUID = extern struct {
     Data3: c_ushort,
     Data4: [8]u8,
 };
+
+pub async fn function() Error!ReturnType {
+
+} 
+
+pub async fn function(arg: Int, arg: I) !ReturnType {
+    
+} 

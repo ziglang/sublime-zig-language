@@ -20,7 +20,7 @@
 		<key>block</key>
 		<dict>
 			<key>begin</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(\{)</string>
+			<string>([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")?\s*(\{)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -94,13 +94,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\\x[a-fA-F0-9]{2}</string>
+					<string>\\x[a-fA-F\d]{2}</string>
 					<key>name</key>
 					<string>constant.character.escape.hexidecimal.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\\u\{[a-fA-F0-9]{1,6}\}</string>
+					<string>\\u\{[a-fA-F\d]{1,6}\}</string>
 					<key>name</key>
 					<string>constant.character.escape.hexidecimal.zig</string>
 				</dict>
@@ -148,37 +148,37 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?&lt;!\.)(-?[0-9]+)(?!\.)\b</string>
+					<string>\b(?&lt;!\.)(-?[\d_]+)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?&lt;!\.)(0x[a-fA-F0-9]+)(?!\.)\b</string>
+					<string>\b(?&lt;!\.)(0x[a-fA-F\d_]+)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.hexadecimal.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?&lt;!\.)(0o[0-7]+)(?!\.)\b</string>
+					<string>\b(?&lt;!\.)(0o[0-7_]+)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.octal.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?&lt;!\.)(0b[01]+)(?!\.)\b</string>
+					<string>\b(?&lt;!\.)(0b[01_]+)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.integer.binary.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?&lt;!\.)(-?\b[0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)(?!\.)\b</string>
+					<string>(?&lt;!\.)(-?\b[\d_]+(?:\.[\d_]+)?(?:[eE][+-]?[\d_]+)?)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.float.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?&lt;!\.)(-?\b0x[a-fA-F0-9]+(?:\.[a-fA-F0-9]+)?[pP]?(?:[+-]?[0-9]+)?)(?!\.)\b</string>
+					<string>(?&lt;!\.)(-?\b0x[a-fA-F\d_]+(?:\.[a-fA-F\d_]+)?[pP]?(?:[+-]?[\d_]+)?)(?!\.)\b</string>
 					<key>name</key>
 					<string>constant.numeric.float.hexadecimal.zig</string>
 				</dict>
@@ -239,14 +239,14 @@
 		<key>enum_literal</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\w|\))(\.(?:[a-zA-Z_][a-zA-Z0-9_]*|@\".+\"))\b(?!\(|\s*=\s+)</string>
+			<string>(?&lt;!\w|\))(\.(?:[a-zA-Z_][a-zA-Z\d_]*|@\".+\"))\b(?!\(|\s*=\s+)</string>
 			<key>name</key>
 			<string>constant.language.enum</string>
 		</dict>
 		<key>field_decl</key>
 		<dict>
 			<key>begin</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")\s*(:)\s*</string>
+			<string>([a-zA-Z_][a-zA-Z\d_]*|@\".+\")\s*(:)\s*</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -261,7 +261,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(?:(,)|(=)|$)</string>
+			<string>([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")?\s*(?:(,)|(=)|$)</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -291,14 +291,14 @@
 		<key>function_call</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!fn)\b([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")(?=\s*\()</string>
+			<string>(?&lt;!fn)\b([a-zA-Z_][a-zA-Z\d_]*|@\".+\")(?=\s*\()</string>
 			<key>name</key>
 			<string>variable.function.zig</string>
 		</dict>
 		<key>function_def</key>
 		<dict>
 			<key>begin</key>
-			<string>(?&lt;=fn)\s+([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")(\()</string>
+			<string>(?&lt;=fn)\s+([a-zA-Z_][a-zA-Z\d_]*|@\".+\")(\()</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -313,7 +313,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(?&lt;=\)[^\)])\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?(!)?\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\b(?!\s*\())?</string>
+			<string>(?&lt;=\)[^\)])\s*([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")?(!)?\s*(?:([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")\b(?!\s*\())?</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -344,7 +344,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
+					<string>([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")</string>
 					<key>name</key>
 					<string>storage.type.zig</string>
 				</dict>
@@ -374,7 +374,7 @@
 			<key>contentName</key>
 			<string>meta.function.parameters.zig</string>
 			<key>end</key>
-			<string>(?&lt;=\)|\})\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(!)?\s*([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
+			<string>(?&lt;=\)|\})\s*([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")?\s*(!)?\s*([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -405,7 +405,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
+					<string>([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")</string>
 					<key>name</key>
 					<string>storage.type.zig</string>
 				</dict>
@@ -591,7 +591,7 @@
 		<key>param_list</key>
 		<dict>
 			<key>begin</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_]*|@\".+\")\s*(:)\s*</string>
+			<string>([a-zA-Z_][a-zA-Z\d_]*|@\".+\")\s*(:)\s*</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -606,7 +606,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")?\s*(?:(,)|(\)))</string>
+			<string>([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")?\s*(?:(,)|(\)))</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>1</key>
@@ -633,7 +633,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")</string>
+					<string>([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")</string>
 					<key>name</key>
 					<string>storage.type.zig</string>
 				</dict>
@@ -681,7 +681,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(?&lt;!\.)([iu][0-9]\d*|[iu]size|comptime_int)\b</string>
+					<string>\b(?&lt;!\.)([iu]\d+|[iu]size|comptime_int)\b</string>
 					<key>name</key>
 					<string>storage.type.integer.zig</string>
 				</dict>
@@ -717,7 +717,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>\b(anyframe)\b\s*(-&gt;)?\s*(?:([a-zA-Z_][a-zA-Z0-9_.]*|@\".+\")\b(?!\s*\())?</string>
+					<string>\b(anyframe)\b\s*(-&gt;)?\s*(?:([a-zA-Z_][a-zA-Z\d_.]*|@\".+\")\b(?!\s*\())?</string>
 				</dict>
 				<dict>
 					<key>match</key>
