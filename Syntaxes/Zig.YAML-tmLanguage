@@ -344,7 +344,7 @@ repository:
       - include: '#main'
 
   enum_literal:
-    match: '(?<!\w|\))(\.(?:[a-zA-Z_][a-zA-Z\d_]*|@\".+\"))\b(?!\(|\s*=\s+)'
+    match: '(?<!\w|\))(\.(?:[a-zA-Z_][a-zA-Z\d_]*|@\"[^\"]*\"))(?!\(|\s*=\s+)'
     name: constant.language.enum
 
   main:
