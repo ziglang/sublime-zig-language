@@ -484,6 +484,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#function_type</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#punctuation</string>
 				</dict>
 				<dict>
@@ -529,6 +533,10 @@
 				<dict>
 					<key>include</key>
 					<string>#block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function_def</string>
 				</dict>
 				<dict>
 					<key>include</key>

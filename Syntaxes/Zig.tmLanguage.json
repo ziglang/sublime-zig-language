@@ -148,6 +148,9 @@
                     "include": "#label"
                 }, 
                 {
+                    "include": "#function_type"
+                }, 
+                {
                     "include": "#punctuation"
                 }, 
                 {
@@ -182,6 +185,9 @@
                 }, 
                 {
                     "include": "#block"
+                }, 
+                {
+                    "include": "#function_def"
                 }, 
                 {
                     "include": "#function_call"
