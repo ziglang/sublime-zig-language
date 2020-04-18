@@ -19,7 +19,8 @@
         {
             "cmd": ["zig", "fmt", "$file"],
             "selector": "source.zig",
-            "name": "Format File"
+            "name": "Format File",
+            "quiet": true,
         },
         {
             "cmd": ["zig", "build", "test"],
@@ -36,7 +37,8 @@
         {
             "cmd": ["zig", "fmt", "$folder"],
             "selector": "source.zig",
-            "name": "Format Project"
+            "name": "Format Project",
+            "quiet": true
         },
     ]
 }

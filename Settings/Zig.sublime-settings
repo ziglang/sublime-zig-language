@@ -1,6 +1,16 @@
 {
+    // path to the zig compiler or just "zig" if it's in your PATH
     "zig.executable": "zig",
+
+    // automatically build the file/project on save
     "zig.build.on_save": false,
+    
+    // automatically format the file/project on save
     "zig.fmt.on_save": true,
+
+    // format either file or project. the only valid options are "file" or "project"
     "zig.fmt.mode": "file",
+
+    // automatically hide the build/fmt output panel 
+    "zig.quiet": true,
 }

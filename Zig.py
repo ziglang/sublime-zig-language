@@ -16,10 +16,12 @@ class Zig(sublime_plugin.EventListener):
         if scope.find('source.zig') != -1:
             should_fmt = get_setting(view, 'zig.fmt.on_save', True)
             should_build = get_setting(view, 'zig.build.on_save', False)
+            is_quiet = get_setting(view, 'zig.quiet', True)
             
             if (should_fmt):
                 mode = get_setting(view, 'zig.fmt.mode', 'File').title()
                 view.window().run_command('build', {'variant': 'Format ' + mode})
-
             if (should_build):
                 view.window().run_command('build')
+            if (is_quiet):
+                view.window().run_command("hide_panel")
