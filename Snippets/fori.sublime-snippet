@@ -1,0 +1,9 @@
+<snippet>
+    <description>inline for statement</description>
+    <content><![CDATA[inline for ($1) {
+    $0
+}]]></content>
+    <tabTrigger>fori</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>
+

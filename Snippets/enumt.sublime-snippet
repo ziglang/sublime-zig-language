@@ -1,0 +1,9 @@
+<snippet>
+    <description>enum declaration with type</description>
+    <content><![CDATA[= enum (${1:type})
+{
+    $0
+};]]></content>
+    <tabTrigger>enumt</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>

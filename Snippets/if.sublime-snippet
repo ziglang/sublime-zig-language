@@ -1,0 +1,8 @@
+<snippet>
+    <description>if statement</description>
+    <content><![CDATA[if ($1) {
+    $2
+}]]></content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>

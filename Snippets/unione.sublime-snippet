@@ -1,0 +1,8 @@
+<snippet>
+    <description>union (enum) declaration</description>
+    <content><![CDATA[= union (enum) {
+    $0
+};]]></content>
+    <tabTrigger>unione</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>

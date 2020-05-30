@@ -1,0 +1,8 @@
+<snippet>
+    <description>while statement</description>
+    <content><![CDATA[while ($1) : ($2) {
+    $0
+}]]></content>
+    <tabTrigger>while</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>

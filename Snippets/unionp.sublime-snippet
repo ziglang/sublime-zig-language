@@ -1,0 +1,8 @@
+<snippet>
+    <description>packed union declaration</description>
+    <content><![CDATA[= packed union {
+    $0
+};]]></content>
+    <tabTrigger>unionp</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>

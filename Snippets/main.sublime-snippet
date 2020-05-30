@@ -1,0 +1,8 @@
+<snippet>
+    <description>main pub function</description>
+    <content><![CDATA[pub fn main() void {
+    $0
+}]]></content>
+    <tabTrigger>main</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>
