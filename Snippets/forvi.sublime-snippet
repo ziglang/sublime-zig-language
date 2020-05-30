@@ -1,0 +1,9 @@
+<snippet>
+    <description>for statement with a value and an index</description>
+    <content><![CDATA[for ($1) |value, index| {
+    $0
+}]]></content>
+    <tabTrigger>forvi</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>
+

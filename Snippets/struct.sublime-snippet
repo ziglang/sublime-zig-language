@@ -1,0 +1,8 @@
+<snippet>
+    <description>struct declaration</description>
+    <content><![CDATA[= struct {
+    $0
+};]]></content>
+    <tabTrigger>struct</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>

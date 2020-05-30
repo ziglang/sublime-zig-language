@@ -1,0 +1,8 @@
+<snippet>
+    <description>union declaration</description>
+    <content><![CDATA[= union {
+    $0
+};]]></content>
+    <tabTrigger>union</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>

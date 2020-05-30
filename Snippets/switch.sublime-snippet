@@ -1,0 +1,8 @@
+<snippet>
+    <description>switch statement</description>
+    <content><![CDATA[switch ($1) {
+    $2 => $0,
+}]]></content>
+    <tabTrigger>switch</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>
