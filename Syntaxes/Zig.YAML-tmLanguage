@@ -8,7 +8,7 @@ fileTypes:
   - zig
 
 patterns:
-  - include: '#main'
+  - include: '#dummy_main'
 
 repository:
   character_escapes:
@@ -48,7 +48,7 @@ repository:
         name: punctuation.section.parens.end.zig
 
     patterns:
-      - include: '#main'
+      - include: '#dummy_main'
 
       - match: '([a-zA-Z_][\w.]*|@\".+\")'
         name: storage.type.zig
@@ -71,7 +71,7 @@ repository:
         name: keyword.operator.assignment.zig
 
     patterns:
-      - include: '#main'
+      - include: '#dummy_main'
 
   storage_modifier:
     name: storage.modifier.zig
@@ -283,7 +283,7 @@ repository:
         name: punctuation.section.braces.end.zig
 
     patterns:
-      - include: '#main'
+      - include: '#dummy_main'
 
   function_def:
     begin: '(?<=fn)\s+([a-zA-Z_]\w*|@\".+\")(\()'
@@ -309,7 +309,7 @@ repository:
       - match: '([a-zA-Z_][\w.]*|@\".+\")'
         name: storage.type.zig
 
-      - include: '#main'
+      - include: '#dummy_main'
 
   function_call:
     name: variable.function.zig
@@ -341,13 +341,13 @@ repository:
       - match: '([a-zA-Z_][\w.]*|@\".+\")'
         name: storage.type.zig
 
-      - include: '#main'
+      - include: '#dummy_main'
 
   enum_literal:
     match: '(?<!\w|\))(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
     name: constant.language.enum
 
-  main:
+  dummy_main:
     patterns:
       - include: '#label'
       - include: '#function_type'
