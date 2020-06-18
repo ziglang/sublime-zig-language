@@ -310,6 +310,10 @@
 					<key>include</key>
 					<string>#enum_literal</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#variables</string>
+				</dict>
 			</array>
 		</dict>
 		<key>enum_literal</key>
@@ -836,6 +840,38 @@
 			<string>(?&lt;!\w)@[^\"\d][a-zA-Z_]\w*\b</string>
 			<key>name</key>
 			<string>support.function.zig</string>
+		</dict>
+		<key>variables</key>
+		<dict>
+			<key>name</key>
+			<string>meta.variable.zig</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b[_A-Z][_A-Z0-9]+\b</string>
+					<key>name</key>
+					<string>variable.constant.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b[_a-zA-Z][_a-zA-Z0-9]*_t\b</string>
+					<key>name</key>
+					<string>entity.name.type.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b[A-Z][a-zA-Z0-9]*\b</string>
+					<key>name</key>
+					<string>entity.name.type.zig</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b[_a-zA-Z][_a-zA-Z0-9]*\b</string>
+					<key>name</key>
+					<string>variable.zig</string>
+				</dict>
+			</array>
 		</dict>
 	</dict>
 	<key>scopeName</key>
