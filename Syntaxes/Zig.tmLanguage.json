@@ -105,7 +105,7 @@
             ]
         }, 
         "enum_literal": {
-            "match": "(?<!\\w|\\))(\\.(?:[a-zA-Z_]\\w*\\b|@\\\"[^\\\"]*\\\"))(?!\\(|\\s*=[^=>])", 
+            "match": "(?<!\\w|\\)|\\?|\\}|\\]|\\*)(\\.(?:[a-zA-Z_]\\w*\\b|@\\\"[^\\\"]*\\\"))(?!\\(|\\s*=[^=>])", 
             "name": "constant.language.enum"
         }, 
         "character_escapes": {
@@ -241,7 +241,7 @@
             "match": "\\b(break|continue)\\s*:\\s*([a-zA-Z_]\\w*|@\\\".+\\\")\\b|\\b(?!\\d)([a-zA-Z_]\\w*|@\\\".+\\\")\\b(?=\\s*:\\s*(?:\\{|while\\b))"
         }, 
         "storage_modifier": {
-            "match": "\\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal|allowzero)\\b", 
+            "match": "\\b(const|var|extern|packed|export|pub|noalias|inline|noinline|comptime|volatile|align|linksection|threadlocal|allowzero)\\b", 
             "name": "storage.modifier.zig"
         }, 
         "punctuation": {
@@ -451,7 +451,7 @@
                     "name": "keyword.control.zig"
                 }, 
                 {
-                    "match": "\\b(noasync|async|await|suspend|resume|cancel)\\b", 
+                    "match": "\\b(async|await|suspend|nosuspend|resume)\\b", 
                     "name": "keyword.control.async.zig"
                 }, 
                 {

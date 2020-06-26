@@ -100,7 +100,7 @@ contexts:
     - include: function_call
     - include: enum_literal
   enum_literal:
-    - match: '(?<!\w|\))(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
+    - match: '(?<!\w|\)|\?|\}|\]|\*)(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
       scope: constant.language.enum
   field_decl:
     - match: '([a-zA-Z_]\w*|@\".+\")\s*(:)\s*'
@@ -156,7 +156,7 @@ contexts:
   keywords:
     - match: \b(while|for|break|return|continue|asm|defer|errdefer|unreachable)\b
       scope: keyword.control.zig
-    - match: \b(noasync|async|await|suspend|resume|cancel)\b
+    - match: \b(async|await|suspend|nosuspend|resume)\b
       scope: keyword.control.async.zig
     - match: \b(if|else|switch|try|catch|orelse)\b
       scope: keyword.control.conditional.zig
@@ -236,7 +236,7 @@ contexts:
     - match: \berror\b
       scope: storage.type.error.zig
   storage_modifier:
-    - match: \b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal|allowzero)\b
+    - match: \b(const|var|extern|packed|export|pub|noalias|inline|noinline|comptime|volatile|align|linksection|threadlocal|allowzero)\b
       scope: storage.modifier.zig
   strings:
     - match: \'
