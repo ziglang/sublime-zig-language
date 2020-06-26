@@ -75,7 +75,7 @@ repository:
 
   storage_modifier:
     name: storage.modifier.zig
-    match: '\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal|allowzero)\b'
+    match: '\b(const|var|extern|packed|export|pub|noalias|inline|noinline|comptime|volatile|align|linksection|threadlocal|allowzero)\b'
 
   container_decl:
     patterns:
@@ -166,7 +166,7 @@ repository:
       match: '\b(while|for|break|return|continue|asm|defer|errdefer|unreachable)\b'
 
     - name: keyword.control.async.zig
-      match: '\b(noasync|async|await|suspend|resume|cancel)\b'
+      match: '\b(async|await|suspend|nosuspend|resume)\b'
 
     - name: keyword.control.conditional.zig
       match: '\b(if|else|switch|try|catch|orelse)\b'
@@ -344,7 +344,7 @@ repository:
       - include: '#dummy_main'
 
   enum_literal:
-    match: '(?<!\w|\))(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
+    match: '(?<!\w|\)|\?|\}|\]|\*)(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
     name: constant.language.enum
 
   dummy_main:

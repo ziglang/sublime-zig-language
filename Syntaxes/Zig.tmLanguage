@@ -313,7 +313,7 @@
 		<key>enum_literal</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\w|\))(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=&gt;])</string>
+			<string>(?&lt;!\w|\)|\?|\}|\]|\*)(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=&gt;])</string>
 			<key>name</key>
 			<string>constant.language.enum</string>
 		</dict>
@@ -501,7 +501,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(noasync|async|await|suspend|resume|cancel)\b</string>
+					<string>\b(async|await|suspend|nosuspend|resume)\b</string>
 					<key>name</key>
 					<string>keyword.control.async.zig</string>
 				</dict>
@@ -768,7 +768,7 @@
 		<key>storage_modifier</key>
 		<dict>
 			<key>match</key>
-			<string>\b(const|var|extern|packed|export|pub|noalias|inline|comptime|nakedcc|stdcallcc|volatile|align|linksection|threadlocal|allowzero)\b</string>
+			<string>\b(const|var|extern|packed|export|pub|noalias|inline|noinline|comptime|volatile|align|linksection|threadlocal|allowzero)\b</string>
 			<key>name</key>
 			<string>storage.modifier.zig</string>
 		</dict>
