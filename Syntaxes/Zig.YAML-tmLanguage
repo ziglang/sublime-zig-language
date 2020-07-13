@@ -207,7 +207,7 @@ repository:
   storage:
     patterns:
       - name: storage.type.zig
-        match: '\b(bool|void|noreturn|type|anyerror)\b'
+        match: '\b(bool|void|noreturn|type|anyerror|anytype)\b'
 
       - name: storage.type.integer.zig
         match: '\b(?<!\.)([iu]\d+|[iu]size|comptime_int)\b'

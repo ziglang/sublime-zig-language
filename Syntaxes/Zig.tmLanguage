@@ -683,7 +683,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(bool|void|noreturn|type|anyerror)\b</string>
+					<string>\b(bool|void|noreturn|type|anyerror|anytype)\b</string>
 					<key>name</key>
 					<string>storage.type.zig</string>
 				</dict>

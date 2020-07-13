@@ -35,7 +35,7 @@ null undefined
 
 fn usingnamespace test
 
-bool f16 f32 f64 f128 void noreturn type anyerror
+bool f16 f32 f64 f128 void noreturn type anyerror anytype
 
 promise anyframe
 i2 u2 i3 u3 i4 u4 i5 u5 i6 u6 i7 u7 i8 u8 i16 u16 u29 i29 i32 u32 i64 u64 i128 u128 isize usize

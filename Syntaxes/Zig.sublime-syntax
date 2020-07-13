@@ -210,7 +210,7 @@ contexts:
     - match: (\))
       scope: punctuation.section.parens.end.zig
   storage:
-    - match: \b(bool|void|noreturn|type|anyerror)\b
+    - match: \b(bool|void|noreturn|type|anyerror|anytype)\b
       scope: storage.type.zig
     - match: '\b(?<!\.)([iu]\d+|[iu]size|comptime_int)\b'
       scope: storage.type.integer.zig
