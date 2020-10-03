@@ -2,6 +2,43 @@
 // this is a syntactically meaningless collection of sample
 // keywords and constructs to use in testing.
 
+const std = @import("std");
+//^^^ storage.modifier.zig
+//        ^ keyword.operator.assignment.zig
+//          ^^^^^^^ keyword.control.import.zig
+//                 ^ punctuation.section.parens.begin.zig
+//                  ^^^^^ string.quoted.double.zig
+//                       ^ punctuation.section.parens.end.zig
+//                        ^ punctuation.terminator.zig
+
+pub fn main() !void {
+//^ storage.modifier.zig
+//  ^^ storage.type.function.zig
+//     ^^^^ entity.name.function
+//         ^ punctuation.section.parens.begin.zig
+//          ^ punctuation.section.parens.end.zig
+//            ^ keyword.operator.zig
+//             ^^^^ storage.type.zig
+//                  ^ punctuation.section.braces.begin.zig
+    // If this program is run without stdout attached, exit with an error.
+//  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.zig
+    const stdout_file = std.io.getStdOut();
+//  ^^^^^ storage.modifier.zig
+//                    ^ keyword.operator.assignment.zig
+//                             ^^^^^^^^^ variable.function.zig
+//                                      ^ punctuation.section.parens.begin.zig
+//                                       ^ punctuation.section.parens.end.zig
+//                                        ^ punctuation.terminator.zig
+    try stdout_file.writeAll("Hello, world!\n");
+//  ^^^ keyword.control.conditional.zig
+//                  ^^^^^^^^ variable.function.zig
+//                          ^ punctuation.section.parens.begin.zig
+//                           ^^^^^^^^^^^^^^^^^ string.quoted.double.zig
+//                                         ^^ constant.character.escape.newline.zig
+//                                            ^ punctuation.section.parens.end.zig
+}
+
+
 const var extern packed export pub noalias inline comptime nakedcc stdcallcc volatile align linksection threadlocal
 
 const as = 2;
