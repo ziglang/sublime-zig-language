@@ -116,25 +116,34 @@ contexts:
           pop: true
         - include: dummy_main
   function_call:
-    - match: '(?<!fn)\b([a-zA-Z_]\w*|@\".+\")(?=\s*\()'
+    - match: '\b([a-zA-Z_]\w*|@\".+\")(?=\s*\()'
       scope: variable.function.zig
   function_def:
-    - match: '(?<=fn)\s+([a-zA-Z_]\w*|@\".+\")(\()'
+    - match: '\b(fn)\s+([a-zA-Z_]\w*|@\".+\")(\()'
       captures:
-        1: entity.name.function
-        2: punctuation.section.parens.begin.zig
+        1: storage.type.function.zig
+        2: entity.name.function
+        3: punctuation.section.parens.begin.zig
       push:
-        - match: '(?<=\)[^\)])\s*([a-zA-Z_][\w.]*|@\".+\")?(!)?\s*(?:([a-zA-Z_][\w.]*|@\".+\")\b(?!\s*\())?'
-          captures:
-            1: storage.type.zig
-            2: keyword.operator.zig
-            3: storage.type.zig
-          pop: true
         - include: label
         - include: param_list
         - match: '([a-zA-Z_][\w.]*|@\".+\")'
           scope: storage.type.zig
+        - match: '\)'
+          scope: punctuation.section.parens.end.zig
+          set: function_def_after_params
         - include: dummy_main
+  function_def_after_params:
+    # TODO: be more precise here
+    - match: '\s*([a-zA-Z_][\w.]*|@\".+\")?(!)?\s*(?:([a-zA-Z_][\w.]*|@\".+\")\b(?!\s*\())?'
+      captures:
+        1: storage.type.zig
+        2: keyword.operator.zig
+        3: storage.type.zig
+      pop: true
+    # Bailout if we don't find what we want
+    - match: (?=.)
+      pop: true
   function_type:
     - match: \b(fn)\s*(\()
       captures:
@@ -142,17 +151,24 @@ contexts:
         2: punctuation.section.parens.begin.zig
       push:
         - meta_content_scope: meta.function.parameters.zig
-        - match: '(?<=\)|\})\s*([a-zA-Z_][\w.]*|@\".+\")?\s*(!)?\s*([a-zA-Z_][\w.]*|@\".+\")'
-          captures:
-            1: storage.type.zig
-            2: keyword.operator.zig
-            3: storage.type.zig
-          pop: true
         - include: label
         - include: param_list
         - match: '([a-zA-Z_][\w.]*|@\".+\")'
           scope: storage.type.zig
+        - match: '\)'
+          scope: punctuation.section.parens.end.zig
+          set: function_type_after_params
         - include: dummy_main
+  function_type_after_params:
+    # TODO: Can we merge with function_def_after_params ? It seems similar.
+    - match: '\s*([a-zA-Z_][\w.]*|@\".+\")?\s*(!)?\s*([a-zA-Z_][\w.]*|@\".+\")'
+      captures:
+        1: storage.type.zig
+        2: keyword.operator.zig
+        3: storage.type.zig
+      pop: true
+    - match: (?=.)
+      pop: true
   keywords:
     - match: \b(while|for|break|return|continue|asm|defer|errdefer|unreachable)\b
       scope: keyword.control.zig
@@ -191,7 +207,8 @@ contexts:
         1: variable.parameter.zig
         2: punctuation.separator.zig
       push:
-        - match: '([a-zA-Z_][\w.]*|@\".+\")?\s*(?:(,)|(\)))'
+        # Don't consume the closing ')'
+        - match: '([a-zA-Z_][\w.]*|@\".+\")?\s*(,|(?=\)))'
           captures:
             1: storage.type.zig
             2: punctuation.separator.zig
@@ -223,8 +240,6 @@ contexts:
         1: storage.type.zig
         2: keyword.operator.zig
         3: storage.type.zig
-    - match: \bfn\b
-      scope: storage.type.function.zig
     - match: \btest\b
       scope: storage.type.test.zig
     - match: \bstruct\b
