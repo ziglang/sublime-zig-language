@@ -387,10 +387,9 @@ var as: Bad = Bad(u8) {
 
 blk: {
 // <- entity.name.label.zig
-    break :blk void;
+    break :blk val1;
 //  ^^^^^ keyword.control.zig
 //         ^^^ entity.name.label.zig
-//             ^^^^ storage.type.zig
 //                 ^ punctuation.terminator.zig
     var f = Bar {
 //  ^^^ storage.modifier.zig

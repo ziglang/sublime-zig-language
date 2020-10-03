@@ -227,14 +227,6 @@ contexts:
     - match: (\))
       scope: punctuation.section.parens.end.zig
   storage:
-    - match: \b(bool|void|noreturn|type|anyerror|anytype)\b
-      scope: storage.type.zig
-    - match: '\b(?<!\.)([iu]\d+|[iu]size|comptime_int)\b'
-      scope: storage.type.integer.zig
-    - match: \b(f16|f32|f64|f128|comptime_float)\b
-      scope: storage.type.float.zig
-    - match: \b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b
-      scope: storage.type.c_compat.zig
     - match: '\b(anyframe)\b\s*(->)?\s*(?:([a-zA-Z_][\w.]*|@\".+\")\b(?!\s*\())?'
       captures:
         1: storage.type.zig
