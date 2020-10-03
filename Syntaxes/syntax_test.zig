@@ -215,6 +215,12 @@ test "numbers" {
     123.i812;
 //  ^^^^^^^^ -constant.numeric
     a.111;
+
+    var x: i123 = 0x7A;
+//         ^^^^ storage.type.zig
+    var x: usize = 0x7A;
+//         ^^^^^ storage.type.zig
+
 }
 
 slice[0..2]
@@ -240,7 +246,7 @@ const \\ adsjfaf23n9
 
 const v = fn(aas, 2342, 23) as;
 
-fn foo(a:as) s {
+fn foo(a:as) i32 {
 // <- storage.type.function.zig
 // ^^^ entity.name.function
 //    ^ punctuation.section.parens.begin.zig
@@ -248,8 +254,8 @@ fn foo(a:as) s {
 //      ^ punctuation.separator.zig
 //       ^^ storage.type.zig
 //         ^ punctuation.section.parens.end.zig
-//           ^ storage.type.zig
-//             ^ punctuation.section.braces.begin.zig
+//           ^^^ storage.type.zig
+//               ^ punctuation.section.braces.begin.zig
 }
 // <- punctuation.section.braces.end.zig
 
