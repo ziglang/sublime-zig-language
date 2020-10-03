@@ -298,7 +298,15 @@ test "strings" {
 //   ^^ string.quoted.single.zig constant.character.escape.newline.zig
     '💩';
 }
-fn(i13i,Foo) Bar;
+   fn(i13i,Foo) Bar;
+// ^^ storage.type.function.zig
+//   ^ punctuation.section.parens.begin.zig
+//    ^^^^ meta.function.parameters.zig storage.type.zig
+//        ^ meta.function.parameters.zig punctuation.separator.zig
+//         ^^^ meta.function.parameters.zig storage.type.zig
+//            ^ meta.function.parameters.zig punctuation.section.parens.end.zig
+//              ^^^ storage.type.zig
+
 foo = bar;
 
 @"overloaded" = 89;
