@@ -309,7 +309,9 @@ test "strings" {
 
 foo = bar;
 
-@"overloaded" = 89;
+    @"overloaded" = 89;
+//   ^^^^^^^^^^^^ string.quoted.double.zig
+//                ^ keyword.operator.assignment.zig
 
 @cImport
 // <- keyword.control.import.zig
@@ -317,6 +319,9 @@ foo = bar;
 @import
 @exampleBuiltin
 // <- support.function.zig
+
+   typo@cImport
+//     ^^^^^^^^ -keyword.control.import.zig
 
 *const asasd
 // <- keyword.operator.arithmetic.zig
@@ -519,4 +524,13 @@ test "enum literals" {
 //      ^^^^ constant.language.enum
     };
     assert(result);
+}
+
+
+test "fully anonymous list literal" {
+    const args = .{ @as(u32, 1234), @as(f64, 12.34)});
+    assert(args.@"0" == 1234);
+//               ^^^ string.quoted.double.zig
+    assert(args.@"1" == 12.34);
+//               ^^^ string.quoted.double.zig
 }
