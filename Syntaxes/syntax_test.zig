@@ -321,7 +321,7 @@ foo = bar;
 // <- support.function.zig
 
    typo@cImport
-//     ^^^^^^^^ -keyword.control.import.zig
+//     ^^^^^^^^ keyword.control.import.zig
 
 *const asasd
 // <- keyword.operator.arithmetic.zig

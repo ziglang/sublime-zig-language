@@ -176,7 +176,7 @@ contexts:
       scope: keyword.control.async.zig
     - match: \b(if|else|switch|try|catch|orelse)\b
       scope: keyword.control.conditional.zig
-    - match: (?<!\w)(@import|@cImport|@cInclude)\b
+    - match: (@import|@cImport|@cInclude)\b
       scope: keyword.control.import.zig
     - match: \b(usingnamespace)\b
       scope: keyword.other.usingnamespace.zig
@@ -276,5 +276,5 @@ contexts:
         - match: $\n?
           pop: true
   support:
-    - match: '(?<!\w)@[^\"\d][a-zA-Z_]\w*\b'
+    - match: '@[^\"\d][a-zA-Z_]\w*\b'
       scope: support.function.zig
