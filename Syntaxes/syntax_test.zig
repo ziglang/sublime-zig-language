@@ -490,4 +490,33 @@ pub async fn function() Error!ReturnType {
 
 pub async fn function(arg: Int, arg: I) !ReturnType {
     
-} 
+}
+
+test "enum literals" {
+    const color1: Color = .Auto;
+//  ^^^^^ storage.modifier.zig
+//        ^^^^^^ variable.other.member.zig
+//              ^ punctuation.separator.zig
+//                ^^^^^ storage.type.zig
+//                      ^ keyword.operator.assignment.zig
+//                        ^^^^^ constant.language.enum
+    const color2 = Color.Auto;
+//                       ^^^^ -constant.language.enum
+    const color2 = .{x}.Auto;
+//                      ^^^^ -constant.language.enum
+    assert(color1 == color2);
+
+    const color = Color.On;
+    const result = switch (color) {
+        .Auto => false,
+//      ^^^^^ constant.language.enum
+//            ^ keyword.operator.assignment.zig
+//             ^ keyword.operator.logical.zig
+//               ^^^^^ constant.language.zig
+        .On => true,
+//      ^^^ constant.language.enum
+        .Off => false,
+//      ^^^^ constant.language.enum
+    };
+    assert(result);
+}
