@@ -175,10 +175,9 @@ test "numbers" {
     3.14159_26535_89793;
 //  ^^^^^^^^^^^^^^^^^^^ constant.numeric.float.zig
 
-    123.i812
+    123.i812;
 //  ^^^^^^^^ -constant.numeric
-    a.111
-//    ^^^ -constant.numeric
+    a.111;
 }
 
 slice[0..2]
