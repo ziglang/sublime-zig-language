@@ -100,7 +100,7 @@ contexts:
     - include: function_call
     - include: enum_literal
   enum_literal:
-    - match: '(?<!\w|\)|\?|\}|\]|\*)(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
+    - match: '(^|\s+)(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
       scope: constant.language.enum
   field_decl:
     - match: '([a-zA-Z_]\w*|@\".+\")\s*(:)\s*'
