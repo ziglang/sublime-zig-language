@@ -55,17 +55,17 @@ contexts:
   constants:
     - match: \b(null|undefined|true|false)\b
       scope: constant.language.zig
-    - match: '\b(?<!\.)(-?[\d_]+)(?!\.)\b'
+    - match: '\b(-?[\d_]+)(?!\.)\b'
       scope: constant.numeric.integer.zig
-    - match: '\b(?<!\.)(0x[a-fA-F\d_]+)(?!\.)\b'
+    - match: '\b(0x[a-fA-F\d_]+)(?!\.)\b'
       scope: constant.numeric.integer.hexadecimal.zig
-    - match: '\b(?<!\.)(0o[0-7_]+)(?!\.)\b'
+    - match: '\b(0o[0-7_]+)(?!\.)\b'
       scope: constant.numeric.integer.octal.zig
-    - match: '\b(?<!\.)(0b[01_]+)(?!\.)\b'
+    - match: '\b(0b[01_]+)(?!\.)\b'
       scope: constant.numeric.integer.binary.zig
-    - match: '(?<!\.)(-?\b[\d_]+(?:\.[\d_]+)?(?:[eE][+-]?[\d_]+)?)(?!\.)\b'
+    - match: '(-?\b[\d_]+(?:\.[\d_]+)?(?:[eE][+-]?[\d_]+)?)(?!\.)\b'
       scope: constant.numeric.float.zig
-    - match: '(?<!\.)(-?\b0x[a-fA-F\d_]+(?:\.[a-fA-F\d_]+)?[pP]?(?:[+-]?[\d_]+)?)(?!\.)\b'
+    - match: '(-?\b0x[a-fA-F\d_]+(?:\.[a-fA-F\d_]+)?[pP]?(?:[+-]?[\d_]+)?)(?!\.)\b'
       scope: constant.numeric.float.hexadecimal.zig
   container_decl:
     - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:union)\s*[(\{])'
