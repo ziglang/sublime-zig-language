@@ -133,7 +133,7 @@ a %= b
 a << b
 //^^ keyword.operator.logical.zig
 a <<= b
-//^^^ keyword.operator.logical.zig
+//^^^ keyword.operator.assignment.zig
 
 a & b
 a &= b
