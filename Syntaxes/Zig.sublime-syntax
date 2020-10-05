@@ -98,7 +98,7 @@ contexts:
       captures:
         1: storage.type.error.zig
         2: punctuation.accessor.zig
-        3: entity.name.error.zig
+        3: constant.other.error.zig
   enum_literal:
     - match: '(^|\s+)(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
       scope: constant.language.enum
