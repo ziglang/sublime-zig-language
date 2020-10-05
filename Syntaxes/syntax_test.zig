@@ -283,7 +283,7 @@ errdefer |err| std.debug.assert(err == error.Overflow);
 //                                  ^^ keyword.operator.logical.zig
 //                                     ^^^^^ storage.type.error.zig
 //                                          ^ punctuation.accessor.zig
-//                                           ^^^^^^^^ entity.name.error.zig
+//                                           ^^^^^^^^ constant.other.error.zig
 //                                                   ^ punctuation.section.parens.end.zig
 //                                                    ^ punctuation.terminator.zig
 
