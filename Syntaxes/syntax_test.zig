@@ -179,6 +179,13 @@ a.*
 
 a || b
 
+    test "tests" {
+//  ^^^^ storage.type.test.zig
+//       ^^^^^^^ string.quoted.double.zig
+//               ^ punctuation.section.braces.begin.zig
+    }
+//  ^ punctuation.section.braces.end.zig
+
 test "numbers" {
     123
 //  ^^^ constant.numeric.integer.zig
