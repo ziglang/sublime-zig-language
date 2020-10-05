@@ -191,6 +191,9 @@ contexts:
       scope: keyword.operator.zig
     - match: '((?:(?:\+|-|\*)%?|/|%|<<|>>|&|\|(?=[^\|])|\^)=)'
       scope: keyword.operator.assignment.zig
+    # The => is for switch expression, I'm not sure this is the best scope.
+    - match: '=>'
+      scope: keyword.operator.assignment.zig
     - match: (==|(?:!|>|<)=?)
       scope: keyword.operator.logical.zig
     - match: '='

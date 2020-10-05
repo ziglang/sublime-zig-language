@@ -527,8 +527,7 @@ test "enum literals" {
     const result = switch (color) {
         .Auto => false,
 //      ^^^^^ constant.language.enum
-//            ^ keyword.operator.assignment.zig
-//             ^ keyword.operator.logical.zig
+//            ^^ keyword.operator.assignment.zig
 //               ^^^^^ constant.language.zig
         .On => true,
 //      ^^^ constant.language.enum
