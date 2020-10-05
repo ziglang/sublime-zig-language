@@ -190,12 +190,14 @@ contexts:
   operators:
     - match: \b!\b
       scope: keyword.operator.zig
+    - match: '((?:(?:\+|-|\*)%?|/|%|<<|>>|&|\|(?=[^\|])|\^)=)'
+      scope: keyword.operator.assignment.zig
     - match: (==|(?:!|>|<)=?)
       scope: keyword.operator.logical.zig
+    - match: '='
+      scope: keyword.operator.assignment.zig
     - match: \b(and|or)\b
       scope: keyword.operator.word.zig
-    - match: '((?:(?:\+|-|\*)\%?|/|%|<<|>>|&|\|(?=[^\|])|\^)?=)'
-      scope: keyword.operator.assignment.zig
     - match: ((?:\+|-|\*)\%?|/(?!/)|%)
       scope: keyword.operator.arithmetic.zig
     - match: '(<<|>>|&(?=[a-zA-Z_]|@\")|\|(?=[^\|])|\^|~)'
