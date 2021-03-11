@@ -6,6 +6,8 @@
 	<array>
 		<string>zig</string>
 	</array>
+	<key>keyEquivalent</key>
+	<string>^~Z</string>
 	<key>name</key>
 	<string>Zig</string>
 	<key>patterns</key>
