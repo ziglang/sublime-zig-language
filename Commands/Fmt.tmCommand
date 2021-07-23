@@ -12,6 +12,8 @@
 
 set -e
 
+PATH=/opt/local/bin:/usr/local/bin:/usr/local/zig/bin:$PATH
+        
 require_cmd "${TM_ZIG:-zig}"
 
 (eval "${TM_ZIG:-zig} fmt --stdin") || exit_show_tool_tip
