@@ -36,14 +36,14 @@ class ZigBuildCommand(sublime_plugin.WindowCommand):
     panel = None
     panel_lock = threading.Lock()
 
-    def is_enabled(self, run=False, format=False, test=False, project=False, quiet=False, kill=False):
+    def is_enabled(self, cmd=None, build=None, quiet=False, kill=False):
         # The Cancel build option should only be available
         # when the process is still running
         if kill:
             return self.proc is not None and self.proc.poll() is None
         return True
 
-    def run(self, run=False, format=False, test=False, project=False, quiet=False, kill=False):
+    def run(self, cmd=None, build=None, quiet=False, kill=False):
         if kill:
             if self.proc:
                 self.killed = True
@@ -89,19 +89,27 @@ class ZigBuildCommand(sublime_plugin.WindowCommand):
 
         args = [get_setting(view, 'zig.executable', 'zig')]
 
-        if project:
-            if format:
-                args.append('fmt')
-                args.append(vars['folder'])
-            else:
-                args.append('build')
-                if run: args.append('run')
-                elif test: args.append('test')
-        else:
-            if format: args.append('fmt')
-            elif test: args.append('test')
-            else: args.append('run')
-            args.append(vars['file_name'])
+        if build is not None and cmd is None:
+            args.append('build')
+
+            if isinstance(build, dict):
+                step = build.get('step', '')
+                step_args = build.get('args', [])
+                if step != '': args.append(step)
+                if step_args != []:
+                    args.append('--')
+                    args.extend(step_args)
+            elif isinstance(build, list):
+                args.extend(build)
+            elif isinstance(build, str):
+                args.append(build)
+        elif cmd is not None:
+            if isinstance(cmd, list):
+                args.extend(cmd)
+            elif isinstance(cmd, str):
+                args.append(cmd)
+
+        args = sublime.expand_variables(args, vars)
 
         self.proc = subprocess.Popen(
             args,
