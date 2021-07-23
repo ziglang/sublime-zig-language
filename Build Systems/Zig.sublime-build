@@ -1,42 +1,45 @@
 {
     "target": "zig_build",
-    // "cancel": { "kill": true },
+    "cancel": { "kill": true },
     "selector": "source.zig",
     "keyfiles": ["build.zig"],
+    "build": {},
+
     "variants": [
         {
             "name": "Run File",
-            "run": true,
+            "cmd": ["run", "$file_name"],
         },
         {
             "name": "Run Project",
-            "run": true,
-            "project": true,
+            "build": {
+                "step": "run"
+            }
 
         },
         {
             "name": "Test File",
-            "test":true
+            "cmd": ["test", "$file_name"]
         },
         {
             "name": "Test Project",
-            "test": true,
-            "project": true,
+            "build": {
+                "step": "test"
+            }
         },
         {
             "name": "Format File",
-            "format": true,
+            "cmd": ["fmt", "$file_name"],
             "quiet": true,
         },
         {
             "name": "Format Project",
-            "format": true,
-            "project": true,
-            "quiet": true
+            "cmd": ["fmt", "$folder"],
+            "quiet": true,
         },
         {
             "name": "Build Project",
-            "project": true,
+            "build": {}
         },
     ]
 }
