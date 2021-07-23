@@ -12,5 +12,5 @@
     "zig.fmt.mode": "file",
 
     // automatically hide the build/fmt output panel 
-    "zig.quiet": true,
+    "zig.quiet": false,
 }

@@ -1,44 +1,42 @@
 {
-    "cmd": ["zig", "build"],
+    "target": "zig_build",
+    // "cancel": { "kill": true },
     "selector": "source.zig",
-    "working_dir": "$folder",
-    "file_regex": "^(\\S.*):(\\d*):(\\d*): (?:[^:]*): (.*)$",
-    "line_regex": "^(?:\\S.*):(\\d*):(\\d*): (?:[^:]*): (.*)$",
-
+    "keyfiles": ["build.zig"],
     "variants": [
         {
-            "cmd": ["zig", "run", "$file"],
-            "selector": "source.zig",
-            "name": "Run File"
+            "name": "Run File",
+            "run": true,
         },
         {
-            "cmd": ["zig", "test", "$file"],
-            "selector": "source.zig",
-            "name": "Test File"
+            "name": "Run Project",
+            "run": true,
+            "project": true,
+
         },
         {
-            "cmd": ["zig", "fmt", "$file"],
-            "selector": "source.zig",
+            "name": "Test File",
+            "test":true
+        },
+        {
+            "name": "Test Project",
+            "test": true,
+            "project": true,
+        },
+        {
             "name": "Format File",
+            "format": true,
             "quiet": true,
         },
         {
-            "cmd": ["zig", "build", "test"],
-            "selector": "source.zig",
-            "working_dir": "$folder",
-            "name": "Test Project"
-        },
-        {
-            "cmd": ["zig", "build"],
-            "selector": "source.zig",
-            "working_dir": "$folder",
-            "name": "Build Project"
-        },
-        {
-            "cmd": ["zig", "fmt", "$folder"],
-            "selector": "source.zig",
             "name": "Format Project",
+            "format": true,
+            "project": true,
             "quiet": true
+        },
+        {
+            "name": "Build Project",
+            "project": true,
         },
     ]
 }
