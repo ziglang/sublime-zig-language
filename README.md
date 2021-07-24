@@ -29,7 +29,7 @@ within Sublime Text.
 TextMate Installation
 ---------------------
 
-This language is also compatible with TextMate's `.tmBundle` format. To install in TextMate clone or download this repository. Then rename the repository directory to `Zig.tmBundle` and double-click it to install it into TextMate.
+This language is also compatible with TextMate's `.tmBundle` format. To install in TextMate clone or download this repository. Then rename the repository directory to `Zig.tmBundle` and double-click it to install it into TextMate. However, see [Zig.tmbundle](https://github.com/ziglang/Zig.tmbundle) for dedicated TextMate support.
 
 Local Development
 -----------------
@@ -47,6 +47,11 @@ to generate the other entries. Sublime Text will automatically reload the plugin
 
 
 On Linux, this is located under `~/.config/sublime-text-3/`.
+
+Build System
+------------
+
+The included Sublime Text build system comes with a few options for configuration and defining your own build targets. See [here](build.md) for more information.
 
 LICENSE
 -------
