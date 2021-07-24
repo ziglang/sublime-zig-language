@@ -104,11 +104,10 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
         self.proc = None
 
         self.show_errors_inline = True
+        self.phantom_sets_by_buffer = {}
         self.errs_by_file = {}
 
     def is_enabled(self, kill=False, **kwargs):
-        # The Cancel build option should only be available
-        # when the process is still running
         if kill:
             return (self.proc is not None) and self.proc.poll()
         return True
@@ -134,12 +133,12 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
             elif isinstance(cmd, str):
                 args.append(cmd)
 
-        args = sublime.expand_variables(args, vars)
+        return sublime.expand_variables(args, vars)
 
-    def run(self, cmd=None, build=None, quiet=False, kill=False, update_annotations_only=False):
-        if update_annotations_only:
+    def run(self, cmd=None, build=None, quiet=False, kill=False, update_phantoms_only=False):
+        if update_phantoms_only:
             if self.show_errors_inline:
-                self.update_annotations()
+                self.update_phantoms()
             return
 
         if kill and self.proc:
@@ -152,18 +151,10 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
         view = self.window.active_view()
         self.quiet = get_setting(view, 'zig.quiet', quiet)
 
-        # A lock is used to ensure only one thread is
-        # touching the output panel at a time
         with self.panel_lock:
             # Creating the panel implicitly clears any previous contents
             self.panel = self.window.create_output_panel('exec')
 
-            # Enable result navigation. The result_file_regex does
-            # the primary matching, but result_line_regex is used
-            # when build output includes some entries that only
-            # contain line/column info beneath a previous line
-            # listing the file info. The result_base_dir sets the
-            # path to resolve relative file names against.
             settings = self.panel.settings()
             settings.set(
                 'result_file_regex',
@@ -182,7 +173,7 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
             self.proc = None
 
         args = [get_setting(view, 'zig.executable', 'zig')]
-        ZigBuildCommand.handle_args(args, cmd, build, vars)
+        args = ZigBuildCommand.handle_args(args, cmd, build, vars)
 
         self.proc = None
         if not self.quiet:
@@ -193,25 +184,31 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
         if show_panel_on_build and not self.quiet:
             self.window.run_command('show_panel', {'panel': 'output.exec'})
 
-        self.hide_annotations()
+        self.hide_phantoms()
         self.show_errors_inline = get_setting(view, "show_errors_inline", True)
-        self.should_update_annotations = False
+        self.should_update_phantoms = False
 
         try:
             self.proc = AsyncProcess(args, working_dir, self)
             self.proc.start()
         except Exception as e:
-            self.write(str(e) + "\n")
+            self.write(None, str(e) + "\n")
             if not self.quiet:
-                self.write("[Finished]")
+                self.write(None, "[Finished]")
 
-    def write(self, data):
+    def write(self, proc, data):
         with self.panel_lock:
+            if proc != self.proc and proc:
+                # a second process is running
+                # and we don't want to pollute the output
+                proc.kill()
+                return
+
             # write to the panel
             self.panel.run_command('append', {'characters': data})
 
             # collect any errors
-            def annotations_check():
+            def phantoms_check():
                 errs = self.panel.find_all_results_with_text()
                 errs_by_file = {}
                 for file, line, column, text in errs:
@@ -220,24 +217,23 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
                     errs_by_file[file].append((line, column, text))
                 self.errs_by_file = errs_by_file
 
-                self.update_annotations()
-                self.should_update_annotations = False
+                self.update_phantoms()
+                self.should_update_phantoms = False
 
-            if not self.should_update_annotations:
+            if not self.should_update_phantoms:
                 if self.show_errors_inline and data.find('\n') >= 0:
-                    self.should_update_annotations = True
-                    sublime.set_timeout(lambda: annotations_check())
+                    self.should_update_phantoms = True
+                    sublime.set_timeout(lambda: phantoms_check())
 
     def on_data(self, proc, data):
         if proc != self.proc: return
-        self.write(data)
+        self.write(None, data)
 
     def on_finished(self, proc):
         if proc != self.proc:
-            print("bad!")
             return
 
-        if proc.killed: self.write("\n[Cancelled]")
+        if proc.killed: self.write(None, "\n[Cancelled]")
         elif not self.quiet:
             elapsed = time.time() - proc.start_time
             if elapsed < 1:
@@ -247,9 +243,9 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
 
             exit_code = proc.exit_code()
             if exit_code == 0 or exit_code is None:
-                self.write("[Finished in %s]" % elapsed_str)
+                self.write(None, "[Finished in %s]" % elapsed_str)
             else:
-                self.write("[Finished in %s with exit code %d]\n" %
+                self.write(None, "[Finished in %s with exit code %d]\n" %
                            (elapsed_str, exit_code))
 
         if proc.killed:
@@ -263,20 +259,36 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
                     sublime.status_message("Build finished with %d errors" %
                                            len(errs))
 
-    def update_annotations(self):
+    def update_phantoms(self):
         stylesheet = '''
             <style>
-                #annotation-error {
-                    background-color: color(var(--background) blend(#fff 95%));
+                div.error-arrow {
+                    border-top: 0.4rem solid transparent;
+                    border-left: 0.5rem solid color(var(--redish) blend(var(--background) 30%));
+                    width: 0;
+                    height: 0;
                 }
-                html.dark #annotation-error {
-                    background-color: color(var(--background) blend(#fff 95%));
+                div.error {
+                    padding: 0.4rem 0 0.4rem 0.7rem;
+                    margin: 0 0 0.2rem;
+                    border-radius: 0 0.2rem 0.2rem 0.2rem;
                 }
-                html.light #annotation-error {
-                    background-color: color(var(--background) blend(#000 85%));
+                div.error span.message {
+                    padding-right: 0.7rem;
                 }
-                a {
+                div.error a {
                     text-decoration: inherit;
+                    padding: 0.35rem 0.7rem 0.45rem 0.8rem;
+                    position: relative;
+                    bottom: 0.05rem;
+                    border-radius: 0 0.2rem 0.2rem 0;
+                    font-weight: bold;
+                }
+                html.dark div.error a {
+                    background-color: #00000018;
+                }
+                html.light div.error a {
+                    background-color: #ffffff18;
                 }
             </style>
         '''
@@ -284,13 +296,23 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
         for file, errs in self.errs_by_file.items():
             view = self.window.find_open_file(file)
             if view:
-                selection_set = []
-                content_set = []
+                buffer_id = view.buffer_id()
 
+                if buffer_id not in self.phantom_sets_by_buffer:
+                    phantom_set = sublime.PhantomSet(view, "exec")
+                    self.phantom_sets_by_buffer[buffer_id] = phantom_set
+                else:
+                    phantom_set = self.phantom_sets_by_buffer[buffer_id]
+
+                phantoms = []
+                region_set = []
                 line_err_set = []
 
+                # this probably could be optimized to do a single pass
                 for line, column, text in errs:
-                    pt = view.text_point(line - 1, column - 1)
+                    # this technically gives the of-by-1 column numbers
+                    # but when doing the actual rendering these look nicer
+                    pt = view.text_point(line - 1, column)
                     if (line_err_set and
                             line == line_err_set[len(line_err_set) - 1][0]):
                         line_err_set[len(line_err_set) - 1][1] += (
@@ -301,48 +323,53 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
                             pt_b = view.find_by_class(
                                 pt,
                                 forward=True,
-                                classes=(sublime.CLASS_WORD_END))
-                        if pt_b <= pt:
-                            pt_b = pt + 1
-                        selection_set.append(
-                            sublime.Region(pt, pt_b))
-                        line_err_set.append(
-                            [line, html.escape(text, quote=False)])
+                                classes=(sublime.CLASS_WORD_END)
+                            )
+                        if pt_b <= pt: pt_b = pt + 1
+                        region_set.append(sublime.Region(pt, pt_b))
+                        line_err_set.append([line, html.escape(text, quote=False)])
 
-                for text in line_err_set:
-                    content_set.append(
-                        '<body>' + stylesheet +
-                        '<div class="error" id=annotation-error>' +
-                        '<span class="content">' + text[1] + '</span></div>' +
-                        '</body>')
+                for region, text in zip(region_set, line_err_set):
+                    phantoms.append(sublime.Phantom(
+                        region,
+                        ('<body id=inline-error>' + stylesheet +
+                            '<div class="error-arrow"></div><div class="error">' +
+                            '<span class="message">' + text[1] + '</span>' +
+                            '<a href=hide>' + chr(0x00D7) + '</a></div>' +
+                            '</body>'),
+                        sublime.LAYOUT_BELOW,
+                        on_navigate=self.on_phantom_navigate
+                    ))
+                phantom_set.update(phantoms)
 
-                view.add_regions(
-                    "exec",
-                    selection_set,
-                    scope="invalid",
-                    annotations=content_set,
-                    flags=(sublime.DRAW_SQUIGGLY_UNDERLINE |
-                           sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE),
-                    on_close=self.hide_annotations)
-
-    def hide_annotations(self):
+    def hide_phantoms(self):
         for window in sublime.windows():
             for file, errs in self.errs_by_file.items():
                 view = window.find_open_file(file)
                 if view:
-                    view.erase_regions('exec')
+                    view.erase_phantoms("exec")
+                    view.erase_regions("exec")
                     view.hide_popup()
 
         view = sublime.active_window().active_view()
         if view:
-            view.erase_regions('exec')
+            view.erase_phantoms("exec")
+            view.erase_regions("exec")
             view.hide_popup()
 
         self.errs_by_file = {}
+        self.phantom_sets_by_buffer = {}
         self.show_errors_inline = False
 
+    def on_phantom_navigate(self, url):
+        self.hide_phantoms()
 
 class Zig(sublime_plugin.EventListener):
+    def on_load_async(self, view):
+        w = view.window()
+        if w is not None:
+            w.run_command('zig_build', {'update_phantoms_only': True})
+
     def on_post_save_async(self, view):
         sel = view.sel()[0]
         region = view.word(sel)
@@ -353,9 +380,10 @@ class Zig(sublime_plugin.EventListener):
             is_quiet = get_setting(view, 'zig.quiet', True)
 
             if (should_fmt):
-                mode = get_setting(view, 'zig.fmt.mode', 'File').title()
-                view.window().run_command('build', {'variant': 'Format ' + mode})
+                mode = get_setting(view, 'zig.fmt.mode', 'file').lower()
+                mode = '$file' if mode == 'file' else '$folder'
+                view.window().run_command('zig_build', {"cmd": ["fmt", mode], "quiet": True})
             if (should_build):
-                view.window().run_command('build')
+                view.window().run_command('zig_build')
             if (is_quiet):
                 view.window().run_command("hide_panel")
