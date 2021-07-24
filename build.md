@@ -1,6 +1,6 @@
 # Build System
 The build system provided for Sublime Text depends on `zig` being either in your path or the `zig.executable` setting. The build system comes with predefined build targets for running, testing, and formatting single files or whole projects that use a `build.zig`. If for whatever reason you would want to extend these build targets or add your own (e.g. your own `.sublime-project` file), the following shows all the options available:
-```json
+```js
 {
 	// .sublime-project
 
