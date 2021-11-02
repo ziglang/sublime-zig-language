@@ -146,7 +146,10 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
             return
 
         vars = self.window.extract_variables()
-        working_dir = vars.get('file_path', vars['folder'])
+        if build:
+            working_dir = vars['folder']
+        else:
+            working_dir = vars.get('file_path', vars['folder'])
 
         view = self.window.active_view()
         self.quiet = get_setting(view, 'zig.quiet', quiet)
