@@ -149,7 +149,7 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
         working_dir = vars.get('file_path', vars['folder'])
 
         view = self.window.active_view()
-        self.quiet = get_setting(view, 'zig.quiet', quiet)
+        self.quiet = quiet or get_setting(view, 'zig.quiet', quiet)
 
         with self.panel_lock:
             # Creating the panel implicitly clears any previous contents
