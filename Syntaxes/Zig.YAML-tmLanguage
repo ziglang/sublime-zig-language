@@ -80,16 +80,16 @@ repository:
   container_decl:
     patterns:
       - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:union)\s*[(\{])'
-        name: entity.name.union.zig
+        name: entity.name.type.zig entity.name.union.zig
 
       - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:struct)\s*[(\{])'
-        name: entity.name.struct.zig
+        name: entity.name.type.zig entity.name.struct.zig
 
       - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:enum)\s*[(\{])'
-        name: entity.name.enum.zig
+        name: entity.name.type.zig entity.name.enum.zig
 
       - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:error)\s*[(\{])'
-        name: entity.name.error.zig
+        name: entity.name.type.zig entity.name.error.zig
 
       - match: '\b(error)(\.)([a-zA-Z_]\w*|@\".+\")'
         captures:

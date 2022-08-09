@@ -194,25 +194,25 @@
 					<key>match</key>
 					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:union)\s*[(\{])</string>
 					<key>name</key>
-					<string>entity.name.union.zig</string>
+					<string>entity.name.type.zig entity.name.union.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:struct)\s*[(\{])</string>
 					<key>name</key>
-					<string>entity.name.struct.zig</string>
+					<string>entity.name.type.zig entity.name.struct.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:enum)\s*[(\{])</string>
 					<key>name</key>
-					<string>entity.name.enum.zig</string>
+					<string>entity.name.type.zig entity.name.enum.zig</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:error)\s*[(\{])</string>
 					<key>name</key>
-					<string>entity.name.error.zig</string>
+					<string>entity.name.type.zig entity.name.error.zig</string>
 				</dict>
 				<dict>
 					<key>captures</key>
