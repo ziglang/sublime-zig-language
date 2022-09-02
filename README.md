@@ -1,40 +1,38 @@
 Zig Language
 ============
 
-Syntax highlighting for [Zig](http://ziglang.org/).
+Syntax highlighting for [Zig](http://ziglang.org/)
+for [Sublime Text](sublimetext.com/) editor.
+Use [Package control](https://packagecontrol.io) to install this.
 
-This repository serves both as the grammar for
-[github/linguist](https://github.com/github/linguist) (Github's site wide
-syntax highlighting) and as a standalone Sublime Text package.
+The two syntaxes
+----------------
 
-The source of truth is `Zig.YAML-tmLanguage`. This file is read by linguist
-directly and used as the source to compile to `Zig.tmLanguage` using
-[PackageDev](https://github.com/SublimeText/PackageDev) from within Sublime. Do
-not edit `Zig.tmLanguage` directly.
+Sublime Text 3 and above uses the `.sublime-syntax` file.
+This is the one you should edit to improve Sublime Text support.
+See [official docs](http://www.sublimetext.com/docs/3/syntax.html)
 
-Installation
+This repository also contains a `.tmLanguage` syntax for old versions of Sublime Text or TextMate.
+This file is also used by **Github's syntax highlighting**:
+[Github Linguist](https://github.com/github/linguist).
+
+
+Sublime text Installation
 -----------
 
-Use [Package control](https://packagecontrol.io).
+Use [Package control](https://packagecontrol.io) to install this.
 
-Or add `Zig.tmLanguage` to the packages directory. On OSX This is usually
-
-```
-~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
-```
-
-But to find the path on your machine go to `Preferences > Browse Packages` from
-within Sublime Text.
 
 TextMate Installation
 ---------------------
 
-This language is also compatible with TextMate's `.tmBundle` format. To install in TextMate clone or download this repository. Then rename the repository directory to `Zig.tmBundle` and double-click it to install it into TextMate. However, see [Zig.tmbundle](https://github.com/ziglang/Zig.tmbundle) for dedicated TextMate support.
+The `Zig.tmLanguage` is also compatible with TextMate. 
+To install in TextMate clone or download this repository. 
+Then rename the repository directory to `Zig.tmBundle` and double-click it to install it into TextMate. 
+However, see [Zig.tmbundle](https://github.com/ziglang/Zig.tmbundle) for dedicated TextMate support.
 
 Local Development
 -----------------
-
-Install https://github.com/SublimeText/PackageDev.
 
 Clone or copy this repository to your local Sublime Text folder. e.g.
 
@@ -42,11 +40,21 @@ Clone or copy this repository to your local Sublime Text folder. e.g.
 git clone https://github.com/ziglang/sublime-zig-language.git "/Users/$USER/Library/Application Support/Sublime Text 3/Packages/Zig Language"
 ```
 
-Edit the YAML entry and use the `Convert (YAML, JSON, PList) to...` command
-to generate the other entries. Sublime Text will automatically reload the plugin, showing changes in the build system, syntax highlighting, etc.
+For working on ST3+ support, you can edit the `.sublime-syntax` directly.
+But installing [PackageDev](https://packagecontrol.io/packages/PackageDev)
+will provide some syntax highlighting.
+You can run the tests in [syntax_test.zig](./Syntaxes/syntax_test.zig)
+with the "Syntax Tests" builtin build system.
+Sublime Text will automatically reload the syntax on save.
+If you have a big Zig project open this can make your CPU spin while Sublime reindex everything.
 
 
-On Linux, this is located under `~/.config/sublime-text-3/`.
+For working on the old `.tmLanguage` syntax, work on the `Zig.YAML-tmLanguage` file.
+**Important** Github Linguist's source of truth is `Zig.YAML-tmLanguage`. 
+Work on `Zig.YAML-tmLanguage` the use PackageDev command: `Convert (YAML, JSON, PList) to...`
+to generate the `.tmLanguage`.
+Sublime Text should also automatically reload the plugin, but doesn't have unit tests for `tmLanguage`.
+
 
 Build System
 ------------
