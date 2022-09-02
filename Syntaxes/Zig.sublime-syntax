@@ -87,13 +87,13 @@ contexts:
       scope: constant.numeric.float.hexadecimal.zig
   container_decl:
     - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:union)\s*[(\{])'
-      scope: entity.name.union.zig
+      scope: entity.name.class.union.zig
     - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:struct)\s*[(\{])'
-      scope: entity.name.struct.zig
+      scope: entity.name.class.struct.zig
     - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:enum)\s*[(\{])'
-      scope: entity.name.enum.zig
+      scope: entity.name.class.enum.zig
     - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:error)\s*[(\{])'
-      scope: entity.name.error.zig
+      scope: entity.name.class.error.zig
     - match: '\b(error)(\.)([a-zA-Z_]\w*|@\".+\")'
       captures:
         1: storage.type.error.zig
@@ -117,7 +117,7 @@ contexts:
         - include: main
   function_call:
     - match: '\b([a-zA-Z_]\w*|@\".+\")(?=\s*\()'
-      scope: variable.function.zig
+      scope: meta.function-call.zig variable.function.zig
   function_def:
     - match: '\b(fn)\s+([a-zA-Z_]\w*|@\".+\")(\()'
       captures:
