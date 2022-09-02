@@ -180,8 +180,8 @@ a.*
 a || b
 
     test "tests" {
-//  ^^^^ storage.type.test.zig
-//       ^^^^^^^ string.quoted.double.zig
+//  ^^^^ storage.type.zig keyword.declaration.test.zig
+//  ^^^^^^^^^^^^ entity.name.function.test.zig
 //               ^ punctuation.section.braces.begin.zig
     }
 //  ^ punctuation.section.braces.end.zig
