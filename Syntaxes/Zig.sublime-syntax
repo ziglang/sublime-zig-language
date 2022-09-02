@@ -121,7 +121,7 @@ contexts:
   function_def:
     - match: '\b(fn)\s+([a-zA-Z_]\w*|@\".+\")(\()'
       captures:
-        1: storage.type.function.zig
+        1: keyword.declaration.function.zig
         2: entity.name.function
         3: punctuation.section.parens.begin.zig
       push:
@@ -147,7 +147,7 @@ contexts:
   function_type:
     - match: \b(fn)\s*(\()
       captures:
-        1: storage.type.function.zig
+        1: keyword.declaration.function.zig
         2: punctuation.section.parens.begin.zig
       push:
         - meta_content_scope: meta.function.parameters.zig
@@ -234,19 +234,19 @@ contexts:
   storage:
     - match: '\b(anyframe)\b\s*(->)?\s*(?:([a-zA-Z_][\w.]*|@\".+\")\b(?!\s*\())?'
       captures:
-        1: storage.type.zig
+        1: keyword.declaration.anyframe.zig
         2: keyword.operator.zig
-        3: storage.type.zig
+        3: keyword.declaration.zig
     - match: \btest\b
-      scope: storage.type.test.zig
+      scope: keyword.declaration.test.zig
     - match: \bstruct\b
-      scope: storage.type.struct.zig
+      scope: keyword.declaration.struct.zig
     - match: \benum\b
-      scope: storage.type.enum.zig
+      scope: keyword.declaration.enum.zig
     - match: \bunion\b
-      scope: storage.type.union.zig
+      scope: keyword.declaration.union.zig
     - match: \berror\b
-      scope: storage.type.error.zig
+      scope: keyword.declaration.error.zig
   storage_modifier:
     - match: \b(const|var|extern|packed|export|pub|noalias|inline|noinline|comptime|volatile|align|linksection|threadlocal|allowzero)\b
       scope: storage.modifier.zig
@@ -280,10 +280,10 @@ contexts:
       scope: variable.constant.zig
 
     - match: '\b[_a-zA-Z][_a-zA-Z0-9]*_t\b'
-      scope: entity.name.type.zig
+      scope: storage.type.zig
 
     - match: '\b[A-Z][a-zA-Z0-9]*\b'
-      scope: entity.name.type.zig
+      scope: storage.type.zig
 
     - match: '\b[_a-zA-Z][_a-zA-Z0-9]*\b'
       scope: variable.zig
@@ -292,6 +292,6 @@ contexts:
     - match: \b(test)\b\s+(\")(.*)(\")
       captures:
         0: entity.name.function.test.zig
-        1: storage.type.zig keyword.declaration.test.zig
+        1: keyword.declaration.test.zig
         2: punctuation.string.start.zig
         4: punctuation.string.end.zig
