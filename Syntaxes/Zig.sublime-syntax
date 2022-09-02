@@ -7,7 +7,25 @@ file_extensions:
 scope: source.zig
 contexts:
   main:
-    - include: dummy_main
+    - include: label
+    - include: function_type
+    - include: punctuation
+    - include: storage_modifier
+    - include: container_decl
+    - include: constants
+    - include: comments
+    - include: strings
+    - include: test
+    - include: storage
+    - include: keywords
+    - include: operators
+    - include: support
+    - include: field_decl
+    - include: block
+    - include: function_def
+    - include: function_call
+    - include: enum_literal
+    - include: variables
   block:
     - match: '([a-zA-Z_][\w.]*|@\".+\")?\s*(\{)'
       captures:
@@ -18,7 +36,7 @@ contexts:
           captures:
             1: punctuation.section.braces.end.zig
           pop: true
-        - include: dummy_main
+        - include: main
   character_escapes:
     - match: \\n
       scope: constant.character.escape.newline.zig
@@ -81,25 +99,6 @@ contexts:
         1: storage.type.error.zig
         2: punctuation.accessor.zig
         3: entity.name.error.zig
-  dummy_main:
-    - include: label
-    - include: function_type
-    - include: punctuation
-    - include: storage_modifier
-    - include: container_decl
-    - include: constants
-    - include: comments
-    - include: strings
-    - include: storage
-    - include: keywords
-    - include: operators
-    - include: support
-    - include: field_decl
-    - include: block
-    - include: function_def
-    - include: function_call
-    - include: enum_literal
-    - include: variables
   enum_literal:
     - match: '(^|\s+)(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
       scope: constant.language.enum
@@ -115,7 +114,7 @@ contexts:
             2: punctuation.separator.zig
             3: keyword.operator.assignment.zig
           pop: true
-        - include: dummy_main
+        - include: main
   function_call:
     - match: '\b([a-zA-Z_]\w*|@\".+\")(?=\s*\()'
       scope: variable.function.zig
@@ -133,7 +132,7 @@ contexts:
         - match: '\)'
           scope: punctuation.section.parens.end.zig
           set: function_def_after_params
-        - include: dummy_main
+        - include: main
   function_def_after_params:
     # TODO: be more precise here
     - match: '\s*([a-zA-Z_][\w.]*|@\".+\")?(!)?\s*(?:([a-zA-Z_][\w.]*|@\".+\")\b(?!\s*\())?'
@@ -159,7 +158,7 @@ contexts:
         - match: '\)'
           scope: punctuation.section.parens.end.zig
           set: function_type_after_params
-        - include: dummy_main
+        - include: main
   function_type_after_params:
     # TODO: Can we merge with function_def_after_params ? It seems similar.
     - match: '\s*([a-zA-Z_][\w.]*|@\".+\")?\s*(!)?\s*([a-zA-Z_][\w.]*|@\".+\")'
@@ -217,7 +216,7 @@ contexts:
             2: punctuation.separator.zig
             3: punctuation.section.parens.end.zig
           pop: true
-        - include: dummy_main
+        - include: main
         - match: '([a-zA-Z_][\w.]*|@\".+\")'
           scope: storage.type.zig
   punctuation:
@@ -286,3 +285,10 @@ contexts:
     - match: '\b[_a-zA-Z][_a-zA-Z0-9]*\b'
       scope: variable.zig
 
+  test:
+    - match: \b(test)\b\s+(\")(.*)(\")
+      captures:
+        0: entity.name.function.test.zig
+        1: storage.type.zig keyword.declaration.test.zig
+        2: punctuation.string.start.zig
+        4: punctuation.string.end.zig
