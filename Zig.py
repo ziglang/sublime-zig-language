@@ -158,7 +158,7 @@ class ZigBuildCommand(sublime_plugin.WindowCommand, ProcessSink):
             settings = self.panel.settings()
             settings.set(
                 'result_file_regex',
-                r'^(?:.\/)(\S.*):(\d*):(\d*): (?:[^:]*): (.*)$'
+                r'^(?:.\/)?(\S.*):(\d*):(\d*): (?:[^:]*): (.*)$'
             )
             settings.set(
                 'result_line_regex',
