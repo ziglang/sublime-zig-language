@@ -213,7 +213,7 @@ repository:
         match: '\b(?<!\.)([iu]\d+|[iu]size|comptime_int)\b'
 
       - name: storage.type.float.zig
-        match: '\b(f16|f32|f64|f128|comptime_float)\b'
+        match: '\b(f16|f32|f64|f80|f128|c_longdouble|comptime_float)\b'
 
       - name: storage.type.c_compat.zig
         match: '\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b'
