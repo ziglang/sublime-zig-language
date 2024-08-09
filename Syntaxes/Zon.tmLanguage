@@ -588,7 +588,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>((?:(?:\+|-|\*)\%?|/|%|&lt;&lt;|&gt;&gt;|&amp;|\|(?=[^\|])|\^)?=)</string>
+					<string>((?:(?:\+|-|\*)\%?|/|%|&lt;&lt;|&gt;&gt;|\|(?=[^\|])|\^)?=)</string>
 					<key>name</key>
 					<string>keyword.operator.assignment.zon</string>
 				</dict>
@@ -600,13 +600,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(&lt;&lt;|&gt;&gt;|&amp;(?=[a-zA-Z_]|@\")|\|(?=[^\|])|\^|~)</string>
+					<string>(&lt;&lt;|&gt;&gt;|\|(?=[^\|])|\^|~)</string>
 					<key>name</key>
 					<string>keyword.operator.bitwise.zon</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(\+\+|\*\*|-&gt;|\.\?|\.\*|&amp;(?=[a-zA-Z_]|@\")|\?|\|\||\.{2,3})</string>
+					<string>(\+\+|\*\*|-&gt;|\.\?|\.\*|\?|\|\||\.{2,3})</string>
 					<key>name</key>
 					<string>keyword.operator.other.zon</string>
 				</dict>

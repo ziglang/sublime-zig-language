@@ -182,13 +182,13 @@ contexts:
       scope: keyword.operator.logical.zon
     - match: \b(and|or)\b
       scope: keyword.operator.word.zon
-    - match: '((?:(?:\+|-|\*)\%?|/|%|<<|>>|&|\|(?=[^\|])|\^)?=)'
+    - match: '((?:(?:\+|-|\*)\%?|/|%|<<|>>|\|(?=[^\|])|\^)?=)'
       scope: keyword.operator.assignment.zon
     - match: ((?:\+|-|\*)\%?|/(?!/)|%)
       scope: keyword.operator.arithmetic.zon
-    - match: '(<<|>>|&(?=[a-zA-Z_]|@\")|\|(?=[^\|])|\^|~)'
+    - match: '(<<|>>|\|(?=[^\|])|\^|~)'
       scope: keyword.operator.bitwise.zon
-    - match: '(\+\+|\*\*|->|\.\?|\.\*|&(?=[a-zA-Z_]|@\")|\?|\|\||\.{2,3})'
+    - match: '(\+\+|\*\*|->|\.\?|\.\*|\?|\|\||\.{2,3})'
       scope: keyword.operator.other.zon
   param_list:
     - match: '([a-zA-Z_]\w*|@\".+\")\s*(:)\s*'

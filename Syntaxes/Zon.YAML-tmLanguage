@@ -195,16 +195,16 @@ repository:
         match: '\b(and|or)\b'
 
       - name: keyword.operator.assignment.zon
-        match: '((?:(?:\+|-|\*)\%?|/|%|<<|>>|&|\|(?=[^\|])|\^)?=)'
+        match: '((?:(?:\+|-|\*)\%?|/|%|<<|>>|\|(?=[^\|])|\^)?=)'
 
       - name: keyword.operator.arithmetic.zon
         match: '((?:\+|-|\*)\%?|/(?!/)|%)'
 
       - name: keyword.operator.bitwise.zon
-        match: '(<<|>>|&(?=[a-zA-Z_]|@\")|\|(?=[^\|])|\^|~)'
+        match: '(<<|>>|\|(?=[^\|])|\^|~)'
 
       - name: keyword.operator.other.zon
-        match: '(\+\+|\*\*|->|\.\?|\.\*|&(?=[a-zA-Z_]|@\")|\?|\|\||\.{2,3})'
+        match: '(\+\+|\*\*|->|\.\?|\.\*|\?|\|\||\.{2,3})'
   
   support:
     name: support.function.zon
