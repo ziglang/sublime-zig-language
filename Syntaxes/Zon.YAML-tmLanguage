@@ -1,0 +1,390 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+# [PackageDev] target_format: json, ext: tmLanguage.json
+
+name: Zon
+uuid: 06C2FF99-3080-441A-9019-460C51E93116
+scopeName: source.zon
+fileTypes:
+  - zon
+
+patterns:
+  - include: '#dummy_main'
+
+repository:
+  character_escapes:
+    patterns:
+      - name: constant.character.escape.newline.zon
+        match: \\n
+      - name: constant.character.escape.carrigereturn.zon
+        match: \\r
+      - name: constant.character.escape.tabulator.zon
+        match: \\t
+      - name: constant.character.escape.backslash.zon
+        match: \\\\
+      - name: constant.character.escape.single-quote.zon
+        match: \\'
+      - name: constant.character.escape.double-quote.zon
+        match: \\\"
+      - name: constant.character.escape.hexidecimal.zon
+        match: \\x[a-fA-F\d]{2}
+      - name: constant.character.escape.hexidecimal.zon
+        match: \\u\{[a-fA-F\d]{1,6}\}
+
+  param_list:
+    begin: '([a-zA-Z_]\w*|@\".+\")\s*(:)\s*'
+    beginCaptures:
+      '1':
+        name: variable.parameter.zon
+      '2':
+        name: punctuation.separator.zon
+
+    end: '([a-zA-Z_][\w.]*|@\".+\")?\s*(?:(,)|(\)))'
+    endCaptures:
+      '1':
+        name: storage.type.zon
+      '2':
+        name: punctuation.separator.zon
+      '3':
+        name: punctuation.section.parens.end.zon
+
+    patterns:
+      - include: '#dummy_main'
+
+      - match: '([a-zA-Z_][\w.]*|@\".+\")'
+        name: storage.type.zon
+
+  field_decl:
+    begin: '([a-zA-Z_]\w*|@\".+\")\s*(:)\s*'
+    beginCaptures:
+      '1':
+        name: variable.other.member.zon
+      '2':
+        name: punctuation.separator.zon
+
+    end: '([a-zA-Z_][\w.]*|@\".+\")?\s*(?:(,)|(=)|$)'
+    endCaptures:
+      '1':
+        name: storage.type.zon
+      '2':
+        name: punctuation.separator.zon
+      '3':
+        name: keyword.operator.assignment.zon
+
+    patterns:
+      - include: '#dummy_main'
+
+  storage_modifier:
+    name: storage.modifier.zon
+    match: '\b(const|var|extern|packed|export|pub|noalias|inline|noinline|comptime|volatile|align|linksection|threadlocal|allowzero)\b'
+
+  container_decl:
+    patterns:
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:union)\s*[(\{])'
+        name: entity.name.union.zon
+
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:struct)\s*[(\{])'
+        name: entity.name.struct.zon
+
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:extern|packed)?\b\s*(?:enum)\s*[(\{])'
+        name: entity.name.enum.zon
+
+      - match: '\b(?!\d)([a-zA-Z_]\w*|@\".+\")?(?=\s*=\s*(?:error)\s*[(\{])'
+        name: entity.name.error.zon
+
+      - match: '\b(error)(\.)([a-zA-Z_]\w*|@\".+\")'
+        captures:
+          '1':
+            name: storage.type.error.zon
+          '2':
+            name: punctuation.accessor.zon
+          '3':
+            name: entity.name.error.zon
+  
+  constants:
+    patterns:
+      - name: constant.language.zon
+        match: '\b(null|undefined|true|false)\b'
+
+      - name: constant.numeric.integer.zon
+        match: '\b(?<!\.)(-?[\d_]+)(?!\.)\b'
+
+      - name: constant.numeric.integer.hexadecimal.zon
+        match: '\b(?<!\.)(0x[a-fA-F\d_]+)(?!\.)\b'
+
+      - name: constant.numeric.integer.octal.zon
+        match: '\b(?<!\.)(0o[0-7_]+)(?!\.)\b'
+
+      - name: constant.numeric.integer.binary.zon
+        match: '\b(?<!\.)(0b[01_]+)(?!\.)\b'
+
+      - name: constant.numeric.float.zon
+        match: '(?<!\.)(-?\b[\d_]+(?:\.[\d_]+)?(?:[eE][+-]?[\d_]+)?)(?!\.)\b'
+
+      - name: constant.numeric.float.hexadecimal.zon
+        match: '(?<!\.)(-?\b0x[a-fA-F\d_]+(?:\.[a-fA-F\d_]+)?[pP]?(?:[+-]?[\d_]+)?)(?!\.)\b'
+
+      - name: constant.numeric.nan.zon
+        match: 'nan'
+
+      - name: constant.numeric.inf.zon
+        match: "inf"
+
+  comments:
+    patterns:
+      - name: comment.line.documentation.zon
+        begin: '///'
+        end: '$\n?'
+
+      - name: comment.line.todo.zon
+        begin: '//[^/]\s*TODO'
+        end: '$\n?'
+
+      - name: comment.line.zon
+        begin: '//[^/]*'
+        end: '$\n?'
+
+
+  strings:
+    patterns:
+      - name: string.quoted.single.zon
+        begin: \'
+        end: \'
+        patterns:
+          - include: '#character_escapes'
+          - name: invalid.illegal.character.zon
+            match: \\[^\'][^\']*?
+        
+      - name: string.quoted.double.zon
+        begin: c?\"
+        end: \"
+        patterns:
+          - include: '#character_escapes'
+          - name: invalid.illegal.character.zon
+            match: \\[^\'][^\']*?
+
+      - name: string.quoted.other.zon
+        begin: c?\\\\
+        end: $\n?
+
+  keywords:
+    patterns:
+    - name: keyword.control.zon
+      match: '\b(while|for|break|return|continue|asm|defer|errdefer|unreachable)\b'
+
+    - name: keyword.control.async.zon
+      match: '\b(async|await|suspend|nosuspend|resume)\b'
+
+    - name: keyword.control.conditional.zon
+      match: '\b(if|else|switch|try|catch|orelse)\b'
+
+    - name: keyword.control.import.zon
+      match: '(?<!\w)(@import|@cImport|@cInclude)\b'
+
+    - name: keyword.other.usingnamespace.zon
+      match: '\b(usingnamespace)\b'
+
+  operators:
+    patterns:
+      - name: keyword.operator.zon
+        match: '\b!\b'
+
+      - name: keyword.operator.logical.zon
+        match: '(==|(?:!|>|<)=?)'
+
+      - name: keyword.operator.word.zon
+        match: '\b(and|or)\b'
+
+      - name: keyword.operator.assignment.zon
+        match: '((?:(?:\+|-|\*)\%?|/|%|<<|>>|&|\|(?=[^\|])|\^)?=)'
+
+      - name: keyword.operator.arithmetic.zon
+        match: '((?:\+|-|\*)\%?|/(?!/)|%)'
+
+      - name: keyword.operator.bitwise.zon
+        match: '(<<|>>|&(?=[a-zA-Z_]|@\")|\|(?=[^\|])|\^|~)'
+
+      - name: keyword.operator.other.zon
+        match: '(\+\+|\*\*|->|\.\?|\.\*|&(?=[a-zA-Z_]|@\")|\?|\|\||\.{2,3})'
+  
+  support:
+    name: support.function.zon
+    match: '(?<!\w)@[^\"\d][a-zA-Z_]\w*\b'
+
+  storage:
+    patterns:
+      - name: storage.type.zon
+        match: '\b(bool|void|noreturn|type|anyerror|anytype)\b'
+
+      - name: storage.type.integer.zon
+        match: '\b(?<!\.)([iu]\d+|[iu]size|comptime_int)\b'
+
+      - name: storage.type.float.zon
+        match: '\b(f16|f32|f64|f128|comptime_float)\b'
+
+      - name: storage.type.c_compat.zon
+        match: '\b(c_short|c_ushort|c_int|c_uint|c_long|c_ulong|c_longlong|c_ulonglong|c_longdouble|c_void)\b'
+
+      - match: '\b(anyframe)\b\s*(->)?\s*(?:([a-zA-Z_][\w.]*|@\".+\")\b(?!\s*\())?'
+        captures: 
+          '1':
+            name: storage.type.zon
+          '2':
+            name: keyword.operator.zon
+          '3':
+            name: storage.type.zon
+
+      - name: storage.type.function.zon
+        match: '\bfn\b'
+
+      - name: storage.type.test.zon
+        match: '\btest\b'
+
+      - name: storage.type.struct.zon
+        match: '\bstruct\b'
+
+      - name: storage.type.enum.zon
+        match: '\benum\b'
+
+      - name: storage.type.union.zon
+        match: '\bunion\b'
+
+      - name: storage.type.error.zon
+        match: '\berror\b'
+
+  punctuation:
+    patterns:
+      - name: punctuation.separator.zon
+        match: ','
+
+      - name: punctuation.terminator.zon
+        match: ';'
+
+      - match: '(\()'
+        name: punctuation.section.parens.begin.zon
+
+      - match: '(\))'
+        name: punctuation.section.parens.end.zon
+
+  label:
+    match: '\b(break|continue)\s*:\s*([a-zA-Z_]\w*|@\".+\")\b|\b(?!\d)([a-zA-Z_]\w*|@\".+\")\b(?=\s*:\s*(?:\{|while\b))'
+    captures:
+      '1':
+        name: keyword.control.zon
+      '2':
+        name: entity.name.label.zon
+      '3':
+        name: entity.name.label.zon
+
+  block:
+    begin: '([a-zA-Z_][\w.]*|@\".+\")?\s*(\{)'
+    beginCaptures:
+      '1':
+        name: storage.type.zon
+      '2':
+        name: punctuation.section.braces.begin.zon
+
+    end: '(\})'
+    endCaptures:
+      '1':
+        name: punctuation.section.braces.end.zon
+
+    patterns:
+      - include: '#dummy_main'
+
+  function_def:
+    begin: '(?<=fn)\s+([a-zA-Z_]\w*|@\".+\")(\()'
+    beginCaptures:
+      '1':
+        name: entity.name.function
+      '2':
+        name: punctuation.section.parens.begin.zon
+
+    end: '(?<=\)[^\)])\s*([a-zA-Z_][\w.]*|@\".+\")?(!)?\s*(?:([a-zA-Z_][\w.]*|@\".+\")\b(?!\s*\())?'
+    endCaptures:
+      '1':
+        name: storage.type.zon
+      '2':
+        name: keyword.operator.zon
+      '3':
+        name: storage.type.zon
+
+    patterns:
+      - include: '#label'
+      - include: '#param_list'
+
+      - match: '([a-zA-Z_][\w.]*|@\".+\")'
+        name: storage.type.zon
+
+      - include: '#dummy_main'
+
+  function_call:
+    name: variable.function.zon
+    match: '(?<!fn)\b([a-zA-Z_]\w*|@\".+\")(?=\s*\()'
+
+  function_type:
+    begin: '\b(fn)\s*(\()'
+    beginCaptures:
+      '1':
+        name: storage.type.function.zon
+      '2':
+        name: punctuation.section.parens.begin.zon
+
+    contentName: meta.function.parameters.zon
+
+    end: '(?<=\)|\})\s*([a-zA-Z_][\w.]*|@\".+\")?\s*(!)?\s*([a-zA-Z_][\w.]*|@\".+\")'
+    endCaptures:
+      '1':
+        name: storage.type.zon
+      '2':
+        name: keyword.operator.zon
+      '3':
+        name: storage.type.zon
+
+    patterns:
+      - include: '#label'
+      - include: '#param_list'
+
+      - match: '([a-zA-Z_][\w.]*|@\".+\")'
+        name: storage.type.zon
+
+      - include: '#dummy_main'
+
+  enum_literal:
+    match: '(?<!\w|\)|\?|\}|\]|\*)(\.(?:[a-zA-Z_]\w*\b|@\"[^\"]*\"))(?!\(|\s*=[^=>])'
+    name: constant.language.enum
+
+  variables:
+    name: meta.variable.zon
+    patterns:
+      - match: '\b[_A-Z][_A-Z0-9]+\b'
+        name: variable.constant.zon
+
+      - match: '\b[_a-zA-Z][_a-zA-Z0-9]*_t\b'
+        name: entity.name.type.zon
+
+      - match: '\b[A-Z][a-zA-Z0-9]*\b'
+        name: entity.name.type.zon
+
+      - match: '\b[_a-zA-Z][_a-zA-Z0-9]*\b'
+        name: variable.zon
+
+  dummy_main:
+    patterns:
+      - include: '#label'
+      - include: '#function_type'
+      - include: '#punctuation'
+      - include: '#storage_modifier'
+      - include: '#container_decl'
+      - include: '#constants'
+      - include: '#comments'
+      - include: '#strings'
+      - include: '#storage'
+      - include: '#keywords'
+      - include: '#operators'
+      - include: '#support'
+      - include: '#field_decl'
+      - include: '#block'
+      - include: '#function_def'
+      - include: '#function_call'
+      - include: '#enum_literal'
+      - include: '#variables'
