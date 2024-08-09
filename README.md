@@ -1,5 +1,8 @@
-Zig Language
+Zig Language (unofficial fork)
 ============
+
+Note: I noticed that [http://github.com/ziglang/sublime-zig-language](http://github.com/ziglang/sublime-zig-language)
+was unmaintained - I'm trying to make a fork to maintain with the hope of upstreaming over time.
 
 Syntax highlighting for [Zig](http://ziglang.org/).
 
