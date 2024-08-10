@@ -6,7 +6,7 @@
     "zig.build.on_save": false,
     
     // automatically format the file/project on save
-    "zig.fmt.on_save": true,
+    "zig.fmt.on_save": false,
 
     // format either file or project. the only valid options are "file" or "project"
     "zig.fmt.mode": "file",
