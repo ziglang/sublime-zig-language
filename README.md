@@ -55,8 +55,3 @@ Build System
 ------------
 
 The included Sublime Text build system comes with a few options for configuration and defining your own build targets. See [here](build.md) for more information.
-
-LICENSE
--------
-
-Provided under an MIT License
