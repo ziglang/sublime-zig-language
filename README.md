@@ -23,7 +23,7 @@ Use [Package control](https://packagecontrol.io).
 Or add `Zig.tmLanguage` to the packages directory. On OSX This is usually
 
 ```
-~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
+~/Library/Application\ Support/Sublime\ Text/
 ```
 
 But to find the path on your machine go to `Preferences > Browse Packages` from
