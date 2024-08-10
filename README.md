@@ -1,30 +1,23 @@
-Zig Language (unofficial fork)
-============
+[Zig](http://ziglang.org/) syntax highlighting for [Sublime Text](sublimetext.com/).
+==
 
-Note: I noticed that [http://github.com/ziglang/sublime-zig-language](http://github.com/ziglang/sublime-zig-language)
-was unmaintained - I'm trying to make a fork to maintain with the hope of upstreaming over time.
+Note: This is *not* the official package. That is [here](https://github.com/ziglang/sublime-zig-language). When I first made this repo, it was unmaintained. I think that Zig should have first class support in Sublime Text, so I'm starting here.
 
-Syntax highlighting for [Zig](http://ziglang.org/)
-for [Sublime Text](sublimetext.com/) editor.
-Use [Package control](https://packagecontrol.io) to install this.
+Auto-install
+------------
 
-Or add `Zig.tmLanguage` to the packages directory. On OSX This is usually
+Use [Package Control](https://packagecontrol.io) to install this.
+
+Manually
+--------
+Add `Zig.sublime-syntax` and `Zon.sublime-syntax` to the packages directory. On MacOS this is usually
 
 ```
 ~/Library/Application\ Support/Sublime\ Text/
 ```
 
-But to find the path on your machine go to `Preferences > Browse Packages` from
-within Sublime Text.
-=======
+Otherwise use `Preferences > Browse Packages` from within Sublime Text.
 
-TextMate Installation
----------------------
-
-The `Zig.tmLanguage` is also compatible with TextMate.
-To install in TextMate clone or download this repository.
-Then rename the repository directory to `Zig.tmBundle` and double-click it to install it into TextMate.
-However, see [Zig.tmbundle](https://github.com/ziglang/Zig.tmbundle) for dedicated TextMate support.
 
 Local Development
 -----------------
@@ -32,7 +25,7 @@ Local Development
 Clone or copy this repository to your local Sublime Text folder. e.g.
 
 ```
-git clone https://github.com/ziglang/sublime-zig-language.git "/Users/$USER/Library/Application Support/Sublime Text 3/Packages/Zig Language"
+git clone https://github.com/ziglang/sublime-zig-language.git "/Users/$USER/Library/Application Support/Sublime\ Text/Packages/Zig Language"
 ```
 
 For working on ST3+ support, you can edit the `.sublime-syntax` directly.
@@ -41,15 +34,7 @@ will provide some syntax highlighting.
 You can run the tests in [syntax_test.zig](./Syntaxes/syntax_test.zig)
 with the "Syntax Tests" builtin build system.
 Sublime Text will automatically reload the syntax on save.
-If you have a big Zig project open this can make your CPU spin while Sublime reindex everything.
-
-
-For working on the old `.tmLanguage` syntax, work on the `Zig.YAML-tmLanguage` file.
-**Important** Github Linguist's source of truth is `Zig.YAML-tmLanguage`.
-Work on `Zig.YAML-tmLanguage` the use PackageDev command: `Convert (YAML, JSON, PList) to...`
-to generate the `.tmLanguage`.
-Sublime Text should also automatically reload the plugin, but doesn't have unit tests for `tmLanguage`.
-
+If you have a big Zig project open this can make your CPU spin while Sublime reindexes everything.
 
 Build System
 ------------
