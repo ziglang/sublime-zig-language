@@ -1,0 +1,8 @@
+# [PackageDev] target_format: plist, ext: tmPreferences
+name: Zig
+uuid: 06C2FF99-3080-441A-9019-460C51E93116
+scope: source.zig
+settings:
+  shellVariables:
+  - name: TM_COMMENT_START
+    value: '// '

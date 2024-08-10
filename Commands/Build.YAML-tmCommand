@@ -1,0 +1,33 @@
+autoScrollOutput: true
+beforeRunningCommand: saveModifiedFiles
+command: '#!/usr/bin/env ruby18
+
+  require ENV["TM_SUPPORT_PATH"] + "/lib/tm/executor"
+
+  require ENV["TM_SUPPORT_PATH"] + "/lib/tm/save_current_document"
+
+
+  TextMate.save_if_untitled(''zig'')
+
+  TextMate::Executor.make_project_master_current_document
+
+
+  TextMate::Executor.run(ENV["TM_ZIG"] || "zig", "build-exe", ENV["TM_FILEPATH"],
+  :create_error_pipe => true) '
+input: document
+inputFormat: text
+keyEquivalent: '@b'
+name: Build
+outputCaret: afterOutput
+outputFormat: html
+outputLocation: newWindow
+requiredCommands:
+- command: zig
+  locations:
+  - /opt/local/bin/zig
+  - /usr/local/bin/zig
+  - /usr/local/zig/bin/zig
+  variable: TM_ZIG
+scope: source.zig
+uuid: C9E6A57F-7472-445A-BF41-292C8D5F183C
+version: 2

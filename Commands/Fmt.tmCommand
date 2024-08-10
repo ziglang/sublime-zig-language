@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env bash
+
+# shellcheck source=/dev/null
+. "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+
+set -e
+
+PATH=/opt/local/bin:/usr/local/bin:/usr/local/zig/bin:$PATH
+        
+require_cmd "${TM_ZIG:-zig}"
+
+(eval "${TM_ZIG:-zig} fmt --stdin") || exit_show_tool_tip
+</string>
+	<key>input</key>
+	<string>document</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string></string>
+	<key>name</key>
+	<string>Fmt</string>
+	<key>outputCaret</key>
+	<string>interpolateByLine</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceDocument</string>
+	<key>requiredCommands</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<string>zig</string>
+			<key>locations</key>
+			<array>
+				<string>/opt/local/bin/zig</string>
+				<string>/usr/local/bin/zig</string>
+				<string>/usr/local/zig/bin/zig</string>
+			</array>
+			<key>variable</key>
+			<string>TM_ZIG</string>
+		</dict>
+	</array>
+	<key>scope</key>
+	<string>source.zig</string>
+	<key>semanticClass</key>
+	<string>callback.document.will-save</string>
+	<key>uuid</key>
+	<string>BC972D6E-23AC-4EAD-AF7D-A33564F09433</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
