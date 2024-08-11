@@ -3,7 +3,7 @@
 
 Note: This is *not* the official package. That is [here](https://github.com/ziglang/sublime-zig-language). When I first made this repo, it was unmaintained. I think that Zig should have first class support in Sublime Text, so I'm starting here.
 
-Auto-install
+Auto-install (unavailable currently)
 ------------
 
 Use [Package Control](https://packagecontrol.io) to install this.
