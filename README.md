@@ -1,42 +1,46 @@
 [Zig](http://ziglang.org/) syntax highlighting for [Sublime Text](sublimetext.com/).
 ==
 
-Note: This is *not* the official package. That is [here](https://github.com/ziglang/sublime-zig-language). When I first made this repo, it was unmaintained. I think that Zig should have first class support in Sublime Text, so I'm starting here.
+**Bringing first class Zig support to Sublime Text!**
+
+Note: This is *not* the official package, which is unmaintained.
+
+Features
+--------
+- Syntax highlighting for .zig and .zon files
+- Support for top-level and regular doc comments
+- Up-to-date with VSCode Zig syntax
+
+See a full list of changes in `changelog.md`.
 
 Auto-install
 ------------
 
-Use [Package Control](https://packagecontrol.io) to install this.
+Search for `ZigUnofficial` on [Package Control](https://packagecontrol.io).
 
 Manually
 --------
-Add `Zig.sublime-syntax` and `Zon.sublime-syntax` to the packages directory. On MacOS this is usually
 
+Clone this repository to your local Sublime Text folder.
+
+**MacOS:**
 ```
-~/Library/Application\ Support/Sublime\ Text/
-```
-
-Otherwise use `Preferences > Browse Packages` from within Sublime Text.
-
-
-Local Development
------------------
-
-Clone or copy this repository to your local Sublime Text folder. e.g.
-
-```
-git clone https://github.com/ziglang/sublime-zig-language.git "/Users/$USER/Library/Application Support/Sublime\ Text/Packages/Zig Language"
+git clone https://github.com/aidenfoxivey/sublime-zig-unofficial "/Users/$USER/Library/Application Support/Sublime Text/Packages/ZigUnofficial
 ```
 
-For working on ST3+ support, you can edit the `.sublime-syntax` directly.
-But installing [PackageDev](https://packagecontrol.io/packages/PackageDev)
-will provide some syntax highlighting.
-You can run the tests in [syntax_test.zig](./Syntaxes/syntax_test.zig)
-with the "Syntax Tests" builtin build system.
-Sublime Text will automatically reload the syntax on save.
-If you have a big Zig project open this can make your CPU spin while Sublime reindexes everything.
+**Linux:**
+```
+git clone https://github.com/aidenfoxivey/sublime-zig-unofficial ~/.config/sublime-text/Packages/ZigUnofficial
+```
 
-Build System
-------------
 
-The included Sublime Text build system comes with a few options for configuration and defining your own build targets. See [here](build.md) for more information.
+**Windows:**
+```
+git clone https://github.com/aidenfoxivey/sublime-zig-unofficial "%APPDATA%\Sublime Text\Packages\ZigUnofficial"
+```
+
+Troubleshooting
+---------------
+If syntax highlighting doesn't work, ensure no other Zig packages are installed.
+
+This package conflicts with [Zig Language](https://github.com/ziglang/sublime-zig-language).
