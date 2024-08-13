@@ -33,7 +33,6 @@ git clone https://github.com/aidenfoxivey/sublime-zig-unofficial "/Users/$USER/L
 git clone https://github.com/aidenfoxivey/sublime-zig-unofficial ~/.config/sublime-text/Packages/ZigUnofficial
 ```
 
-
 **Windows:**
 ```
 git clone https://github.com/aidenfoxivey/sublime-zig-unofficial "%APPDATA%\Sublime Text\Packages\ZigUnofficial"
