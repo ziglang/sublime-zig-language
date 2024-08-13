@@ -11,7 +11,7 @@ Features
 - Support for top-level and regular doc comments
 - Up-to-date with VSCode Zig syntax
 
-See a full list of changes in `changelog.md`.
+See a full list of changes in [changelog.md](./changelog.md).
 
 Auto-install
 ------------
