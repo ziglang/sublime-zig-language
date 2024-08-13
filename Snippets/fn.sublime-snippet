@@ -1,0 +1,8 @@
+<snippet>
+    <description>function</description>
+    <content><![CDATA[$0 fn $1 ($2) $3 {
+    $4
+}]]></content>
+    <tabTrigger>fn</tabTrigger>
+    <scope>source.zig</scope>
+</snippet>
