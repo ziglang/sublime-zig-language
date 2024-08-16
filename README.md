@@ -1,4 +1,4 @@
-[Zig](http://ziglang.org/) syntax highlighting for [Sublime Text](sublimetext.com/).
+[Zig](https://ziglang.org/) syntax highlighting for [Sublime Text](https://sublimetext.com/).
 ==
 
 **Bringing first class Zig support to Sublime Text!**
