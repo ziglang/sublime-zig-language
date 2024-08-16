@@ -13,7 +13,7 @@ const std = @import("std");
 
 pub fn main() !void {
 //^ storage.modifier.zig
-//  ^^ storage.type.function.zig
+//  ^^ keyword.declaration.function.zig
 //     ^^^^ entity.name.function
 //         ^ punctuation.section.parens.begin.zig
 //          ^ punctuation.section.parens.end.zig
@@ -55,7 +55,7 @@ asd {
 }
 
    fn dump(
-// ^^ storage.type.function.zig
+// ^^ keyword.declaration.function.zig
 //    ^^^^ entity.name.function
 //        ^ punctuation.section.parens.begin.zig
     value: var.asda.ad.asd,
@@ -133,7 +133,7 @@ a %= b
 a << b
 //^^ keyword.operator.logical.zig
 a <<= b
-//^^^ keyword.operator.logical.zig
+//^^^ keyword.operator.assignment.zig
 
 a & b
 a &= b
@@ -178,6 +178,13 @@ a.*
 &a
 
 a || b
+
+    test "tests" {
+//  ^^^^ keyword.declaration.test.zig
+//  ^^^^^^^^^^^^ entity.name.function.test.zig
+//               ^ punctuation.section.braces.begin.zig
+    }
+//  ^ punctuation.section.braces.end.zig
 
 test "numbers" {
     123
@@ -247,7 +254,7 @@ const \\ adsjfaf23n9
 const v = fn(aas, 2342, 23) as;
 
 fn foo(a:as) i32 {
-// <- storage.type.function.zig
+// <- keyword.declaration.function.zig
 // ^^^ entity.name.function
 //    ^ punctuation.section.parens.begin.zig
 //     ^ variable.parameter.zig
@@ -276,7 +283,7 @@ errdefer |err| std.debug.assert(err == error.Overflow);
 //                                  ^^ keyword.operator.logical.zig
 //                                     ^^^^^ storage.type.error.zig
 //                                          ^ punctuation.accessor.zig
-//                                           ^^^^^^^^ entity.name.error.zig
+//                                           ^^^^^^^^ constant.other.error.zig
 //                                                   ^ punctuation.section.parens.end.zig
 //                                                    ^ punctuation.terminator.zig
 
@@ -305,7 +312,7 @@ test "strings" {
     '💩';
 }
    fn(i13i,Foo) Bar;
-// ^^ storage.type.function.zig
+// ^^ keyword.declaration.function.zig
 //   ^ punctuation.section.parens.begin.zig
 //    ^^^^ meta.function.parameters.zig storage.type.zig
 //        ^ meta.function.parameters.zig punctuation.separator.zig
@@ -434,21 +441,21 @@ pub fn asBytes(ptr: var) asdsa!AsBytesReturnType(@typeOf(ptr)) {
 pub const LARGE_INTEGER = extern struct {
 // <- storage.modifier.zig
 //  ^^^^^ storage.modifier.zig
-//        ^^^^^^^^^^^^^ entity.name.struct.zig
+//        ^^^^^^^^^^^^^ entity.name.class.struct.zig
 //                      ^ keyword.operator.assignment.zig
 //                        ^^^^^^ storage.modifier.zig
-//                               ^^^^^^ storage.type.struct.zig
+//                               ^^^^^^ keyword.declaration.struct.zig
 //                                      ^ punctuation.section.braces.begin.zig
     _u2: extern struct {
 //  ^^^ variable.other.member.zig
 //     ^ punctuation.separator.zig
 //       ^^^^^^ storage.modifier.zig
-//              ^^^^^^ storage.type.struct.zig
+//              ^^^^^^ keyword.declaration.struct.zig
 //                     ^ punctuation.section.braces.begin.zig
         LowPart: fn(a, b, c)d,
 //      ^^^^^^^ variable.other.member.zig
 //             ^ punctuation.separator.zig
-//               ^^ storage.type.function.zig
+//               ^^ keyword.declaration.function.zig
 //                 ^ punctuation.section.parens.begin.zig
 //                  ^ meta.function.parameters.zig storage.type.zig
 //                   ^ meta.function.parameters.zig punctuation.separator.zig
@@ -474,10 +481,10 @@ pub const LARGE_INTEGER = extern struct {
 
 pub const GUID = extern struct {
 //  ^^^^^ storage.modifier.zig
-//        ^^^^ entity.name.struct.zig
+//        ^^^^ entity.name.class.struct.zig
 //             ^ keyword.operator.assignment.zig
 //               ^^^^^^ storage.modifier.zig
-//                      ^^^^^^ storage.type.struct.zig
+//                      ^^^^^^ keyword.declaration.struct.zig
 //                             ^ punctuation.section.braces.begin.zig
     Data1: c_ulong,
 //  ^^^^^ variable.other.member.zig
@@ -494,7 +501,7 @@ pub const GUID = extern struct {
 
 pub async fn function() Error!ReturnType {
 //  ^^^^^ keyword.control.async.zig
-//        ^^ storage.type.function.zig
+//        ^^ keyword.declaration.function.zig
 //           ^^^^^^^^ entity.name.function
 }
 
@@ -520,8 +527,7 @@ test "enum literals" {
     const result = switch (color) {
         .Auto => false,
 //      ^^^^^ constant.language.enum
-//            ^ keyword.operator.assignment.zig
-//             ^ keyword.operator.logical.zig
+//            ^^ keyword.operator.assignment.zig
 //               ^^^^^ constant.language.zig
         .On => true,
 //      ^^^ constant.language.enum
